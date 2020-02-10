@@ -1,11 +1,7 @@
-import View from "./components/View.vue";
+import Fields from "./components/sections/Fields.vue";
 
 panel.plugin("diesdasdigital/kirby-seo", {
-  views: {
-    example: {
-      component: View,
-      icon: "preview",
-      label: "Example"
-    }
+  sections: {
+    fields: Fields
   }
 });
