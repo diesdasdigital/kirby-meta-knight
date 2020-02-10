@@ -1,0 +1,8 @@
+/content
+/kirby
+/media
+/site
+!/site/plugins
+composer.json
+index.php
+README.md
