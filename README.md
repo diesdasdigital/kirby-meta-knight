@@ -65,4 +65,4 @@ MIT
 
 ## Credits
 
-- [diesdas ⚡️ digital](https://github.com/diesdasdigital)
+[diesdas ⚡️ digital](https://github.com/diesdasdigital)
