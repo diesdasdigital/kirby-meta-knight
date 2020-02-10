@@ -1,7 +1,7 @@
-import Fields from "./components/sections/Fields.vue";
+import basicMeta from "./components/sections/basic_meta.vue";
 
 panel.plugin("diesdasdigital/kirby-seo", {
   sections: {
-    fields: Fields
+    basic_meta: basicMeta
   }
 });

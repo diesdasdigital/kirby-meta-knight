@@ -13,6 +13,8 @@
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
+    "global": "^4.4.0",
+    "parcel": "^1.12.4",
     "vue": "^2.6.11",
     "vue-hot-reload-api": "^2.3.4"
   }

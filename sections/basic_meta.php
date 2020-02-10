@@ -5,8 +5,8 @@ return [
         'headline' => function ($headline = 'Basic Meta') {
             return $headline;
         },
-        'fields' => function($fields = []) {
-          return $fields;
+        'basicMeta' => function($basicMeta = []) {
+          return $basicMeta;
         }
     ]
 ];
