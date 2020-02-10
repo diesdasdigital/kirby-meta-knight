@@ -8919,8 +8919,162 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
-  /** put your view logic here **/
+  props: {
+    label: "Test"
+  },
+  data: function data() {
+    return {
+      headline: "",
+      og: {
+        og_title: null,
+        og_description: null,
+        og_image: [],
+        og_site_name: null,
+        og_url: null,
+        og_audio: null,
+        og_video: null,
+        og_determiner: null,
+        og_locale: null,
+        og_locale_alternate: null,
+        og_type: null,
+        og_type_no_additional_fields: null,
+        og_type_article_published_time: null,
+        og_type_article_modified_time: null,
+        og_type_article_expiration_time: null
+      }
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.load().then(function (response) {
+      _this.headline = response.headline;
+    });
+  }
 };
 exports.default = _default;
         var $9d9c34 = exports.default || module.exports;
@@ -8936,38 +9090,187 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "k-view",
-    { staticClass: "k-test-view" },
+    "div",
     [
-      _c("k-header", [_vm._v("Example")]),
-      _vm._v("\n  This is your custom view\n  "),
-      _c("div", { staticClass: "og-preview" }, [
-        _c("div", { staticClass: "og-preview__image-container" }, [
-          _c("img", {
-            staticClass: "og-preview__preview-image",
-            attrs: {
-              src:
-                "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
-            }
-          })
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "og-preview__content-container" }, [
-          _c("span", { staticClass: "og-preview__url" }, [
-            _vm._v("kicommunity.de")
-          ]),
+      _c("k-header", [_vm._v(_vm._s(_vm.headline))]),
+      _vm._v(" "),
+      _c(
+        "k-grid",
+        { attrs: { gutter: "large" } },
+        [
+          _c(
+            "k-column",
+            { attrs: { width: "2/3" } },
+            [
+              _c("k-fieldset", {
+                attrs: {
+                  fields: {
+                    og_title: {
+                      label: "OG Title",
+                      type: "text"
+                    },
+                    og_description: {
+                      label: "OG Description",
+                      type: "textarea"
+                    },
+                    og_image: {
+                      label: "OG Image",
+                      required: true,
+                      type: "files"
+                    },
+                    og_site_name: {
+                      label: "OG Site Name",
+                      help:
+                        "If your object is part of a larger web site, the name which should be displayed for the overall site.",
+                      type: "text",
+                      width: "1/2"
+                    },
+                    og_url: {
+                      label: "OG URL",
+                      help:
+                        "The canonical URL of your object that will be used as its permanent ID in the graph.",
+                      type: "url",
+                      width: "1/2"
+                    },
+                    og_audio: {
+                      label: "OG Audio",
+                      help: "A URL to an audio file to accompany this object.",
+                      type: "url",
+                      width: "1/2"
+                    },
+                    og_video: {
+                      label: "OG Video",
+                      help:
+                        "A URL to a video file that complements this object.",
+                      type: "url",
+                      width: "1/2"
+                    },
+                    og_determiner: {
+                      label: "OG Determiner",
+                      help:
+                        "The word that appears before this object's title in a sentence.",
+                      type: "text",
+                      width: "1/2"
+                    },
+                    og_locale: {
+                      label: "OG Locale",
+                      help: "The locale these tags are marked up in",
+                      type: "text",
+                      width: "1/2"
+                    },
+                    og_locale_alternate: {
+                      label: "OG Locale Alternate",
+                      help:
+                        "An array of other locales this page is available in.",
+                      type: "text",
+                      width: "1/2"
+                    },
+                    og_type: {
+                      label: "OG Type",
+                      help:
+                        "The type of your object, e.g., video.movie. Depending on the type you specify, other properties may also be required.",
+                      type: "select",
+                      default: "website",
+                      options: [
+                        { value: "website", text: "Website" },
+                        { value: "article", text: "Article" },
+                        { value: "book", text: "Book" },
+                        { value: "profile", text: "Profile" },
+                        { value: "movie", text: "Movie" },
+                        { value: "episode", text: "Episode" }
+                      ],
+                      width: "1/1"
+                    },
+                    og_type_no_additional_fields: {
+                      label: "No Additional Fields for this type",
+                      type: "info",
+                      when: {
+                        og_type: "website"
+                      }
+                    },
+                    og_type_article_published_time: {
+                      label: "OG Article Published Time",
+                      type: "date",
+                      time: true,
+                      default: _vm.now,
+                      width: "1/3",
+                      when: {
+                        og_type: "article"
+                      }
+                    },
+                    og_type_article_modified_time: {
+                      label: "OG Article Modified Time",
+                      type: "date",
+                      time: true,
+                      default: _vm.now,
+                      width: "1/3",
+                      when: {
+                        og_type: "article"
+                      }
+                    },
+                    og_type_article_expiration_time: {
+                      label: "OG Article Expiration Time",
+                      type: "date",
+                      time: true,
+                      default: _vm.now,
+                      width: "1/3",
+                      when: {
+                        og_type: "article"
+                      }
+                    }
+                  }
+                },
+                on: { input: _vm.input },
+                model: {
+                  value: _vm.og,
+                  callback: function($$v) {
+                    _vm.og = $$v
+                  },
+                  expression: "og"
+                }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("h2", { staticClass: "og-preview__preview-headline" }, [
-            _vm._v("KI Community")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "og-preview__preview-paragraph" }, [
-            _vm._v(
-              "\n        Wir vernetzen Interessierte, Anwender und Experten zum Thema\n        „Künstliche Intelligenz“.\n      "
-            )
+          _c("k-column", { attrs: { width: "1/3" } }, [
+            _c("div", { staticClass: "og-preview" }, [
+              _c("div", { staticClass: "og-preview__image-container" }, [
+                _c("img", {
+                  staticClass: "og-preview__preview-image",
+                  attrs: {
+                    src:
+                      "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "og-preview__content-container" }, [
+                _c("span", { staticClass: "og-preview__url" }, [
+                  _vm._v("kicommunity.de")
+                ]),
+                _vm._v(" "),
+                _c("h2", { staticClass: "og-preview__preview-headline" }, [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.og.og_title || _vm.Missing) +
+                      "\n          "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("p", { staticClass: "og-preview__preview-paragraph" }, [
+                  _vm._v(
+                    "\n            " +
+                      _vm._s(_vm.og.og_description || _vm.Missing) +
+                      "\n          "
+                  )
+                ])
+              ])
+            ])
           ])
-        ])
-      ])
+        ],
+        1
+      )
     ],
     1
   )

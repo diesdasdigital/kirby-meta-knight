@@ -1,7 +1,11 @@
 .og-preview {
+  position: sticky;
+  position: -webkit-sticky; /* Safari */
+  top: 1em;
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin-top: 2em;
   margin-bottom: 1em;
   max-width: 438px;
   background: #fff;
