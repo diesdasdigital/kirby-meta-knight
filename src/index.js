@@ -1,6 +1,6 @@
 import View from "./components/View.vue";
 
-panel.plugin("getkirby/pluginkit", {
+panel.plugin("diesdasdigital/kirby-seo", {
   views: {
     example: {
       component: View,

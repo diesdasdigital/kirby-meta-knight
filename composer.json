@@ -1,15 +1,15 @@
 {
-    "name": "getkirby/pluginkit",
-    "description": "Kirby Example Plugin",
-    "type": "kirby-plugin",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "Your Name",
-            "email": "you@example.com"
-        }
-    ],
-    "require": {
-        "getkirby/composer-installer": "^1.1"
+  "name": "diesdasdigital/kirby-seo",
+  "description": "Kirby Seo Plugin",
+  "type": "kirby-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "diesdas.digital",
+      "email": "hi@diesdas.digital"
     }
+  ],
+  "require": {
+    "getkirby/composer-installer": "^1.1"
+  }
 }

@@ -1,5 +1,5 @@
 <?php
 
-Kirby::plugin('getkirby/pluginkit', [
+Kirby::plugin('diesdasdigital/kirby-seo', [
     // plugin magic happens here
 ]);
