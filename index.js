@@ -8902,6 +8902,23 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   /** put your view logic here **/
 };
@@ -8923,7 +8940,34 @@ exports.default = _default;
     { staticClass: "k-test-view" },
     [
       _c("k-header", [_vm._v("Example")]),
-      _vm._v("\n  This is your custom view\n")
+      _vm._v("\n  This is your custom view\n  "),
+      _c("div", { staticClass: "og-preview" }, [
+        _c("div", { staticClass: "og-preview__image-container" }, [
+          _c("img", {
+            staticClass: "og-preview__preview-image",
+            attrs: {
+              src:
+                "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "og-preview__content-container" }, [
+          _c("span", { staticClass: "og-preview__url" }, [
+            _vm._v("kicommunity.de")
+          ]),
+          _vm._v(" "),
+          _c("h2", { staticClass: "og-preview__preview-headline" }, [
+            _vm._v("KI Community")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "og-preview__preview-paragraph" }, [
+            _vm._v(
+              "\n        Wir vernetzen Interessierte, Anwender und Experten zum Thema\n        „Künstliche Intelligenz“.\n      "
+            )
+          ])
+        ])
+      ])
     ],
     1
   )
