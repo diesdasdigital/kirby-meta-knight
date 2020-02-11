@@ -3,10 +3,16 @@
     <k-header>{{ headline }}</k-header>
     <k-grid gutter="large">
       <k-column width="2/3">
-        <k-fieldset
+        <k-form
           v-model="og"
           @input="input"
+          @submit="submit"
           :fields="{
+            og_headline: {
+              label: 'Open Graph (Facebook)',
+              type: 'headline',
+              numbered: false
+            },
             og_title: {
               label: 'OG Title',
               type: 'text'
@@ -122,6 +128,15 @@
         />
       </k-column>
       <k-column width="1/3">
+        <k-form
+          :fields="{
+            facebook_preview_headline: {
+              label: 'Facebook Sharing Preview',
+              type: 'headline',
+              numbered: false
+            }
+          }"
+        />
         <div class="og-preview">
           <div class="og-preview__image-container">
             <img
@@ -148,7 +163,8 @@
 <script>
 export default {
   props: {
-    label: "Test"
+    label: "Test",
+    endpoints: []
   },
   data() {
     return {
@@ -175,7 +191,18 @@ export default {
   created() {
     this.load().then(response => {
       this.headline = response.headline;
+      this.og_title = reponsoe.og_title;
     });
+  },
+  methods: {
+    input() {
+      // the data is automatically updated
+      console.log(this.og);
+    },
+    submit() {
+      // let's send this thing to the server
+      this.$api.post("/my/api", this.contact);
+    }
   }
 };
 </script>
@@ -192,7 +219,7 @@ export default {
   margin-bottom: 1em;
   max-width: 438px;
   background: #fff;
-  border: 1px solid #dddfe2;
+  border: 1px solid #ccc;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 

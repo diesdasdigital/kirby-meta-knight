@@ -1,4 +1,39 @@
-.og-preview {
+.google-preview {
+  position: sticky;
+  top: 1em;
+  margin-top: 1em;
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border: 1px solid #ccc;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.google-preview__content-container {
+  padding: 1em;
+}
+
+.google-preview__headline {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+  font-size: 1.25em;
+  font-weight: normal;
+  color: #1a0dab;
+}
+
+.google-preview__paragraph {
+  margin: 0;
+  font-size: 0.875em;
+  line-height: 1.3em;
+  color: #3c4043;
+}
+
+.google-preview__url {
+  display: block;
+  margin-bottom: 0.5em;
+  font-size: 0.875em;
+  color: #006621;
+}.og-preview {
   position: sticky;
   position: -webkit-sticky; /* Safari */
   top: 1em;
@@ -9,7 +44,7 @@
   margin-bottom: 1em;
   max-width: 438px;
   background: #fff;
-  border: 1px solid #dddfe2;
+  border: 1px solid #ccc;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
@@ -50,4 +85,69 @@
   padding: 0;
   font-size: 0.75em;
   color: #5e6771;
+}.twitter-cards {
+  position: sticky;
+  top: 1em;
+  margin-top: 2em;
+}
+.twitter-card {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1em;
+  max-width: 438px;
+  background: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  line-height: 1.3em;
+  border: 1px solid #ccc;
+  border-radius: 0.85714em;
+  overflow: hidden;
+}
+
+.twitter-card--horizontal {
+  flex-direction: column;
+  max-width: 507px;
+}
+
+.twitter-card--horizontal .twitter-card__image {
+  width: 100%;
+  padding-bottom: 52.25%;
+  border-bottom: 1px solid #e1e8ed;
+  border-right: none;
+}
+
+.twitter-card__image {
+  position: relative;
+  width: 48%;
+  border-right: 1px solid #e1e8ed;
+}
+
+.twitter-card__preview-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.twitter-card__content-container {
+  padding: 1em;
+}
+
+.twitter-card__preview-headline {
+  margin-top: 0;
+  margin-bottom: 0.33em;
+  font-size: 1em;
+}
+
+.twitter-card__preview-paragraph {
+  margin: 0;
+  font-size: 0.875em;
+}
+
+.twitter-card__url {
+  display: block;
+  margin-top: 0.33em;
+  margin-bottom: 0;
+  padding: 0;
+  font-size: 0.875em;
+  color: #8899a6;
 }

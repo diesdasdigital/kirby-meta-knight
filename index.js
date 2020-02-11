@@ -8888,7 +8888,274 @@ if (inBrowser) {
 
 var _default = Vue;
 exports.default = _default;
-},{}],"components/sections/basic_meta.vue":[function(require,module,exports) {
+},{}],"components/sections/basic_information.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  props: {
+    label: "Test",
+    endpoints: []
+  },
+  data: function data() {
+    return {
+      headline: "",
+      og: {
+        og_title: null,
+        og_description: null,
+        og_image: [],
+        og_site_name: null,
+        og_url: null,
+        og_audio: null,
+        og_video: null,
+        og_determiner: null,
+        og_locale: null,
+        og_locale_alternate: null,
+        og_type: null,
+        og_type_no_additional_fields: null,
+        og_type_article_published_time: null,
+        og_type_article_modified_time: null,
+        og_type_article_expiration_time: null
+      }
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.load().then(function (response) {
+      _this.headline = response.headline;
+      _this.og_title = reponsoe.og_title;
+    });
+  },
+  methods: {
+    input: function input() {
+      // the data is automatically updated
+      console.log(this.og);
+    },
+    submit: function submit() {
+      // let's send this thing to the server
+      this.$api.post("/my/api", this.contact);
+    }
+  }
+};
+exports.default = _default;
+        var $209c77 = exports.default || module.exports;
+      
+      if (typeof $209c77 === 'function') {
+        $209c77 = $209c77.options;
+      }
+    
+        /* template */
+        Object.assign($209c77, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("k-header", [_vm._v(_vm._s(_vm.headline))]),
+      _vm._v(" "),
+      _c(
+        "k-grid",
+        { attrs: { gutter: "large" } },
+        [
+          _c(
+            "k-column",
+            { attrs: { width: "2/3" } },
+            [
+              _c("k-form", {
+                attrs: {
+                  fields: {
+                    meta_headline: {
+                      label: "Basic Meta Information",
+                      type: "headline",
+                      numbered: false
+                    },
+                    meta_description: {
+                      label: "Description",
+                      type: "text"
+                    },
+                    meta_keywords: {
+                      label: "Keywords",
+                      type: "tags"
+                    },
+                    meta_author: {
+                      label: "Author/s",
+                      type: "text"
+                    },
+                    meta_image: {
+                      label: "Image",
+                      type: "files",
+                      multiple: false
+                    },
+                    meta_phone_number: {
+                      label: "Phone Number",
+                      type: "text"
+                    }
+                  }
+                },
+                on: { input: _vm.input, submit: _vm.submit },
+                model: {
+                  value: _vm.og,
+                  callback: function($$v) {
+                    _vm.og = $$v
+                  },
+                  expression: "og"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "k-column",
+            { attrs: { width: "1/3" } },
+            [
+              _c("k-form", {
+                attrs: {
+                  fields: {
+                    google_preview_headline: {
+                      label: "Google Search Result Preview",
+                      type: "headline",
+                      numbered: false
+                    }
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "google-preview" }, [
+                _c(
+                  "div",
+                  { staticClass: "google-preview__content-container" },
+                  [
+                    _c("span", { staticClass: "google-preview__url" }, [
+                      _vm._v("kicommunity.de")
+                    ]),
+                    _vm._v(" "),
+                    _c("h2", { staticClass: "google-preview__headline" }, [
+                      _vm._v("KI Community")
+                    ]),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "google-preview__paragraph" }, [
+                      _vm._v(
+                        "\n            Wir vernetzen Interessierte, Anwender und Experten zum Thema\n            „Künstliche Intelligenz“.\n          "
+                      )
+                    ])
+                  ]
+                )
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$209c77', $209c77);
+          } else {
+            api.reload('$209c77', $209c77);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/sections/open_graph.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9042,9 +9309,25 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   props: {
-    label: "Test"
+    label: "Test",
+    endpoints: []
   },
   data: function data() {
     return {
@@ -9073,18 +9356,29 @@ var _default = {
 
     this.load().then(function (response) {
       _this.headline = response.headline;
+      _this.og_title = reponsoe.og_title;
     });
+  },
+  methods: {
+    input: function input() {
+      // the data is automatically updated
+      console.log(this.og);
+    },
+    submit: function submit() {
+      // let's send this thing to the server
+      this.$api.post("/my/api", this.contact);
+    }
   }
 };
 exports.default = _default;
-        var $9d9c34 = exports.default || module.exports;
+        var $748ef9 = exports.default || module.exports;
       
-      if (typeof $9d9c34 === 'function') {
-        $9d9c34 = $9d9c34.options;
+      if (typeof $748ef9 === 'function') {
+        $748ef9 = $748ef9.options;
       }
     
         /* template */
-        Object.assign($9d9c34, (function () {
+        Object.assign($748ef9, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9102,9 +9396,14 @@ exports.default = _default;
             "k-column",
             { attrs: { width: "2/3" } },
             [
-              _c("k-fieldset", {
+              _c("k-form", {
                 attrs: {
                   fields: {
+                    og_headline: {
+                      label: "Open Graph (Facebook)",
+                      type: "headline",
+                      numbered: false
+                    },
                     og_title: {
                       label: "OG Title",
                       type: "text"
@@ -9220,7 +9519,7 @@ exports.default = _default;
                     }
                   }
                 },
-                on: { input: _vm.input },
+                on: { input: _vm.input, submit: _vm.submit },
                 model: {
                   value: _vm.og,
                   callback: function($$v) {
@@ -9233,41 +9532,58 @@ exports.default = _default;
             1
           ),
           _vm._v(" "),
-          _c("k-column", { attrs: { width: "1/3" } }, [
-            _c("div", { staticClass: "og-preview" }, [
-              _c("div", { staticClass: "og-preview__image-container" }, [
-                _c("img", {
-                  staticClass: "og-preview__preview-image",
-                  attrs: {
-                    src:
-                      "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
+          _c(
+            "k-column",
+            { attrs: { width: "1/3" } },
+            [
+              _c("k-form", {
+                attrs: {
+                  fields: {
+                    facebook_preview_headline: {
+                      label: "Facebook Sharing Preview",
+                      type: "headline",
+                      numbered: false
+                    }
                   }
-                })
-              ]),
+                }
+              }),
               _vm._v(" "),
-              _c("div", { staticClass: "og-preview__content-container" }, [
-                _c("span", { staticClass: "og-preview__url" }, [
-                  _vm._v("kicommunity.de")
+              _c("div", { staticClass: "og-preview" }, [
+                _c("div", { staticClass: "og-preview__image-container" }, [
+                  _c("img", {
+                    staticClass: "og-preview__preview-image",
+                    attrs: {
+                      src:
+                        "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
+                    }
+                  })
                 ]),
                 _vm._v(" "),
-                _c("h2", { staticClass: "og-preview__preview-headline" }, [
-                  _vm._v(
-                    "\n            " +
-                      _vm._s(_vm.og.og_title || _vm.Missing) +
-                      "\n          "
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "og-preview__preview-paragraph" }, [
-                  _vm._v(
-                    "\n            " +
-                      _vm._s(_vm.og.og_description || _vm.Missing) +
-                      "\n          "
-                  )
+                _c("div", { staticClass: "og-preview__content-container" }, [
+                  _c("span", { staticClass: "og-preview__url" }, [
+                    _vm._v("kicommunity.de")
+                  ]),
+                  _vm._v(" "),
+                  _c("h2", { staticClass: "og-preview__preview-headline" }, [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(_vm.og.og_title || _vm.Missing) +
+                        "\n          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "og-preview__preview-paragraph" }, [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(_vm.og.og_description || _vm.Missing) +
+                        "\n          "
+                    )
+                  ])
                 ])
               ])
-            ])
-          ])
+            ],
+            1
+          )
         ],
         1
       )
@@ -9295,9 +9611,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$9d9c34', $9d9c34);
+            api.createRecord('$748ef9', $748ef9);
           } else {
-            api.reload('$9d9c34', $9d9c34);
+            api.reload('$748ef9', $748ef9);
           }
         }
 
@@ -9308,19 +9624,474 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/sections/twitter.vue":[function(require,module,exports) {
 "use strict";
 
-var _basic_meta = _interopRequireDefault(require("./components/sections/basic_meta.vue"));
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  props: {
+    label: "Test",
+    endpoints: []
+  },
+  data: function data() {
+    return {
+      headline: "",
+      og: {
+        og_title: null,
+        og_description: null,
+        og_image: [],
+        og_site_name: null,
+        og_url: null,
+        og_audio: null,
+        og_video: null,
+        og_determiner: null,
+        og_locale: null,
+        og_locale_alternate: null,
+        og_type: null,
+        og_type_no_additional_fields: null,
+        og_type_article_published_time: null,
+        og_type_article_modified_time: null,
+        og_type_article_expiration_time: null
+      }
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.load().then(function (response) {
+      _this.headline = response.headline;
+      _this.og_title = reponsoe.og_title;
+    });
+  },
+  methods: {
+    input: function input() {
+      // the data is automatically updated
+      console.log(this.og);
+    },
+    submit: function submit() {
+      // let's send this thing to the server
+      this.$api.post("/my/api", this.contact);
+    }
+  }
+};
+exports.default = _default;
+        var $5ad285 = exports.default || module.exports;
+      
+      if (typeof $5ad285 === 'function') {
+        $5ad285 = $5ad285.options;
+      }
+    
+        /* template */
+        Object.assign($5ad285, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("k-header", [_vm._v(_vm._s(_vm.headline))]),
+      _vm._v(" "),
+      _c(
+        "k-grid",
+        { attrs: { gutter: "large" } },
+        [
+          _c(
+            "k-column",
+            { attrs: { width: "2/3" } },
+            [
+              _c("k-form", {
+                attrs: {
+                  fields: {
+                    twitter_headline: {
+                      label: "Twitter",
+                      type: "headline",
+                      numbered: false
+                    },
+                    twitter_title: {
+                      label: "Twitter Title",
+                      type: "text",
+                      limit: "70"
+                    },
+                    twitter_description: {
+                      label: "Twitter Description",
+                      type: "text",
+                      limit: "300"
+                    },
+                    twitter_image: {
+                      label: "Twitter Image (1200x675)",
+                      help: "Will be cropped automatically.",
+                      type: "files",
+                      multiple: "false",
+                      max: 1
+                    },
+                    twitter_site: {
+                      label: "@username of website",
+                      type: "text",
+                      width: "1/2"
+                    },
+                    twitter_creator: {
+                      label: "@username of content creator",
+                      type: "text",
+                      width: "1/2"
+                    }
+                  }
+                },
+                on: { input: _vm.input, submit: _vm.submit },
+                model: {
+                  value: _vm.og,
+                  callback: function($$v) {
+                    _vm.og = $$v
+                  },
+                  expression: "og"
+                }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c(
+            "k-column",
+            { attrs: { width: "1/3" } },
+            [
+              _c("k-form", {
+                attrs: {
+                  fields: {
+                    twitter_preview_headline: {
+                      label: "Twitter Card Preview",
+                      type: "headline",
+                      numbered: false
+                    }
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "twitter-cards" }, [
+                _c(
+                  "div",
+                  { staticClass: "twitter-card twitter-card--horizontal" },
+                  [
+                    _c("div", { staticClass: "twitter-card__image" }, [
+                      _c("img", {
+                        staticClass: "twitter-card__preview-image",
+                        attrs: {
+                          src:
+                            "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
+                        }
+                      })
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "twitter-card__content-container" },
+                      [
+                        _c(
+                          "h2",
+                          { staticClass: "twitter-card__preview-headline" },
+                          [_vm._v("KI Community")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "p",
+                          { staticClass: "twitter-card__preview-paragraph" },
+                          [
+                            _vm._v(
+                              "\n              Wir vernetzen Interessierte, Anwender und Experten zum Thema\n              „Künstliche Intelligenz“.\n            "
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("span", { staticClass: "twitter-card__url" }, [
+                          _vm._v("kicommunity.de")
+                        ])
+                      ]
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "twitter-card" }, [
+                  _c("div", { staticClass: "twitter-card__image" }, [
+                    _c("img", {
+                      staticClass: "twitter-card__preview-image",
+                      attrs: {
+                        src:
+                          "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "twitter-card__content-container" },
+                    [
+                      _c(
+                        "h2",
+                        { staticClass: "twitter-card__preview-headline" },
+                        [_vm._v("KI Community")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "p",
+                        { staticClass: "twitter-card__preview-paragraph" },
+                        [
+                          _vm._v(
+                            "\n              Wir vernetzen Interessierte, Anwender und Experten zum Thema\n              „Künstliche Intelligenz“.\n            "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("span", { staticClass: "twitter-card__url" }, [
+                        _vm._v("kicommunity.de")
+                      ])
+                    ]
+                  )
+                ])
+              ])
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$5ad285', $5ad285);
+          } else {
+            api.reload('$5ad285', $5ad285);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/sections/meta_information.vue":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _basic_information = _interopRequireDefault(require("./basic_information.vue"));
+
+var _open_graph = _interopRequireDefault(require("./open_graph.vue"));
+
+var _twitter = _interopRequireDefault(require("./twitter.vue"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+var _default = {
+  components: {
+    basicInformation: _basic_information.default,
+    openGraph: _open_graph.default,
+    twitter: _twitter.default
+  }
+};
+exports.default = _default;
+        var $63636b = exports.default || module.exports;
+      
+      if (typeof $63636b === 'function') {
+        $63636b = $63636b.options;
+      }
+    
+        /* template */
+        Object.assign($63636b, (function () {
+          var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c("basicInformation"),
+      _vm._v(" "),
+      _c("openGraph"),
+      _vm._v(" "),
+      _c("twitter")
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+          return {
+            render: render,
+            staticRenderFns: staticRenderFns,
+            _compiled: true,
+            _scopeId: null,
+            functional: undefined
+          };
+        })());
+      
+    /* hot reload */
+    (function () {
+      if (module.hot) {
+        var api = require('vue-hot-reload-api');
+        api.install(require('vue'));
+        if (api.compatible) {
+          module.hot.accept();
+          if (!module.hot.data) {
+            api.createRecord('$63636b', $63636b);
+          } else {
+            api.reload('$63636b', $63636b);
+          }
+        }
+
+        
+        var reloadCSS = require('_css_loader');
+        module.hot.dispose(reloadCSS);
+        module.hot.accept(reloadCSS);
+      
+      }
+    })();
+},{"./basic_information.vue":"components/sections/basic_information.vue","./open_graph.vue":"components/sections/open_graph.vue","./twitter.vue":"components/sections/twitter.vue","_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
+"use strict";
+
+var _meta_information = _interopRequireDefault(require("./components/sections/meta_information.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 panel.plugin("diesdasdigital/kirby-seo", {
   sections: {
-    basic_meta: _basic_meta.default
+    basic_meta: _meta_information.default
   }
 });
-},{"./components/sections/basic_meta.vue":"components/sections/basic_meta.vue"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/sections/meta_information.vue":"components/sections/meta_information.vue"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
