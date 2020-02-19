@@ -8888,7 +8888,7 @@ if (inBrowser) {
 
 var _default = Vue;
 exports.default = _default;
-},{}],"components/sections/basic_information.vue":[function(require,module,exports) {
+},{}],"components/sections/google_search_preview.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -8910,80 +8910,13 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
-  props: {
-    label: "Test",
-    endpoints: []
-  },
   data: function data() {
     return {
-      headline: "",
-      og: {
-        og_title: null,
-        og_description: null,
-        og_image: [],
-        og_site_name: null,
-        og_url: null,
-        og_audio: null,
-        og_video: null,
-        og_determiner: null,
-        og_locale: null,
-        og_locale_alternate: null,
-        og_type: null,
-        og_type_no_additional_fields: null,
-        og_type_article_published_time: null,
-        og_type_article_modified_time: null,
-        og_type_article_expiration_time: null
-      }
+      headline: "Basic Meta Information",
+      meta_title: null,
+      url: null,
+      meta_image: null
     };
   },
   created: function created() {
@@ -8991,136 +8924,72 @@ var _default = {
 
     this.load().then(function (response) {
       _this.headline = response.headline;
-      _this.og_title = reponsoe.og_title;
+      _this.meta_title = response.title.value;
+      _this.meta_url = response.url;
     });
   },
-  methods: {
-    input: function input() {
-      // the data is automatically updated
-      console.log(this.og);
+  computed: {
+    meta_description: function meta_description() {
+      var meta_description = this.$store.getters["content/values"]().meta_description;
+
+      if (meta_description.length < 1) {
+        meta_description = "[Description Missing]";
+        return meta_description;
+      } else {
+        return meta_description;
+      }
     },
-    submit: function submit() {
-      // let's send this thing to the server
-      this.$api.post("/my/api", this.contact);
+    store_image: function store_image() {
+      return this.$store.getters["content/values"]().meta_image[0].filename;
+    }
+  },
+  watch: {
+    store_image: {
+      handler: function handler() {
+        var _this2 = this;
+
+        this.$api.files.get("site", this.store_image, {
+          view: "compact"
+        }).then(function (response) {
+          _this2.meta_image = response.url;
+        });
+      },
+      immediate: true
     }
   }
 };
 exports.default = _default;
-        var $209c77 = exports.default || module.exports;
+        var $f5591c = exports.default || module.exports;
       
-      if (typeof $209c77 === 'function') {
-        $209c77 = $209c77.options;
+      if (typeof $f5591c === 'function') {
+        $f5591c = $f5591c.options;
       }
     
         /* template */
-        Object.assign($209c77, (function () {
+        Object.assign($f5591c, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("k-header", [_vm._v(_vm._s(_vm.headline))]),
-      _vm._v(" "),
-      _c(
-        "k-grid",
-        { attrs: { gutter: "large" } },
-        [
-          _c(
-            "k-column",
-            { attrs: { width: "2/3" } },
-            [
-              _c("k-form", {
-                attrs: {
-                  fields: {
-                    meta_headline: {
-                      label: "Basic Meta Information",
-                      type: "headline",
-                      numbered: false
-                    },
-                    meta_description: {
-                      label: "Description",
-                      type: "text"
-                    },
-                    meta_keywords: {
-                      label: "Keywords",
-                      type: "tags"
-                    },
-                    meta_author: {
-                      label: "Author/s",
-                      type: "text"
-                    },
-                    meta_image: {
-                      label: "Image",
-                      type: "files",
-                      multiple: false
-                    },
-                    meta_phone_number: {
-                      label: "Phone Number",
-                      type: "text"
-                    }
-                  }
-                },
-                on: { input: _vm.input, submit: _vm.submit },
-                model: {
-                  value: _vm.og,
-                  callback: function($$v) {
-                    _vm.og = $$v
-                  },
-                  expression: "og"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "k-column",
-            { attrs: { width: "1/3" } },
-            [
-              _c("k-form", {
-                attrs: {
-                  fields: {
-                    google_preview_headline: {
-                      label: "Google Search Result Preview",
-                      type: "headline",
-                      numbered: false
-                    }
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "google-preview" }, [
-                _c(
-                  "div",
-                  { staticClass: "google-preview__content-container" },
-                  [
-                    _c("span", { staticClass: "google-preview__url" }, [
-                      _vm._v("kicommunity.de")
-                    ]),
-                    _vm._v(" "),
-                    _c("h2", { staticClass: "google-preview__headline" }, [
-                      _vm._v("KI Community")
-                    ]),
-                    _vm._v(" "),
-                    _c("p", { staticClass: "google-preview__paragraph" }, [
-                      _vm._v(
-                        "\n            Wir vernetzen Interessierte, Anwender und Experten zum Thema\n            „Künstliche Intelligenz“.\n          "
-                      )
-                    ])
-                  ]
-                )
-              ])
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+  return _c("div", [
+    _c("div", { staticClass: "k-field-label" }, [_vm._v(_vm._s(_vm.headline))]),
+    _vm._v(" "),
+    _c("div", { staticClass: "google-preview" }, [
+      _c("div", { staticClass: "google-preview__content-container" }, [
+        _c("h2", { staticClass: "google-preview__headline" }, [
+          _vm._v(_vm._s(_vm.meta_title))
+        ]),
+        _vm._v(" "),
+        _c("span", { staticClass: "google-preview__url" }, [
+          _vm._v(_vm._s(_vm.meta_url))
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "google-preview__paragraph" }, [
+          _vm._v("\n        " + _vm._s(_vm.meta_description) + "\n      ")
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -9142,9 +9011,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$209c77', $209c77);
+            api.createRecord('$f5591c', $f5591c);
           } else {
-            api.reload('$209c77', $209c77);
+            api.reload('$f5591c', $f5591c);
           }
         }
 
@@ -9155,7 +9024,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/sections/open_graph.vue":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/sections/facebook_sharing_preview.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9187,168 +9056,12 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
-  props: {
-    label: "Test",
-    endpoints: []
-  },
   data: function data() {
     return {
-      headline: "",
-      og: {
-        og_title: null,
-        og_description: null,
-        og_image: [],
-        og_site_name: null,
-        og_url: null,
-        og_audio: null,
-        og_video: null,
-        og_determiner: null,
-        og_locale: null,
-        og_locale_alternate: null,
-        og_type: null,
-        og_type_no_additional_fields: null,
-        og_type_article_published_time: null,
-        og_type_article_modified_time: null,
-        og_type_article_expiration_time: null
-      }
+      headline: "Basic Meta Information",
+      url: null,
+      og_image: null
     };
   },
   created: function created() {
@@ -9356,240 +9069,104 @@ var _default = {
 
     this.load().then(function (response) {
       _this.headline = response.headline;
-      _this.og_title = reponsoe.og_title;
+      _this.url = response.url;
     });
   },
-  methods: {
-    input: function input() {
-      // the data is automatically updated
-      console.log(this.og);
+  computed: {
+    og_title: function og_title() {
+      var og_title = this.$store.getters["content/values"]().og_title;
+
+      if (og_title.length < 1) {
+        og_title = "[OG Title Missing]";
+        return og_title;
+      } else {
+        return og_title;
+      }
     },
-    submit: function submit() {
-      // let's send this thing to the server
-      this.$api.post("/my/api", this.contact);
+    og_description: function og_description() {
+      var og_description = this.$store.getters["content/values"]().og_description;
+
+      if (og_description.length < 1) {
+        og_description = "[OG Description Missing]";
+        return og_description;
+      } else {
+        return og_description;
+      }
+    },
+    og_site_name: function og_site_name() {
+      var og_site_name = this.$store.getters["content/values"]().og_site_name;
+
+      if (og_site_name.length < 1) {
+        og_site_name = "[OG Site Name Missing]";
+        return og_site_name;
+      } else {
+        return og_site_name;
+      }
+    },
+    store_image: function store_image() {
+      return this.$store.getters["content/values"]().og_image;
+    }
+  },
+  watch: {
+    store_image: {
+      handler: function handler() {
+        var _this2 = this;
+
+        if (this.store_image.length === 0) {
+          this.og_image = null;
+        } else {
+          this.$api.files.get("site", this.store_image[0].filename, {
+            view: "compact"
+          }).then(function (response) {
+            _this2.og_image = response.url;
+          });
+        }
+      },
+      immediate: true
     }
   }
 };
 exports.default = _default;
-        var $748ef9 = exports.default || module.exports;
+        var $9102e2 = exports.default || module.exports;
       
-      if (typeof $748ef9 === 'function') {
-        $748ef9 = $748ef9.options;
+      if (typeof $9102e2 === 'function') {
+        $9102e2 = $9102e2.options;
       }
     
         /* template */
-        Object.assign($748ef9, (function () {
+        Object.assign($9102e2, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("k-header", [_vm._v(_vm._s(_vm.headline))]),
+  return _c("div", [
+    _c("div", { staticClass: "k-field-label" }, [_vm._v(_vm._s(_vm.headline))]),
+    _vm._v(" "),
+    _c("div", { staticClass: "open-graph-preview" }, [
+      _c("div", { staticClass: "open-graph-preview__image-container" }, [
+        this.store_image.length
+          ? _c("img", {
+              staticClass: "open-graph-preview__preview-image",
+              attrs: { src: _vm.og_image }
+            })
+          : _vm._e()
+      ]),
       _vm._v(" "),
-      _c(
-        "k-grid",
-        { attrs: { gutter: "large" } },
-        [
-          _c(
-            "k-column",
-            { attrs: { width: "2/3" } },
-            [
-              _c("k-form", {
-                attrs: {
-                  fields: {
-                    og_headline: {
-                      label: "Open Graph (Facebook)",
-                      type: "headline",
-                      numbered: false
-                    },
-                    og_title: {
-                      label: "OG Title",
-                      type: "text"
-                    },
-                    og_description: {
-                      label: "OG Description",
-                      type: "textarea"
-                    },
-                    og_image: {
-                      label: "OG Image",
-                      required: true,
-                      type: "files"
-                    },
-                    og_site_name: {
-                      label: "OG Site Name",
-                      help:
-                        "If your object is part of a larger web site, the name which should be displayed for the overall site.",
-                      type: "text",
-                      width: "1/2"
-                    },
-                    og_url: {
-                      label: "OG URL",
-                      help:
-                        "The canonical URL of your object that will be used as its permanent ID in the graph.",
-                      type: "url",
-                      width: "1/2"
-                    },
-                    og_audio: {
-                      label: "OG Audio",
-                      help: "A URL to an audio file to accompany this object.",
-                      type: "url",
-                      width: "1/2"
-                    },
-                    og_video: {
-                      label: "OG Video",
-                      help:
-                        "A URL to a video file that complements this object.",
-                      type: "url",
-                      width: "1/2"
-                    },
-                    og_determiner: {
-                      label: "OG Determiner",
-                      help:
-                        "The word that appears before this object's title in a sentence.",
-                      type: "text",
-                      width: "1/2"
-                    },
-                    og_locale: {
-                      label: "OG Locale",
-                      help: "The locale these tags are marked up in",
-                      type: "text",
-                      width: "1/2"
-                    },
-                    og_locale_alternate: {
-                      label: "OG Locale Alternate",
-                      help:
-                        "An array of other locales this page is available in.",
-                      type: "text",
-                      width: "1/2"
-                    },
-                    og_type: {
-                      label: "OG Type",
-                      help:
-                        "The type of your object, e.g., video.movie. Depending on the type you specify, other properties may also be required.",
-                      type: "select",
-                      default: "website",
-                      options: [
-                        { value: "website", text: "Website" },
-                        { value: "article", text: "Article" },
-                        { value: "book", text: "Book" },
-                        { value: "profile", text: "Profile" },
-                        { value: "movie", text: "Movie" },
-                        { value: "episode", text: "Episode" }
-                      ],
-                      width: "1/1"
-                    },
-                    og_type_no_additional_fields: {
-                      label: "No Additional Fields for this type",
-                      type: "info",
-                      when: {
-                        og_type: "website"
-                      }
-                    },
-                    og_type_article_published_time: {
-                      label: "OG Article Published Time",
-                      type: "date",
-                      time: true,
-                      default: _vm.now,
-                      width: "1/3",
-                      when: {
-                        og_type: "article"
-                      }
-                    },
-                    og_type_article_modified_time: {
-                      label: "OG Article Modified Time",
-                      type: "date",
-                      time: true,
-                      default: _vm.now,
-                      width: "1/3",
-                      when: {
-                        og_type: "article"
-                      }
-                    },
-                    og_type_article_expiration_time: {
-                      label: "OG Article Expiration Time",
-                      type: "date",
-                      time: true,
-                      default: _vm.now,
-                      width: "1/3",
-                      when: {
-                        og_type: "article"
-                      }
-                    }
-                  }
-                },
-                on: { input: _vm.input, submit: _vm.submit },
-                model: {
-                  value: _vm.og,
-                  callback: function($$v) {
-                    _vm.og = $$v
-                  },
-                  expression: "og"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "k-column",
-            { attrs: { width: "1/3" } },
-            [
-              _c("k-form", {
-                attrs: {
-                  fields: {
-                    facebook_preview_headline: {
-                      label: "Facebook Sharing Preview",
-                      type: "headline",
-                      numbered: false
-                    }
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "og-preview" }, [
-                _c("div", { staticClass: "og-preview__image-container" }, [
-                  _c("img", {
-                    staticClass: "og-preview__preview-image",
-                    attrs: {
-                      src:
-                        "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
-                    }
-                  })
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "og-preview__content-container" }, [
-                  _c("span", { staticClass: "og-preview__url" }, [
-                    _vm._v("kicommunity.de")
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", { staticClass: "og-preview__preview-headline" }, [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(_vm.og.og_title || _vm.Missing) +
-                        "\n          "
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("p", { staticClass: "og-preview__preview-paragraph" }, [
-                    _vm._v(
-                      "\n            " +
-                        _vm._s(_vm.og.og_description || _vm.Missing) +
-                        "\n          "
-                    )
-                  ])
-                ])
-              ])
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+      _c("div", { staticClass: "open-graph-preview__content-container" }, [
+        _c("span", { staticClass: "open-graph-preview__url" }, [
+          _vm._v(_vm._s(_vm.og_site_name))
+        ]),
+        _vm._v(" "),
+        _c("h2", { staticClass: "open-graph-preview__preview-headline" }, [
+          _vm._v("\n        " + _vm._s(_vm.og_title) + "\n      ")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "open-graph-preview__preview-paragraph" }, [
+          _vm._v("\n        " + _vm._s(_vm.og_description) + "\n      ")
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -9611,9 +9188,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$748ef9', $748ef9);
+            api.createRecord('$9102e2', $9102e2);
           } else {
-            api.reload('$748ef9', $748ef9);
+            api.reload('$9102e2', $9102e2);
           }
         }
 
@@ -9624,7 +9201,7 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/sections/twitter.vue":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/sections/twitter_card_preview.vue":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -9677,82 +9254,13 @@ exports.default = void 0;
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 var _default = {
-  props: {
-    label: "Test",
-    endpoints: []
-  },
   data: function data() {
     return {
-      headline: "",
-      og: {
-        og_title: null,
-        og_description: null,
-        og_image: [],
-        og_site_name: null,
-        og_url: null,
-        og_audio: null,
-        og_video: null,
-        og_determiner: null,
-        og_locale: null,
-        og_locale_alternate: null,
-        og_type: null,
-        og_type_no_additional_fields: null,
-        og_type_article_published_time: null,
-        og_type_article_modified_time: null,
-        og_type_article_expiration_time: null
-      }
+      headline: "Basic Meta Information",
+      meta_title: null,
+      url: null,
+      twitter_image: null
     };
   },
   created: function created() {
@@ -9760,164 +9268,92 @@ var _default = {
 
     this.load().then(function (response) {
       _this.headline = response.headline;
-      _this.og_title = reponsoe.og_title;
+      _this.meta_title = response.title.value;
+      _this.meta_url = response.url;
     });
   },
-  methods: {
-    input: function input() {
-      // the data is automatically updated
-      console.log(this.og);
+  computed: {
+    twitter_card_type: function twitter_card_type() {
+      var twitter_card_type = this.$store.getters["content/values"]().twitter_card_type;
+      console.log(twitter_card_type);
+      return twitter_card_type;
     },
-    submit: function submit() {
-      // let's send this thing to the server
-      this.$api.post("/my/api", this.contact);
+    twitter_title: function twitter_title() {
+      var twitter_title = this.$store.getters["content/values"]().twitter_title;
+
+      if (twitter_title.length < 1) {
+        twitter_title = "[Title Missing]";
+        return twitter_title;
+      } else {
+        return twitter_title;
+      }
+    },
+    twitter_description: function twitter_description() {
+      var twitter_description = this.$store.getters["content/values"]().twitter_description;
+
+      if (twitter_description.length < 1) {
+        twitter_description = "[Description Missing]";
+        return twitter_description;
+      } else {
+        return twitter_description;
+      }
+    },
+    store_image: function store_image() {
+      return this.$store.getters["content/values"]().twitter_image;
+    }
+  },
+  watch: {
+    store_image: {
+      handler: function handler() {
+        var _this2 = this;
+
+        if (this.store_image.length === 0) {
+          this.twitter_image = null;
+        } else {
+          this.$api.files.get("site", this.store_image[0].filename, {
+            view: "compact"
+          }).then(function (response) {
+            _this2.twitter_image = response.url;
+          });
+        }
+      },
+      immediate: true
     }
   }
 };
 exports.default = _default;
-        var $5ad285 = exports.default || module.exports;
+        var $661200 = exports.default || module.exports;
       
-      if (typeof $5ad285 === 'function') {
-        $5ad285 = $5ad285.options;
+      if (typeof $661200 === 'function') {
+        $661200 = $661200.options;
       }
     
         /* template */
-        Object.assign($5ad285, (function () {
+        Object.assign($661200, (function () {
           var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("k-header", [_vm._v(_vm._s(_vm.headline))]),
-      _vm._v(" "),
-      _c(
-        "k-grid",
-        { attrs: { gutter: "large" } },
-        [
-          _c(
-            "k-column",
-            { attrs: { width: "2/3" } },
-            [
-              _c("k-form", {
-                attrs: {
-                  fields: {
-                    twitter_headline: {
-                      label: "Twitter",
-                      type: "headline",
-                      numbered: false
-                    },
-                    twitter_title: {
-                      label: "Twitter Title",
-                      type: "text",
-                      limit: "70"
-                    },
-                    twitter_description: {
-                      label: "Twitter Description",
-                      type: "text",
-                      limit: "300"
-                    },
-                    twitter_image: {
-                      label: "Twitter Image (1200x675)",
-                      help: "Will be cropped automatically.",
-                      type: "files",
-                      multiple: "false",
-                      max: 1
-                    },
-                    twitter_site: {
-                      label: "@username of website",
-                      type: "text",
-                      width: "1/2"
-                    },
-                    twitter_creator: {
-                      label: "@username of content creator",
-                      type: "text",
-                      width: "1/2"
-                    }
-                  }
-                },
-                on: { input: _vm.input, submit: _vm.submit },
-                model: {
-                  value: _vm.og,
-                  callback: function($$v) {
-                    _vm.og = $$v
-                  },
-                  expression: "og"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c(
-            "k-column",
-            { attrs: { width: "1/3" } },
-            [
-              _c("k-form", {
-                attrs: {
-                  fields: {
-                    twitter_preview_headline: {
-                      label: "Twitter Card Preview",
-                      type: "headline",
-                      numbered: false
-                    }
-                  }
-                }
-              }),
-              _vm._v(" "),
-              _c("div", { staticClass: "twitter-cards" }, [
-                _c(
-                  "div",
-                  { staticClass: "twitter-card twitter-card--horizontal" },
-                  [
-                    _c("div", { staticClass: "twitter-card__image" }, [
-                      _c("img", {
-                        staticClass: "twitter-card__preview-image",
-                        attrs: {
-                          src:
-                            "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "twitter-card__content-container" },
-                      [
-                        _c(
-                          "h2",
-                          { staticClass: "twitter-card__preview-headline" },
-                          [_vm._v("KI Community")]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "p",
-                          { staticClass: "twitter-card__preview-paragraph" },
-                          [
-                            _vm._v(
-                              "\n              Wir vernetzen Interessierte, Anwender und Experten zum Thema\n              „Künstliche Intelligenz“.\n            "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c("span", { staticClass: "twitter-card__url" }, [
-                          _vm._v("kicommunity.de")
-                        ])
-                      ]
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c("div", { staticClass: "twitter-card" }, [
+  return _c("div", [
+    _c("div", { staticClass: "k-field-label" }, [_vm._v(_vm._s(_vm.headline))]),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "twitter-cards" },
+      [
+        _vm.twitter_card_type === "summary_large_image"
+          ? [
+              _c(
+                "div",
+                { staticClass: "twitter-card twitter-card--horizontal" },
+                [
                   _c("div", { staticClass: "twitter-card__image" }, [
-                    _c("img", {
-                      staticClass: "twitter-card__preview-image",
-                      attrs: {
-                        src:
-                          "https://www.kicommunity.de/media/pages/global-assets/3386320672-1580902020/og-image.jpg"
-                      }
-                    })
+                    this.store_image.length
+                      ? _c("img", {
+                          staticClass: "twitter-card__preview-image",
+                          attrs: { src: _vm.twitter_image }
+                        })
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c(
@@ -9927,7 +9363,7 @@ exports.default = _default;
                       _c(
                         "h2",
                         { staticClass: "twitter-card__preview-headline" },
-                        [_vm._v("KI Community")]
+                        [_vm._v(_vm._s(_vm.twitter_title))]
                       ),
                       _vm._v(" "),
                       _c(
@@ -9935,7 +9371,9 @@ exports.default = _default;
                         { staticClass: "twitter-card__preview-paragraph" },
                         [
                           _vm._v(
-                            "\n              Wir vernetzen Interessierte, Anwender und Experten zum Thema\n              „Künstliche Intelligenz“.\n            "
+                            "\n            " +
+                              _vm._s(_vm.twitter_description) +
+                              "\n          "
                           )
                         ]
                       ),
@@ -9945,17 +9383,43 @@ exports.default = _default;
                       ])
                     ]
                   )
+                ]
+              )
+            ]
+          : [
+              _c("div", { staticClass: "twitter-card" }, [
+                _c("div", { staticClass: "twitter-card__image" }, [
+                  this.store_image.length
+                    ? _c("img", {
+                        staticClass: "twitter-card__preview-image",
+                        attrs: { src: _vm.twitter_image }
+                      })
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "twitter-card__content-container" }, [
+                  _c("h2", { staticClass: "twitter-card__preview-headline" }, [
+                    _vm._v(_vm._s(_vm.twitter_title))
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "twitter-card__preview-paragraph" }, [
+                    _vm._v(
+                      "\n            " +
+                        _vm._s(_vm.twitter_description) +
+                        "\n          "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "twitter-card__url" }, [
+                    _vm._v("kicommunity.de")
+                  ])
                 ])
               ])
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ],
-    1
-  )
+            ]
+      ],
+      2
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -9977,9 +9441,9 @@ render._withStripped = true
         if (api.compatible) {
           module.hot.accept();
           if (!module.hot.data) {
-            api.createRecord('$5ad285', $5ad285);
+            api.createRecord('$661200', $661200);
           } else {
-            api.reload('$5ad285', $5ad285);
+            api.reload('$661200', $661200);
           }
         }
 
@@ -9990,108 +9454,25 @@ render._withStripped = true
       
       }
     })();
-},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"components/sections/meta_information.vue":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
+var _google_search_preview = _interopRequireDefault(require("./components/sections/google_search_preview.vue"));
 
-var _basic_information = _interopRequireDefault(require("./basic_information.vue"));
+var _facebook_sharing_preview = _interopRequireDefault(require("./components/sections/facebook_sharing_preview.vue"));
 
-var _open_graph = _interopRequireDefault(require("./open_graph.vue"));
-
-var _twitter = _interopRequireDefault(require("./twitter.vue"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-//
-//
-//
-//
-//
-//
-//
-//
-var _default = {
-  components: {
-    basicInformation: _basic_information.default,
-    openGraph: _open_graph.default,
-    twitter: _twitter.default
-  }
-};
-exports.default = _default;
-        var $63636b = exports.default || module.exports;
-      
-      if (typeof $63636b === 'function') {
-        $63636b = $63636b.options;
-      }
-    
-        /* template */
-        Object.assign($63636b, (function () {
-          var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("basicInformation"),
-      _vm._v(" "),
-      _c("openGraph"),
-      _vm._v(" "),
-      _c("twitter")
-    ],
-    1
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-
-          return {
-            render: render,
-            staticRenderFns: staticRenderFns,
-            _compiled: true,
-            _scopeId: null,
-            functional: undefined
-          };
-        })());
-      
-    /* hot reload */
-    (function () {
-      if (module.hot) {
-        var api = require('vue-hot-reload-api');
-        api.install(require('vue'));
-        if (api.compatible) {
-          module.hot.accept();
-          if (!module.hot.data) {
-            api.createRecord('$63636b', $63636b);
-          } else {
-            api.reload('$63636b', $63636b);
-          }
-        }
-
-        
-        var reloadCSS = require('_css_loader');
-        module.hot.dispose(reloadCSS);
-        module.hot.accept(reloadCSS);
-      
-      }
-    })();
-},{"./basic_information.vue":"components/sections/basic_information.vue","./open_graph.vue":"components/sections/open_graph.vue","./twitter.vue":"components/sections/twitter.vue","_css_loader":"../node_modules/parcel/src/builtins/css-loader.js","vue-hot-reload-api":"../node_modules/vue-hot-reload-api/dist/index.js","vue":"../node_modules/vue/dist/vue.runtime.esm.js"}],"index.js":[function(require,module,exports) {
-"use strict";
-
-var _meta_information = _interopRequireDefault(require("./components/sections/meta_information.vue"));
+var _twitter_card_preview = _interopRequireDefault(require("./components/sections/twitter_card_preview.vue"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 panel.plugin("diesdasdigital/kirby-seo", {
   sections: {
-    basic_meta: _meta_information.default
+    google_search_preview: _google_search_preview.default,
+    facebook_sharing_preview: _facebook_sharing_preview.default,
+    twitter_card_preview: _twitter_card_preview.default
   }
 });
-},{"./components/sections/meta_information.vue":"components/sections/meta_information.vue"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./components/sections/google_search_preview.vue":"components/sections/google_search_preview.vue","./components/sections/facebook_sharing_preview.vue":"components/sections/facebook_sharing_preview.vue","./components/sections/twitter_card_preview.vue":"components/sections/twitter_card_preview.vue"}],"../node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -10119,7 +9500,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51365" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61906" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
