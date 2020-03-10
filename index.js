@@ -8910,11 +8910,92 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
       headline: "Basic Meta Information",
-      meta_title: null,
+      meta_title: "",
       url: null,
       meta_image: null
     };
@@ -8931,13 +9012,29 @@ var _default = {
   computed: {
     meta_description: function meta_description() {
       var meta_description = this.$store.getters["content/values"]().meta_description;
-
-      if (meta_description.length < 1) {
-        meta_description = "[Description Missing]";
-        return meta_description;
-      } else {
-        return meta_description;
-      }
+      return meta_description.length < 1 ? "[Description Missing]" : meta_description;
+    },
+    meta_description_too_long: function meta_description_too_long() {
+      var meta_description = this.$store.getters["content/values"]().meta_description;
+      return meta_description.length > 160 ? true : false;
+    },
+    meta_keywords: function meta_keywords() {
+      var meta_keywords = this.$store.getters["content/values"]().meta_keywords;
+      return meta_keywords.length < 1 ? "[Keywords Missing]" : meta_keywords;
+    },
+    page_title_includes_focus_keyword: function page_title_includes_focus_keyword() {
+      var meta_title = this.meta_title.toLowerCase();
+      var focus_keyword = this.$store.getters["content/values"]().meta_keywords[0].value.toLowerCase();
+      return meta_title.includes(focus_keyword) ? true : false;
+    },
+    meta_description_includes_focus_keyword: function meta_description_includes_focus_keyword() {
+      var meta_description = this.meta_description.toLowerCase();
+      var focus_keyword = this.$store.getters["content/values"]().meta_keywords[0].value.toLowerCase();
+      return meta_description.includes(focus_keyword) ? true : false;
+    },
+    meta_keywords_too_few: function meta_keywords_too_few() {
+      var meta_keywords = this.$store.getters["content/values"]().meta_keywords;
+      return meta_keywords.length < 5 ? true : false;
     },
     store_image: function store_image() {
       return this.$store.getters["content/values"]().meta_image[0].filename;
@@ -8974,24 +9071,207 @@ exports.default = _default;
   return _c("div", [
     _c("div", { staticClass: "k-field-label" }, [_vm._v(_vm._s(_vm.headline))]),
     _vm._v(" "),
-    _c("div", { staticClass: "google-preview" }, [
-      _c("div", { staticClass: "google-preview__content-container" }, [
-        _c("h2", { staticClass: "google-preview__headline" }, [
+    _c("div", { staticClass: "google-search-preview" }, [
+      _c("div", { staticClass: "google-search-preview__content-container" }, [
+        _c("h2", { staticClass: "google-search-preview__headline" }, [
           _vm._v(_vm._s(_vm.meta_title))
         ]),
         _vm._v(" "),
-        _c("span", { staticClass: "google-preview__url" }, [
+        _c("span", { staticClass: "google-search-preview__url" }, [
           _vm._v(_vm._s(_vm.meta_url))
         ]),
         _vm._v(" "),
-        _c("p", { staticClass: "google-preview__paragraph" }, [
+        _c("p", { staticClass: "google-search-preview__paragraph" }, [
           _vm._v("\n        " + _vm._s(_vm.meta_description) + "\n      ")
         ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "hints" }, [
+      _c("ul", [
+        _c("li", { staticClass: "hint" }, [
+          _c("div", { staticClass: "hint__icon" }, [
+            _vm.meta_description_too_long
+              ? _c(
+                  "div",
+                  { staticClass: "hint__icon-inner hint__icon-inner--failure" },
+                  [_vm._v("\n            !\n          ")]
+                )
+              : _c(
+                  "div",
+                  { staticClass: "hint__icon-inner hint__icon-inner--success" },
+                  [_vm._v("\n            ✓\n          ")]
+                )
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "hint__text" },
+            [
+              _vm.meta_description_too_long
+                ? [
+                    _vm._m(0),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "hint__text-solution" }, [
+                      _vm._v(
+                        "\n              It should be less than 160 characters. Currently it is\n              " +
+                          _vm._s(_vm.meta_description.length) +
+                          " characters long.\n            "
+                      )
+                    ])
+                  ]
+                : [_vm._m(1)]
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        !_vm.page_title_includes_focus_keyword
+          ? _c("li", { staticClass: "hint" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "hint__text" },
+                [
+                  !_vm.page_title_includes_focus_keyword
+                    ? [
+                        _vm._m(3),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "hint__text-solution" }, [
+                          _vm._v(
+                            '\n              Add "' +
+                              _vm._s(_vm.meta_keywords[0].value.toUpperCase()) +
+                              '" to your page\n              title.\n            '
+                          )
+                        ])
+                      ]
+                    : [
+                        _c("div", { staticClass: "hint__text-problem" }, [
+                          _vm._v(
+                            "\n              Your page title includes your focus keyword.\n            "
+                          )
+                        ])
+                      ]
+                ],
+                2
+              )
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        !_vm.meta_description_includes_focus_keyword
+          ? _c("li", { staticClass: "hint" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("div", { staticClass: "hint__text" }, [
+                _vm._m(5),
+                _vm._v(" "),
+                _c("div", { staticClass: "hint__text-solution" }, [
+                  _vm._v(
+                    '\n            Add "' +
+                      _vm._s(_vm.meta_keywords[0].value.toUpperCase()) +
+                      '" to your meta\n            description.\n          '
+                  )
+                ])
+              ])
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.meta_keywords_too_few
+          ? _c("li", { staticClass: "hint" }, [
+              _vm._m(6),
+              _vm._v(" "),
+              _c("div", { staticClass: "hint__text" }, [
+                _c("div", { staticClass: "hint__text-problem" }, [
+                  _vm._v("\n            Use at least 5 keywords\n          ")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "hint__text-solution" }, [
+                  _vm._v(
+                    '\n            Add "' +
+                      _vm._s(_vm.meta_keywords.lenght) +
+                      '" to your meta description.\n          '
+                  )
+                ])
+              ])
+            ])
+          : _vm._e()
       ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hint__text-problem" }, [
+      _vm._v("\n              Your "),
+      _c("u", [_vm._v("meta description")]),
+      _vm._v(" is too long.\n            ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hint__text-problem" }, [
+      _vm._v("\n              Your "),
+      _c("u", [_vm._v("meta description")]),
+      _vm._v(" has the perfect lenght.\n            ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hint__icon" }, [
+      _c("div", { staticClass: "hint__icon-inner hint__icon-inner--failure" }, [
+        _vm._v("!")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hint__text-problem" }, [
+      _vm._v("\n              Your "),
+      _c("u", [_vm._v("page title")]),
+      _vm._v(" does not contain your focus keyword.\n            ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hint__icon" }, [
+      _c("div", { staticClass: "hint__icon-inner hint__icon-inner--failure" }, [
+        _vm._v("!")
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hint__text-problem" }, [
+      _vm._v("\n            Your "),
+      _c("u", [_vm._v("meta descprition")]),
+      _vm._v(" does not contain your focus keyword.\n          ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "hint__icon" }, [
+      _c("div", { staticClass: "hint__icon-inner hint__icon-inner--failure" }, [
+        _vm._v("!")
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
           return {
@@ -9500,7 +9780,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61906" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58022" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
