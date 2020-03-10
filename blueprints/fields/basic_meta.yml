@@ -1,0 +1,27 @@
+type: group
+fields:
+  meta_headline:
+    label: Basic Meta Information
+    type: headline
+    numbered: false
+  meta_description:
+    label: Description
+    type: text
+    limit: 155
+    help: A short description of the site/page that will be displayed underneath the page title by search engines.
+  meta_keywords:
+    label: Keywords
+    type: tags
+    help: A few keywords that describe the content of the page
+  meta_author:
+    label: Author/s
+    type: structure
+    fields:
+      profile: fields/profile
+  meta_image:
+    label: Image
+    type: files
+    multiple: false
+  meta_phone_number:
+    label: Phone Number
+    type: text

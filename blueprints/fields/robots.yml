@@ -1,0 +1,31 @@
+type: group
+fields:
+  robots_headline:
+    label: Basic Meta Information
+    type: headline
+    numbered: false
+  robots_noindex:
+    label: No Index
+    type: toggle
+    width: 1/2
+    help: Search engines will not index and display pages
+  robots_nofollow:
+    label: No Follow
+    type: toggle
+    width: 1/2
+    help: Search engines will not follow links
+  robots_noarchive:
+    label: No Archive
+    type: toggle
+    width: 1/2
+    help: Search engines will not cache pages
+  robots_noimageindex:
+    label: No Image Index
+    type: toggle
+    width: 1/2
+    help: Search engines will not associate site with image search results
+  robots_nosnippet:
+    label: No Snippet
+    type: toggle
+    width: 1/2
+    help: Search engines will not display description snippets

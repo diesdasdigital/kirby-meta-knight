@@ -1,0 +1,104 @@
+type: group
+fields:
+  og_headline:
+    label: Open Graph (Facebook)
+    type: headline
+    numbered: false
+  og_title:
+    label: OG Title
+    help: The title of your object as it should appear within the graph.
+    type: text
+  og_description:
+    label: OG Description
+    help: A one to two sentence description of your object.
+    type: text
+  og_image:
+    label: OG Image (1200x630)
+    help: An image which should represent your object within the graph. Will be cropped automatically.
+    type: files
+    multiple: false
+  og_site_name:
+    label: OG Site Name
+    help: If your object is part of a larger web site, the name which should be displayed for the overall site.
+    type: text
+    width: 1/2
+  og_url:
+    label: OG URL
+    help: The canonical URL of your object that will be used as its permanent ID in the graph.
+    type: url
+    width: 1/2
+  og_audio:
+    label: OG Audio
+    help: A URL to an audio file to accompany this object.
+    type: url
+    width: 1/2
+  og_video:
+    label: OG Video
+    help: A URL to a video file that complements this object.
+    type: url
+    width: 1/2
+  og_determiner:
+    label: OG Determiner
+    help: The word that appears before this object's title in a sentence. An enum of (a, an, the, "", auto). If auto is chosen, the consumer of your data should chose between "a" or "an". Default is "" (blank).
+    type: text
+    width: 1/2
+  og_locale:
+    label: OG Locale
+    help: The locale these tags are marked up in
+    type: text
+    width: 1/2
+  og_locale_alternate:
+    label: OG Locale Alternate
+    help: An array of other locales this page is available in.
+    type: text
+  og_type:
+    label: OG Type
+    help: The type of your object, e.g., "video.movie". Depending on the type you specify, other properties may also be required.
+    type: select
+    default: website
+    options:
+      website: Website
+      article: Article
+  og_type_article_published_time:
+    label: OG Article Published Time
+    type: date
+    time: true
+    default: now
+    width: 1/3
+    when:
+      og_type: article
+  og_type_article_modified_time:
+    label: OG Article Modified Time
+    type: date
+    time: true
+    default: now
+    width: 1/3
+    when:
+      og_type: article
+  og_type_article_expiration_time:
+    label: OG Article Expiration Time
+    type: date
+    time: true
+    default: now
+    width: 1/3
+    when:
+      og_type: article
+  og_type_article_author:
+    label: OG Article Author/s
+    type: structure
+    fields:
+      profile: fields/profile
+    when:
+      og_type: article
+  og_type_article_section:
+    label: OG Article Section
+    type: text
+    width: 1/2
+    when:
+      og_type: article
+  og_type_article_tag:
+    label: OG Article Tags
+    type: text
+    width: 1/2
+    when:
+      og_type: article

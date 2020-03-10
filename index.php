@@ -7,6 +7,12 @@ Kirby::plugin('diesdasdigital/kirby-seo', [
         'twitter_card_preview' => require_once __DIR__ . '/sections/twitter_card_preview.php'
     ],
     'blueprints' => [
-        'seo' => __DIR__ . '/blueprints/seo.yml'
+        'seo' => __DIR__ . '/blueprints/seo.yml',
+        'fields/basic_meta' => __DIR__ . '/blueprints/fields/basic_meta.yml',
+        'fields/open_graph' => __DIR__ . '/blueprints/fields/open_graph.yml',
+        'fields/twitter' => __DIR__ . '/blueprints/fields/twitter.yml',
+        'fields/robots' => __DIR__ . '/blueprints/fields/robots.yml',
+        'fields/profile' => __DIR__ . '/blueprints/fields/profile.yml',
+    ],
     ]
 ]);
