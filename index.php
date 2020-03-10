@@ -14,5 +14,7 @@ Kirby::plugin('diesdasdigital/kirby-seo', [
         'fields/robots' => __DIR__ . '/blueprints/fields/robots.yml',
         'fields/profile' => __DIR__ . '/blueprints/fields/profile.yml',
     ],
+    'snippets' => [
+        'meta_information' => __DIR__ . '/snippets/meta_information.php'
     ]
 ]);
