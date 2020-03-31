@@ -32,62 +32,6 @@
   margin-bottom: 0.5em;
   font-size: 0.875em;
   color: #006621;
-}
-
-.hints {
-  padding: 0.5em;
-}
-
-.hint {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 1em;
-}
-
-.hint__icon {
-  font-size: 0.75em;
-}
-
-.hint__icon-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #ffc3c3;
-  border: 2px solid #ff9e9e;
-  border-radius: 50%;
-  width: 2em;
-  height: 2em;
-  margin-right: 0.5em;
-  text-align: center;
-  font-weight: 600;
-}
-
-.hint__icon-inner--success {
-  background-color: #f0ffcf;
-  border: 2px solid #5d800d;
-  color: #5d800d;
-}
-
-.hint__icon-inner--failure {
-  background-color: #ffc3c3;
-  border: 2px solid #c82829;
-  color: #c82829;
-}
-
-.hint__text {
-  width: 80%;
-}
-
-.hint__text-problem {
-  font-size: 0.875em;
-  margin-top: 0.125em;
-  margin-bottom: 0.5em;
-  font-weight: 600;
-}
-
-.hint__text-solution {
-  font-size: 0.75em;
-  color: #777;
 }.open-graph-preview {
   position: relative;
   display: flex;
