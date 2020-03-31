@@ -36,7 +36,7 @@
             </template>
             <template v-else>
               <div class="hint__text-problem">
-                Your <u>meta description</u> has the perfect lenght.
+                Your <u>meta description</u> has a good lenght.
               </div>
             </template>
           </div>
@@ -153,16 +153,20 @@ export default {
       return meta_keywords.length < 5 ? true : false;
     },
     store_image() {
-      return this.$store.getters["content/values"]().meta_image[0].filename;
+      return this.$store.getters["content/values"]().meta_image;
     }
   },
   watch: {
     store_image: {
       handler() {
         this.$api.files
-          .get(this.$store.getters["content/model"]().api, this.store_image, {
-            view: "compact"
-          })
+          .get(
+            this.$store.getters["content/model"]().api,
+            this.store_image[0].filename,
+            {
+              view: "compact"
+            }
+          )
           .then(response => {
             this.meta_image = response.url;
           });

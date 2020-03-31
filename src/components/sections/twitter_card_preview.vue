@@ -92,7 +92,7 @@ export default {
       }
     },
     store_image() {
-      return this.$store.getters["content/values"]().twitter_image[0].filename;
+      return this.$store.getters["content/values"]().twitter_image;
     }
   },
   watch: {
@@ -102,9 +102,13 @@ export default {
           this.twitter_image = null;
         } else {
           this.$api.files
-            .get(this.$store.getters["content/model"]().api, this.store_image, {
-              view: "compact"
-            })
+            .get(
+              this.$store.getters["content/model"]().api,
+              this.store_image[0].filename,
+              {
+                view: "compact"
+              }
+            )
             .then(response => {
               this.twitter_image = response.url;
             });
