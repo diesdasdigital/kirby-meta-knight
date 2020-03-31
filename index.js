@@ -9037,7 +9037,7 @@ var _default = {
       return meta_keywords.length < 5 ? true : false;
     },
     store_image: function store_image() {
-      return this.$store.getters["content/values"]().meta_image[0].filename;
+      return this.$store.getters["content/values"]().meta_image;
     }
   },
   watch: {
@@ -9045,7 +9045,7 @@ var _default = {
       handler: function handler() {
         var _this2 = this;
 
-        this.$api.files.get("site", this.store_image, {
+        this.$api.files.get(this.$store.getters["content/model"]().api, this.store_image[0].filename, {
           view: "compact"
         }).then(function (response) {
           _this2.meta_image = response.url;
@@ -9218,7 +9218,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "hint__text-problem" }, [
       _vm._v("\n              Your "),
       _c("u", [_vm._v("meta description")]),
-      _vm._v(" has the perfect lenght.\n            ")
+      _vm._v(" has a good lenght.\n            ")
     ])
   },
   function() {
@@ -9395,7 +9395,7 @@ var _default = {
         if (this.store_image.length === 0) {
           this.og_image = null;
         } else {
-          this.$api.files.get("site", this.store_image[0].filename, {
+          this.$api.files.get(this.$store.getters["content/model"]().api, this.store_image[0].filename, {
             view: "compact"
           }).then(function (response) {
             _this2.og_image = response.url;
@@ -9590,7 +9590,7 @@ var _default = {
         if (this.store_image.length === 0) {
           this.twitter_image = null;
         } else {
-          this.$api.files.get("site", this.store_image[0].filename, {
+          this.$api.files.get(this.$store.getters["content/model"]().api, this.store_image[0].filename, {
             view: "compact"
           }).then(function (response) {
             _this2.twitter_image = response.url;
@@ -9780,7 +9780,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58022" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49337" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
