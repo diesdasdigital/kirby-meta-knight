@@ -6,26 +6,51 @@ fields:
     numbered: false
   robots_noindex:
     label: No Index
-    type: toggle
+    type: select
+    options:
+      enabled: Enabled
+      disabled: Disabled
+      default: Site Default
+    default: default
     width: 1/2
     help: Search engines will not index and display pages
   robots_nofollow:
     label: No Follow
-    type: toggle
+    type: select
+    options:
+      enabled: Enabled
+      disabled: Disabled
+      default: Site Default
+    default: default
     width: 1/2
     help: Search engines will not follow links
   robots_noarchive:
     label: No Archive
-    type: toggle
+    type: select
+    options:
+      enabled: Enabled
+      disabled: Disabled
+      default: Site Default
+    default: default
     width: 1/2
     help: Search engines will not cache pages
   robots_noimageindex:
     label: No Image Index
-    type: toggle
+    type: select
+    options:
+      enabled: Enabled
+      disabled: Disabled
+      default: Site Default
+    default: default
     width: 1/2
     help: Search engines will not associate site with image search results
   robots_nosnippet:
     label: No Snippet
-    type: toggle
+    type: select
+    options:
+      enabled: Enabled
+      disabled: Disabled
+      default: Site Default
+    default: default
     width: 1/2
     help: Search engines will not display description snippets
