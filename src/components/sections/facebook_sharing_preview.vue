@@ -71,7 +71,7 @@ export default {
       }
     },
     store_image() {
-      return this.$store.getters["content/values"]().og_image;
+      return this.$store.getters["content/values"]().og_image[0].filename;
     }
   },
   watch: {
@@ -81,7 +81,9 @@ export default {
           this.og_image = null;
         } else {
           this.$api.files
-            .get("site", this.store_image[0].filename, { view: "compact" })
+            .get(this.$store.getters["content/model"]().api, this.store_image, {
+              view: "compact"
+            })
             .then(response => {
               this.og_image = response.url;
             });

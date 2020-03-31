@@ -160,7 +160,9 @@ export default {
     store_image: {
       handler() {
         this.$api.files
-          .get("site", this.store_image, { view: "compact" })
+          .get(this.$store.getters["content/model"]().api, this.store_image, {
+            view: "compact"
+          })
           .then(response => {
             this.meta_image = response.url;
           });
