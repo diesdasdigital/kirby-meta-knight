@@ -9280,7 +9280,7 @@ var _default = {
       var twitter_title = this.$store.getters["content/values"]().twitter_title;
 
       if (twitter_title.length < 1) {
-        twitter_title = "[Title Missing]";
+        twitter_title = "[Twitter Title Missing]";
         return twitter_title;
       } else {
         return twitter_title;
@@ -9290,7 +9290,7 @@ var _default = {
       var twitter_description = this.$store.getters["content/values"]().twitter_description;
 
       if (twitter_description.length < 1) {
-        twitter_description = "[Description Missing]";
+        twitter_description = "[Twitter Description Missing]";
         return twitter_description;
       } else {
         return twitter_description;

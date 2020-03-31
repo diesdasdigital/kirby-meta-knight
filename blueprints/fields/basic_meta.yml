@@ -12,7 +12,7 @@ fields:
   meta_keywords:
     label: Keywords
     type: tags
-    help: A few keywords that describe the content of the page
+    help: A few keywords that describe the content of the page.
   meta_author:
     label: Author/s
     type: structure
