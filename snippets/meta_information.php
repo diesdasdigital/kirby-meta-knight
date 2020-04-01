@@ -1,3 +1,18 @@
+<?php
+  $twitter_image = [
+      'width'   => 1200,
+      'height'  => 675,
+      'quality' => 80,
+      'crop'    => true
+    ];
+  $og_image = [
+      'width'   => 1200,
+      'height'  => 630,
+      'quality' => 80,
+      'crop'    => true
+    ];
+?>
+
 <!-- Basic Meta Information -->
 
 <!-- Page Title -->
@@ -7,37 +22,22 @@
 
 <!-- Description -->
 
-<?php if ($page->meta_description()->isNotEmpty()): ?>
-  <meta name="description" content="<?= $page->meta_description() ?>">
-  <meta itemprop="description" content="<?= $page->meta_description() ?>">
-<?php else: ?>
-  <meta name="description" content="<?= $site->meta_description() ?>">
-  <meta itemprop="description" content="<?= $site->meta_description() ?>">
-<?php endif; ?>
+<meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
+<meta itemprop="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
 
 <!-- Keywords -->
 
-<?php if ($page->meta_keywords()->isNotEmpty()): ?>
-  <meta name="keywords" content="<?= $page->meta_keywords() ?>">
-<?php else: ?>
-  <meta name="keywords" content="<?= $site->meta_keywords() ?>">
-<?php endif; ?>
+<meta name="keywords" content="<?= $page->meta_keywords()->or($site->meta_keywords()) ?>">
 
 <!-- Image -->
 
-<?php if ($page->meta_image()->isNotEmpty()): ?>
-  <meta itemprop="image" content="<?= $page->meta_image() ?>">
-<?php else: ?>
-  <meta itemprop="image" content="<?= $site->meta_image() ?>">
-<?php endif; ?>
+<meta itemprop="image" content="<?= $page->meta_image()->or($site->meta_image()) ?>">
 
 <!-- Author -->
 
-<?php if ($page->meta_author()->isNotEmpty()): ?>
-  <meta name="author" content="<?= $page->meta_author() ?>">
-<?php else: ?>
-  <meta name="author" content="<?= $site->meta_author() ?>">
-<?php endif; ?>
+<meta name="author" content="<?= $page->meta_author()->or($site->meta_author()) ?>">
+
+<!-- Date -->
 
 <meta name="date" content="<?= $page->modified('Y-m-d') ?>" scheme="YYYY-MM-DD">
 
@@ -45,79 +45,39 @@
 
 <meta name="twitter:card" content="summary">
 
-<?php if ($page->twitter_title()->isNotEmpty()): ?>
-  <meta name="twitter:title" content="<?= $page->twitter_title() ?>">
-<?php else: ?>
-  <meta name="twitter:title" content="<?= $site->twitter_title() ?>">
-<?php endif; ?>
+<meta name="twitter:title" content="<?= $page->twitter_title()->or($site->twitter_title()) ?>">
 
-<?php if ($page->twitter_description()->isNotEmpty()): ?>
-  <meta name="twitter:description" content="<?= $page->twitter_description() ?>">
-<?php else: ?>
-  <meta name="twitter:description" content="<?= $site->twitter_description() ?>">
-<?php endif; ?>
+<meta name="twitter:description" content="<?= $page->twitter_description()->or($site->twitter_description()) ?>">
 
 <?php if ($page->twitter_image()->isNotEmpty()): ?>
-  <meta name="twitter:image" content="<?= $page->twitter_image()->toFile()->thumb('twitter_image')->url() ?>">
-<?php else: ?>
-  <meta name="twitter:image" content="<?= $site->twitter_image()->toFile()->thumb('twitter_image')->url() ?>">
+  <meta name="twitter:image" content="<?= $page->twitter_image()->toFile()->thumb($twitter_image)->url() ?>">
+<?php elseif($site->twitter_image()->isNotEmpty()): ?>
+  <meta name="twitter:image" content="<?= $site->twitter_image()->toFile()->thumb($twitter_image)->url() ?>">
 <?php endif; ?>
 
-<?php if ($page->twitter_site()->isNotEmpty()): ?>
-  <meta name="twitter:site" content="<?= $page->twitter_site() ?>">
-<?php else: ?>
-  <meta name="twitter:site" content="<?= $site->twitter_site() ?>">
-<?php endif; ?>
+<meta name="twitter:site" content="<?= $page->twitter_site()->or($site->twitter_site()) ?>">
 
-<?php if ($page->twitter_creator()->isNotEmpty()): ?>
-  <meta name="twitter:creator" content="<?= $page->twitter_creator() ?>">
-<?php else: ?>
-  <meta name="twitter:creator" content="<?= $site->twitter_creator() ?>">
-<?php endif; ?>
+<meta name="twitter:creator" content="<?= $page->twitter_creator()->or($site->twitter_creator()) ?>">
 
 <!-- Open Graph -->
 
-<?php if ($page->og_title()->isNotEmpty()): ?>
-  <meta property="og:title" content="<?= $page->og_title() ?> | <?= $site->title() ?>">
-<?php else: ?>
-  <meta property="og:title" content="<?= $site->og_title() ?> | <?= $site->title() ?>">
-<?php endif; ?>
+<meta property="og:title" content="<?= $page->og_title()->or($site->og_title()) ?> | <?= $site->title() ?>">
 
-<?php if ($page->og_description()->isNotEmpty()): ?>
-  <meta property="og:description" content="<?= $page->og_description() ?>">
-<?php else: ?>
-  <meta property="og:description" content="<?= $site->og_description() ?>">
-<?php endif; ?>
+<meta property="og:description" content="<?= $page->og_description()->or($site->og_description()) ?>">
 
 <?php if ($page->og_image()->isNotEmpty()): ?>
-  <meta property="og:image" content="<?= $page->og_image()->toFile()->thumb('og_image')->url() ?>">
-<?php else: ?>
-  <meta property="og:image" content="<?= $site->og_image()->toFile()->thumb('og_image')->url() ?>">
+  <meta property="og:image" content="<?= $page->og_image()->toFile()->thumb($og_image)->url() ?>">
+<?php elseif($site->og_image()->isNotEmpty()): ?>
+  <meta property="og:image" content="<?= $site->og_image()->toFile()->thumb($og_image)->url() ?>">
 <?php endif; ?>
 
-<?php if ($page->og_site_name()->isNotEmpty()): ?>
-  <meta property="og:site_name" content="<?= $page->og_site_name() ?>">
-<?php else: ?>
-  <meta property="og:site_name" content="<?= $site->og_site_name() ?>">
-<?php endif; ?>
+<meta property="og:site_name" content="<?= $page->og_site_name()->or($site->og_site_name()) ?>">
 
-<?php if ($page->og_url()->isNotEmpty()): ?>
-  <meta property="og:url" content="<?= $page->og_url() ?>">
-<?php else: ?>
-  <meta property="og:url" content="<?= $page->url() ?>">
-<?php endif; ?>
+<meta property="og:url" content="<?= $page->og_url()->or($page->url()) ?>">
 
-<?php if ($page->og_type()->isNotEmpty()): ?>
-  <meta property="og:type" content="<?= $page->og_type() ?>">
-<?php else: ?>
-  <meta property="og:type" content="<?= $site->og_type() ?>">
-<?php endif; ?>
+<meta property="og:type" content="<?= $page->og_type()->or($site->og_type()) ?>">
 
-<?php if ($page->og_determiner()->isNotEmpty()): ?>
-  <meta property="og:determiner" content="<?= $page->og_determiner() ?>">
-<?php else: ?>
-  <meta property="og:determiner" content="<?= $site->og_determiner() ?>">
-<?php endif; ?>
+<meta property="og:determiner" content="<?= $page->og_determiner()->or($site->og_determiner()) ?>">
 
 <?php if ($page->og_audio()->isNotEmpty()): ?>
   <meta property="og:audio" content="<?= $page->og_audio() ?>">
@@ -127,4 +87,4 @@
   <meta property="og:video" content="<?= $page->og_video() ?>">
 <?php endif; ?>
 
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="<?= $kirby->language()->locale(LC_ALL) ?>">
