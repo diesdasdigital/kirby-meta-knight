@@ -17,7 +17,7 @@
             <p class="twitter-card__preview-paragraph">
               {{ twitter_description }}
             </p>
-            <span class="twitter-card__url">kicommunity.de</span>
+            <span class="twitter-card__url">{{ twitter_url }}</span>
           </div>
         </div>
       </template>
@@ -36,7 +36,7 @@
             <p class="twitter-card__preview-paragraph">
               {{ twitter_description }}
             </p>
-            <span class="twitter-card__url">kicommunity.de</span>
+            <span class="twitter-card__url">{{ twitter_url }}</span>
           </div>
         </div>
       </template>
@@ -57,16 +57,15 @@ export default {
   created: function() {
     this.load().then(response => {
       this.headline = response.headline;
+      this.url = response.url;
       this.meta_title = response.title.value;
-      this.meta_url = response.url;
+      this.twitter_url = response.url;
     });
   },
   computed: {
     twitter_card_type() {
       let twitter_card_type = this.$store.getters["content/values"]()
         .twitter_card_type;
-
-      console.log(twitter_card_type);
 
       return twitter_card_type;
     },
