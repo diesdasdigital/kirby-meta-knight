@@ -2,7 +2,7 @@
 
 return [
     'props' => [
-        'headline' => function ($headline = 'Basic Meta') {
+        'headline' => function ($headline = 'Twitter Card Preview') {
             return $headline;
         }
     ],
