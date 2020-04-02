@@ -8931,7 +8931,7 @@ var _default = {
       _this.page_title = response.title.value;
       _this.meta_url = response.url;
     });
-    this.$api.site.get("title").then(function (response) {
+    this.$api.site.get().then(function (response) {
       _this.site_title = response.title;
     });
   },

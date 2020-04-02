@@ -33,7 +33,7 @@ export default {
       this.page_title = response.title.value;
       this.meta_url = response.url;
     });
-    this.$api.site.get("title").then(response => {
+    this.$api.site.get().then(response => {
       this.site_title = response.title;
     });
   },
