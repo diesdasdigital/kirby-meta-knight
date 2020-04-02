@@ -5,7 +5,9 @@
     </div>
     <div class="google-search-preview">
       <div class="google-search-preview__content-container">
-        <h2 class="google-search-preview__headline">{{ meta_title }}</h2>
+        <h2 class="google-search-preview__headline">
+          {{ meta_title }}
+        </h2>
         <span class="google-search-preview__url">{{ meta_url }}</span>
         <p class="google-search-preview__paragraph">
           {{ meta_description }}
@@ -20,7 +22,7 @@ export default {
   data() {
     return {
       headline: null,
-      meta_title: "",
+      site_title: null,
       url: null,
       meta_image: null
     };
@@ -28,11 +30,23 @@ export default {
   created: function() {
     this.load().then(response => {
       this.headline = response.headline;
-      this.meta_title = response.title.value;
+      this.page_title = response.title.value;
       this.meta_url = response.url;
+    });
+    this.$api.site.get("title").then(response => {
+      this.site_title = response.title;
     });
   },
   computed: {
+    meta_title() {
+      let meta_title = null;
+      if (this.site_title == this.page_title) {
+        meta_title = this.site_title;
+      } else {
+        meta_title = this.site_title + " - " + this.page_title;
+      }
+      return meta_title;
+    },
     meta_description() {
       let meta_description = this.$store.getters["content/values"]()
         .meta_description;
@@ -79,7 +93,6 @@ export default {
   background: #fff;
   border: 1px solid #ccc;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  margin-bottom: 0.5em;
 }
 
 .google-search-preview__content-container {

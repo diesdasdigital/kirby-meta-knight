@@ -8910,11 +8910,15 @@ exports.default = void 0;
 //
 //
 //
+//
+//
+//
+//
 var _default = {
   data: function data() {
     return {
-      headline: "Basic Meta Information",
-      meta_title: "",
+      headline: null,
+      site_title: null,
       url: null,
       meta_image: null
     };
@@ -8924,11 +8928,25 @@ var _default = {
 
     this.load().then(function (response) {
       _this.headline = response.headline;
-      _this.meta_title = response.title.value;
+      _this.page_title = response.title.value;
       _this.meta_url = response.url;
+    });
+    this.$api.site.get("title").then(function (response) {
+      _this.site_title = response.title;
     });
   },
   computed: {
+    meta_title: function meta_title() {
+      var meta_title = null;
+
+      if (this.site_title == this.page_title) {
+        meta_title = this.site_title;
+      } else {
+        meta_title = this.site_title + " - " + this.page_title;
+      }
+
+      return meta_title;
+    },
     meta_description: function meta_description() {
       var meta_description = this.$store.getters["content/values"]().meta_description;
       return meta_description.length < 1 ? "[Description Missing]" : meta_description;
@@ -8970,12 +8988,15 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "k-field-label" }, [_vm._v(_vm._s(_vm.headline))]),
+    _c("div", { staticClass: "k-field-label" }, [
+      _c("span", { staticClass: "google-icon" }),
+      _vm._v(" " + _vm._s(_vm.headline) + "\n  ")
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "google-search-preview" }, [
       _c("div", { staticClass: "google-search-preview__content-container" }, [
         _c("h2", { staticClass: "google-search-preview__headline" }, [
-          _vm._v(_vm._s(_vm.meta_title))
+          _vm._v("\n        " + _vm._s(_vm.meta_title) + "\n      ")
         ]),
         _vm._v(" "),
         _c("span", { staticClass: "google-search-preview__url" }, [
@@ -9029,6 +9050,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
+//
 //
 //
 //
@@ -9138,7 +9160,10 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "k-field-label" }, [_vm._v(_vm._s(_vm.headline))]),
+    _c("div", { staticClass: "k-field-label" }, [
+      _c("span", { staticClass: "facebook-icon" }),
+      _vm._v(" " + _vm._s(_vm.headline) + "\n  ")
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "open-graph-preview" }, [
       _c("div", { staticClass: "open-graph-preview__image-container" }, [
@@ -9252,6 +9277,8 @@ exports.default = void 0;
 //
 //
 //
+//
+//
 var _default = {
   data: function data() {
     return {
@@ -9266,14 +9293,14 @@ var _default = {
 
     this.load().then(function (response) {
       _this.headline = response.headline;
+      _this.url = response.url;
       _this.meta_title = response.title.value;
-      _this.meta_url = response.url;
+      _this.twitter_url = response.url;
     });
   },
   computed: {
     twitter_card_type: function twitter_card_type() {
       var twitter_card_type = this.$store.getters["content/values"]().twitter_card_type;
-      console.log(twitter_card_type);
       return twitter_card_type;
     },
     twitter_title: function twitter_title() {
@@ -9333,7 +9360,10 @@ exports.default = _default;
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "k-field-label" }, [_vm._v(_vm._s(_vm.headline))]),
+    _c("div", { staticClass: "k-field-label" }, [
+      _c("span", { staticClass: "twitter-icon" }),
+      _vm._v(" " + _vm._s(_vm.headline) + "\n  ")
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -9377,7 +9407,7 @@ exports.default = _default;
                       ),
                       _vm._v(" "),
                       _c("span", { staticClass: "twitter-card__url" }, [
-                        _vm._v("kicommunity.de")
+                        _vm._v(_vm._s(_vm.twitter_url))
                       ])
                     ]
                   )
@@ -9409,7 +9439,7 @@ exports.default = _default;
                   ]),
                   _vm._v(" "),
                   _c("span", { staticClass: "twitter-card__url" }, [
-                    _vm._v("kicommunity.de")
+                    _vm._v(_vm._s(_vm.twitter_url))
                   ])
                 ])
               ])
@@ -9498,7 +9528,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49337" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58411" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
