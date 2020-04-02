@@ -87,7 +87,26 @@ fields:
     label: OG Article Author/s
     type: structure
     fields:
-      profile: fields/profile
+      firstname:
+        label: First Name
+        type: text
+        width: 1/2
+      lastname:
+        label: Last Name
+        type: text
+        width: 1/2
+      username:
+        label: Username
+        type: text
+        width: 1/2
+      gender:
+        label: Gender
+        type: select
+        options:
+          male: Male
+          female: Female
+          other: Other
+        width: 1/2
     when:
       og_type: article
   og_type_article_section:
