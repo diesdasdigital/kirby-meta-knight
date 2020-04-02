@@ -12,12 +12,11 @@ fields:
   meta_keywords:
     label: Keywords
     type: tags
-    help: A few keywords that describe the content of the page.
+    help: A few keywords related to the content of the page.
   meta_author:
     label: Author/s
-    type: structure
-    fields:
-      profile: fields/profile
+    type: text
+    help: The name of the author of the page (Entiry or Person).
   meta_image:
     label: Image
     type: files

@@ -1,7 +1,7 @@
 type: group
 fields:
   robots_headline:
-    label: Basic Meta Information
+    label: Robots
     type: headline
     numbered: false
   robots_noindex:
@@ -13,7 +13,7 @@ fields:
       default: Site Default
     default: default
     width: 1/2
-    help: Search engines will not index and display pages
+    help: Search engines will not index and display page/s.
   robots_nofollow:
     label: No Follow
     type: select
@@ -23,7 +23,7 @@ fields:
       default: Site Default
     default: default
     width: 1/2
-    help: Search engines will not follow links
+    help: Search engines will not follow links.
   robots_noarchive:
     label: No Archive
     type: select
@@ -33,7 +33,7 @@ fields:
       default: Site Default
     default: default
     width: 1/2
-    help: Search engines will not cache pages
+    help: Search engines will not cache page/s.
   robots_noimageindex:
     label: No Image Index
     type: select
@@ -43,7 +43,7 @@ fields:
       default: Site Default
     default: default
     width: 1/2
-    help: Search engines will not associate site with image search results
+    help: Search engines will not associate page/s with image search results.
   robots_nosnippet:
     label: No Snippet
     type: select
@@ -53,4 +53,4 @@ fields:
       default: Site Default
     default: default
     width: 1/2
-    help: Search engines will not display description snippets
+    help: Search engines will not display description snippets for page/s.
