@@ -41,24 +41,6 @@
 
 <meta name="date" content="<?= $page->modified('Y-m-d') ?>" scheme="YYYY-MM-DD">
 
-<!-- Twitter Card -->
-
-<meta name="twitter:card" content="summary">
-
-<meta name="twitter:title" content="<?= $page->twitter_title()->or($site->twitter_title()) ?>">
-
-<meta name="twitter:description" content="<?= $page->twitter_description()->or($site->twitter_description()) ?>">
-
-<?php if ($page->twitter_image()->isNotEmpty()): ?>
-  <meta name="twitter:image" content="<?= $page->twitter_image()->toFile()->thumb($twitter_image)->url() ?>">
-<?php elseif($site->twitter_image()->isNotEmpty()): ?>
-  <meta name="twitter:image" content="<?= $site->twitter_image()->toFile()->thumb($twitter_image)->url() ?>">
-<?php endif; ?>
-
-<meta name="twitter:site" content="<?= $page->twitter_site()->or($site->twitter_site()) ?>">
-
-<meta name="twitter:creator" content="<?= $page->twitter_creator()->or($site->twitter_creator()) ?>">
-
 <!-- Open Graph -->
 
 <meta property="og:title" content="<?= $page->og_title()->or($site->og_title()) ?> | <?= $site->title() ?>">
@@ -88,3 +70,29 @@
 <?php endif; ?>
 
 <meta property="og:locale" content="<?= $kirby->language()->locale(LC_ALL) ?>">
+
+<?php
+// using the `toStructure()` method, we create a structure collection
+$authors = $page->og_authors()->toStructure()->or($site->og_authors()->toStructure());
+// we can then loop through the entries and render the individual fields
+foreach ($authors as $author): ?>
+  <meta property="article:author" content="<?= $author->title()->html() ?>">
+<?php endforeach ?>
+
+<!-- Twitter Card -->
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:title" content="<?= $page->twitter_title()->or($site->twitter_title()) ?>">
+
+<meta name="twitter:description" content="<?= $page->twitter_description()->or($site->twitter_description()) ?>">
+
+<?php if ($page->twitter_image()->isNotEmpty()): ?>
+  <meta name="twitter:image" content="<?= $page->twitter_image()->toFile()->thumb($twitter_image)->url() ?>">
+<?php elseif($site->twitter_image()->isNotEmpty()): ?>
+  <meta name="twitter:image" content="<?= $site->twitter_image()->toFile()->thumb($twitter_image)->url() ?>">
+<?php endif; ?>
+
+<meta name="twitter:site" content="<?= $page->twitter_site()->or($site->twitter_site()) ?>">
+
+<meta name="twitter:creator" content="<?= $page->twitter_creator()->or($site->twitter_creator()) ?>">
