@@ -22,18 +22,24 @@ Download and copy this repository to `/site/plugins/kirby-seo`.
 ### Git submodule
 
 ```
-git submodule add https://github.com/diesdasdigital/meta-knight.git site/plugins/kirby-seo
+git submodule add https://github.com/diesdasdigital/kirby-seo.git site/plugins/kirby-seo
 ```
 
 ### Composer
 
 ```
-composer require diesdasdigital/meta-knight
+composer require diesdasdigital/kirby-seo
 ```
 
 ## Setup
 
-_Additional instructions on how to configure the plugin (e.g. blueprint setup, config options, etc.)_
+How to add SEO to Kirby:
+
+Add this tab to your site.yml: `seotab: seo`
+
+Add this tab to all your pages: `seotab: seo`
+
+Add these two snippets to your head: `<?php snippet('meta_information'); ?>` + `<?php snippet('robots'); ?>`
 
 ## Options
 
