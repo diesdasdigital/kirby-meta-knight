@@ -1,15 +1,25 @@
 {
   "name": "diesdasdigital/kirby-seo",
-  "description": "Kirby Seo Plugin",
+  "description": "Meta Knight – SEO for Kirby",
   "type": "kirby-plugin",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "authors": [
     {
-      "name": "diesdas.digital",
-      "email": "hi@diesdas.digital"
+      "name": "Jonathan Muth",
+      "email": "jonathan@diesdas.digital",
+      "homepage": "https://diesdas.digital",
+      "role": "Developer"
     }
   ],
   "require": {
     "getkirby/composer-installer": "^1.1"
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "autoload": {
+    "psr-4": {
+      "diesdasdigital\\kirby-seo\\": "src/models/"
+    }
   }
 }

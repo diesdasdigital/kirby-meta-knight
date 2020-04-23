@@ -17,5 +17,11 @@ Kirby::plugin('diesdasdigital/kirby-seo', [
     'snippets' => [
         'meta_information' => __DIR__ . '/snippets/meta_information.php',
         'robots' => __DIR__ . '/snippets/robots.php'
+    ],
+    'translations' => [
+        'en' => [
+            'metaknight.meta_description_missing' => 'Description Missing.',
+            'metaknight.meta_keywords_missing' => 'Keywords Missing.',
+        ],
     ]
 ]);
