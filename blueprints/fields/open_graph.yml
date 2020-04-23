@@ -87,6 +87,9 @@ fields:
     label: OG Article Author/s
     type: structure
     fields:
+      url:
+        label: URL
+        type: url
       firstname:
         label: First Name
         type: text

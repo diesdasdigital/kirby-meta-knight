@@ -72,11 +72,11 @@
 <meta property="og:locale" content="<?= $kirby->language()->locale(LC_ALL) ?>">
 
 <?php
-// using the `toStructure()` method, we create a structure collection
-$authors = $page->og_authors()->toStructure()->or($site->og_authors()->toStructure());
-// we can then loop through the entries and render the individual fields
-foreach ($authors as $author): ?>
-  <meta property="article:author" content="<?= $author->title()->html() ?>">
+  $authors = $page->og_type_article_author()->or($site->og_type_article_author());
+?>
+
+<?php foreach ($authors->toStructure() as $author): ?>
+  <meta property="article:author" content="<?= $author->url()->html() ?>">
 <?php endforeach ?>
 
 <!-- Twitter Card -->
