@@ -25,7 +25,7 @@ Download and copy this repository to `/site/plugins/kirby-seo`.
 git submodule add https://github.com/diesdasdigital/kirby-seo.git site/plugins/kirby-seo
 ```
 
-### Composer
+### Composer (not available yet)
 
 ```
 composer require diesdasdigital/kirby-seo
