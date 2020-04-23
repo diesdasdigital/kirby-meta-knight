@@ -39,6 +39,41 @@ Add this tab to your site.yml: `seotab: seo`
 
 Add this tab to all your pages: `seotab: seo`
 
+Example:
+
+```
+title: Site
+
+tabs:
+  content:
+    icon: text
+    label: Content
+    sections:
+      drafts:
+        headline: Drafts
+        type: pages
+        status: draft
+        templates:
+          - default
+          - masthead
+        image:
+          query: false
+      unlisted:
+        headline: Unlisted
+        type: pages
+        status: unlisted
+        image:
+          query: false
+      listed:
+        headline: Listed
+        type: pages
+        status: listed
+        image:
+          query: false
+
+  seotab: seo
+```
+
 Add these two snippets to your head: `<?php snippet('meta_information'); ?>` + `<?php snippet('robots'); ?>`
 
 ## Options
