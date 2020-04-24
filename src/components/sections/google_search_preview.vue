@@ -67,17 +67,21 @@ export default {
   watch: {
     store_image: {
       handler() {
-        this.$api.files
-          .get(
-            this.$store.getters["content/model"]().api,
-            this.store_image[0].filename,
-            {
-              view: "compact"
-            }
-          )
-          .then(response => {
-            this.meta_image = response.url;
-          });
+        if (this.store_image.length === 0) {
+          this.meta_image = null;
+        } else {
+          this.$api.files
+            .get(
+              this.$store.getters["content/model"]().api,
+              this.store_image[0].filename,
+              {
+                view: "compact"
+              }
+            )
+            .then(response => {
+              this.meta_image = response.url;
+            });
+        }
       },
       immediate: true
     }
