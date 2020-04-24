@@ -9,7 +9,7 @@ Meta Knight provides blueprints, snippets and custom preview section:
 -   Twitter Cards + Twitter Cards Preview
 -   Robots
 
-This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lorenz Seeger and Leslie Büttel. Meta Knight exists because we wanted to standardize the way
+This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lorenz Seeger and Leslie Büttel. Meta Knight exists because we wanted to standardize the way we handle meta informaton across all our projects.
 
 ---
 
