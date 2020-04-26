@@ -81,6 +81,7 @@ fields:
       url:
         label: URL
         type: url
+        required: true
       firstname:
         label: First Name
         type: text
@@ -105,13 +106,15 @@ fields:
       og_type: article
   og_type_article_section:
     label: OG Article Section
+    help: A high-level section name. E.g. Technology
     type: text
     width: 1/2
     when:
       og_type: article
   og_type_article_tag:
     label: OG Article Tags
-    type: text
+    help: Tag words associated with this article
+    type: tags
     width: 1/2
     when:
       og_type: article
