@@ -35,7 +35,7 @@ composer require diesdasdigital/kirby-seo
 
 How to add SEO to Kirby:
 
-Add this tab to your site.yml: `seotab: seo`
+Add this tab to your site.yml: `seotab: seo` (The site meta information is what Kirby SEO falls back to when not meta information is specified on the page level.)
 
 Add this tab to all your pages: `seotab: seo`
 
