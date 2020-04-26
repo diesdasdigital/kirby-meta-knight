@@ -42,15 +42,6 @@ fields:
     help: The word that appears before this object's title in a sentence. An enum of (a, an, the, "", auto). If auto is chosen, the consumer of your data should chose between "a" or "an". Default is "" (blank).
     type: text
     width: 1/2
-  og_locale:
-    label: OG Locale
-    help: The locale these tags are marked up in
-    type: text
-    width: 1/2
-  og_locale_alternate:
-    label: OG Locale Alternate
-    help: An array of other locales this page is available in.
-    type: text
   og_type:
     label: OG Type
     help: The type of your object, e.g., "video.movie". Depending on the type you specify, other properties may also be required.

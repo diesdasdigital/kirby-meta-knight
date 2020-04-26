@@ -73,6 +73,11 @@
 
 <?php if ($kirby->language() !== null): ?>
   <meta property="og:locale" content="<?= $kirby->language()->locale(LC_ALL) ?>">
+  <?php foreach($kirby->languages() as $language): ?>
+    <?php if($language !== $kirby->language()): ?>
+      <meta property="og:locale:alternate" content="<?= $language->locale(LC_ALL) ?>">
+    <?php endif; ?>
+  <?php endforeach; ?>
 <?php endif; ?>
 
 <?php
