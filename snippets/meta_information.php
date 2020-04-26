@@ -59,7 +59,9 @@
 
 <meta property="og:type" content="<?= $page->og_type()->or($site->og_type()) ?>">
 
-<meta property="og:determiner" content="<?= $page->og_determiner()->or($site->og_determiner()) ?>">
+<?php if ($page->og_image()->or($site->og_determiner())->isNotEmpty()): ?>
+  <meta property="og:determiner" content="<?= $page->og_determiner()->or($site->og_determiner()) ?>">
+<?php endif; ?>
 
 <?php if ($page->og_audio()->isNotEmpty()): ?>
   <meta property="og:audio" content="<?= $page->og_audio() ?>">
