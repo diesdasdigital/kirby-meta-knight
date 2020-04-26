@@ -69,7 +69,9 @@
   <meta property="og:video" content="<?= $page->og_video() ?>">
 <?php endif; ?>
 
-<meta property="og:locale" content="<?= $kirby->language()->locale(LC_ALL) ?>">
+<?php if ($kirby->language() !== null): ?>
+  <meta property="og:locale" content="<?= $kirby->language()->locale(LC_ALL) ?>">
+<?php endif; ?>
 
 <?php
   $authors = $page->og_type_article_author()->or($site->og_type_article_author());
