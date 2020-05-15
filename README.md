@@ -21,13 +21,13 @@ Download and copy this repository to `/site/plugins/kirby-seo`.
 
 ### Git submodule
 
-```
+```bash
 git submodule add https://github.com/diesdasdigital/kirby-seo.git site/plugins/kirby-seo
 ```
 
 ### Composer (not available yet)
 
-```
+```bash
 composer require diesdasdigital/kirby-seo
 ```
 
@@ -41,7 +41,7 @@ Add this tab to all your pages: `seotab: seo`
 
 Example:
 
-```
+```yaml
 title: Site
 
 tabs:
@@ -88,7 +88,7 @@ _Add instructions on how to help working on the plugin (e.g. npm setup, Composer
 
 You can start the dev process with …
 
-```
+```bash
 yarn dev
 ```
 
@@ -100,7 +100,7 @@ see changes immediately without further reloading.
 
 As soon as you are happy with your plugin, you should build the final version with
 
-```
+```bash
 yarn build
 ```
 
