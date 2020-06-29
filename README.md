@@ -11,6 +11,8 @@ Meta Knight provides blueprints, snippets and custom preview sections. At the mo
 
 All of the above is neatly organized in a ready-made SEO tab that can be added to any blueprint.
 
+![Screenshot](screenshot.gif)
+
 This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lorenz Seeger and Leslie Büttel. Meta Knight exists because we wanted to standardize the way we handle meta informaton across all our projects.
 
 ---
