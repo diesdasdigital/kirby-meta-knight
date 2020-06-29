@@ -1,13 +1,15 @@
 # Meta Knight – SEO for Kirby
 
-Meta Knight is a SEO and Social Media Sharing Plugin for Kirby. Its goal: Make it easier for Panel users to work with Meta Information.
+Meta Knight is a SEO and Social Media Sharing Plugin for Kirby. Meta Knight makes it easier to work with meta information in Kirby's panel.
 
-Meta Knight provides blueprints, snippets and custom preview section:
+Meta Knight provides blueprints, snippets and custom preview sections. At the moment it covers:
 
 -   Basic Meta Information + Google Search Preview
 -   Open Graph + Facebook Sharing Preview
 -   Twitter Cards + Twitter Cards Preview
 -   Robots
+
+All of the above is neatly organized in a ready-made SEO tab that can be added to any blueprint.
 
 This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lorenz Seeger and Leslie Büttel. Meta Knight exists because we wanted to standardize the way we handle meta informaton across all our projects.
 
@@ -35,7 +37,7 @@ composer require diesdasdigital/kirby-seo
 
 How to add SEO to Kirby:
 
-Add this tab to your site.yml: `seotab: seo` (The site meta information is what Kirby SEO falls back to when not meta information is specified on the page level.)
+Add this tab to your site.yml: `seotab: seo` (The site meta information is what Kirby SEO falls back to when no meta information is provided for a page)
 
 Add this tab to all your pages: `seotab: seo`
 
