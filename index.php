@@ -1,6 +1,6 @@
 <?php
 
-Kirby::plugin('diesdasdigital/kirby-seo', [
+Kirby::plugin('diesdasdigital/kirby-meta-knight', [
     'sections' => [
         'google_search_preview' => require_once __DIR__ . '/sections/google_search_preview.php',
         'facebook_sharing_preview' => require_once __DIR__ . '/sections/facebook_sharing_preview.php',

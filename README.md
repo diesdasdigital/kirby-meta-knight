@@ -21,18 +21,18 @@ This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lore
 
 ### Download
 
-Download and copy this repository to `/site/plugins/kirby-seo`.
+Download and copy this repository to `/site/plugins/kirby-meta-knight`.
 
 ### Git submodule
 
 ```bash
-git submodule add https://github.com/diesdasdigital/kirby-seo.git site/plugins/kirby-seo
+git submodule add https://github.com/diesdasdigital/kirby-meta-knight.git site/plugins/kirby-meta-knight
 ```
 
 ### Composer (not available yet)
 
 ```bash
-composer require diesdasdigital/kirby-seo
+composer require diesdasdigital/kirby-meta-knight
 ```
 
 ## Setup
@@ -49,33 +49,33 @@ Example:
 title: Site
 
 tabs:
-  content:
-    icon: text
-    label: Content
-    sections:
-      drafts:
-        headline: Drafts
-        type: pages
-        status: draft
-        templates:
-          - default
-          - masthead
-        image:
-          query: false
-      unlisted:
-        headline: Unlisted
-        type: pages
-        status: unlisted
-        image:
-          query: false
-      listed:
-        headline: Listed
-        type: pages
-        status: listed
-        image:
-          query: false
+    content:
+        icon: text
+        label: Content
+        sections:
+            drafts:
+                headline: Drafts
+                type: pages
+                status: draft
+                templates:
+                    - default
+                    - masthead
+                image:
+                    query: false
+            unlisted:
+                headline: Unlisted
+                type: pages
+                status: unlisted
+                image:
+                    query: false
+            listed:
+                headline: Listed
+                type: pages
+                status: listed
+                image:
+                    query: false
 
-  seotab: seo
+    seotab: seo
 ```
 
 Add these two snippets to your head: `<?php snippet('meta_information'); ?>` + `<?php snippet('robots'); ?>`

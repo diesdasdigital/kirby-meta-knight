@@ -1,5 +1,5 @@
 {
-  "name": "diesdasdigital/kirby-seo",
+  "name": "diesdasdigital/kirby-meta-knight",
   "description": "Meta Knight – SEO for Kirby",
   "type": "kirby-plugin",
   "license": "BSD-3-Clause",
@@ -19,7 +19,7 @@
   },
   "autoload": {
     "psr-4": {
-      "diesdasdigital\\kirby-seo\\": "src/models/"
+      "diesdasdigital\\kirby-meta-knight\\": "src/models/"
     }
   }
 }
