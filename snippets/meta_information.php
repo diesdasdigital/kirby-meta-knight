@@ -14,16 +14,20 @@
 ?>
 
 <!-- Basic Meta Information -->
+  
+<!-- Schema -->
+  
+<style itemscope itemtype="https://schema.org/WebSite" itemref="schema_name schema_description schema_image"></style>
 
 <!-- Page Title -->
 
 <title><?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?></title>
-<meta itemprop="name" content="<?= $page->title() ?> | <?= $site->title() ?>">
+<meta id="schema_name" itemprop="name" content="<?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?>">
 
 <!-- Description -->
 
 <meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
-<meta itemprop="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
+<meta id="schema_description" itemprop="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
 
 <!-- Keywords -->
 
@@ -36,7 +40,7 @@
 
 <!-- Image -->
 
-<meta itemprop="image" content="<?= $page->meta_image()->or($site->meta_image()) ?>">
+<meta id="schema_image" itemprop="image" content="<?= $page->meta_image()->or($site->meta_image()) ?>">
 
 <!-- Author -->
 
