@@ -7,12 +7,10 @@ fields:
   meta_title:
     label: Title (Override)
     type: text
-    limit: 60
     help: The page title as it should be displayed on search engines. Will default to Kirby page title when this field is empty.
   meta_description:
     label: Description
     type: text
-    limit: 155
     help: A short description of the site/page that will be displayed underneath the page title by search engines.
   meta_keywords:
     label: Keywords

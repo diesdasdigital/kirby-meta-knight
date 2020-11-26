@@ -1,19 +1,21 @@
 # Meta Knight – SEO for Kirby
 
-Meta Knight is a SEO and Social Media Sharing Plugin for Kirby. Meta Knight makes it easier to work with meta information in Kirby's panel.
+Meta Knight is a SEO and Social Media Sharing Plugin for [Kirby](https://getkirby.com). Meta Knight makes it easier to work with meta information in Kirby's panel.
 
-Meta Knight provides blueprints, snippets and custom preview sections. At the moment it covers:
+Meta Knight provides blueprints, snippets and custom preview sections. At the moment the plugin covers:
 
--   Basic Meta Information + Google Search Preview
--   Open Graph + Facebook Sharing Preview
--   Twitter Cards + Twitter Cards Preview
--   Robots
+- Basic Meta Information (Title, Description, Keywords, Canonical URL, etc.) + Google Search Preview
+- Open Graph + Facebook Sharing Preview
+- Twitter Cards + Twitter Cards Preview
+- Robots Settings
 
-All of the above is neatly organized in a ready-made SEO tab that can be added to any blueprint.
+All of the above is neatly organized in a pre-composed SEO tab that can easily be added to any blueprint.
 
 ![Screenshot](screenshot.gif)
 
-This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lorenz Seeger and Leslie Büttel. Meta Knight exists because we wanted to standardize the way we handle meta informaton across all our projects.
+This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lorenz Seeger and Leslie Büttel. Meta Knight exists because we wanted to standardize the way we handle meta information across all our projects.
+
+We'd also like to thank @distantnative for his help along the way! Without him this plugin wouldn't be what it is today.
 
 ---
 
@@ -37,11 +39,13 @@ composer require diesdasdigital/kirby-meta-knight
 
 ## Setup
 
-How to add SEO to Kirby:
+How to add Meta Knight to Kirby:
 
-Add this tab to your site.yml: `seotab: seo` (The site meta information is what Kirby SEO falls back to when no meta information is provided for a page)
+1. Add this tab to your site's blueprint (site.yml): `seotab: seo` (Meta Knight uses the site's meta information as a fall back when no meta information is provided for a page)
 
-Add this tab to all your pages: `seotab: seo`
+2. Add this tab to all your page blueprints: `seotab: seo`
+
+3. Add these two snippets to your head: `<?php snippet('meta_information'); ?>` + `<?php snippet('robots'); ?>`
 
 Example:
 
@@ -49,36 +53,34 @@ Example:
 title: Site
 
 tabs:
-    content:
-        icon: text
-        label: Content
-        sections:
-            drafts:
-                headline: Drafts
-                type: pages
-                status: draft
-                templates:
-                    - default
-                    - masthead
-                image:
-                    query: false
-            unlisted:
-                headline: Unlisted
-                type: pages
-                status: unlisted
-                image:
-                    query: false
-            listed:
-                headline: Listed
-                type: pages
-                status: listed
-                image:
-                    query: false
+  content:
+    icon: text
+    label: Content
+    sections:
+      drafts:
+        headline: Drafts
+        type: pages
+        status: draft
+        templates:
+          - default
+          - masthead
+        image:
+          query: false
+      unlisted:
+        headline: Unlisted
+        type: pages
+        status: unlisted
+        image:
+          query: false
+      listed:
+        headline: Listed
+        type: pages
+        status: listed
+        image:
+          query: false
 
-    seotab: seo
+  seotab: seo
 ```
-
-Add these two snippets to your head: `<?php snippet('meta_information'); ?>` + `<?php snippet('robots'); ?>`
 
 ## Options
 
@@ -119,4 +121,4 @@ MIT
 
 ## Credits
 
--   [diesdas ⚡️ digital](https://github.com/diesdasdigital)
+- [diesdas ⚡️ digital](https://github.com/diesdasdigital)
