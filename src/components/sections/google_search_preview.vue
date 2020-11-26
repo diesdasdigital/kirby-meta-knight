@@ -24,26 +24,30 @@ export default {
       headline: null,
       site_title: null,
       url: null,
-      meta_image: null
+      meta_image: null,
     };
   },
   created: function() {
-    this.load().then(response => {
+    this.load().then((response) => {
       this.headline = response.headline;
       this.page_title = response.title.value;
       this.meta_url = response.url;
     });
-    this.$api.site.get().then(response => {
+    this.$api.site.get().then((response) => {
       this.site_title = response.title;
     });
   },
   computed: {
     meta_title() {
-      let meta_title = null;
+      let meta_title = this.$store.getters["content/values"]().meta_title;
       if (this.site_title == this.page_title) {
         meta_title = this.site_title;
       } else {
-        meta_title = this.site_title + " - " + this.page_title;
+        if (meta_title != "") {
+          meta_title = this.site_title + " - " + meta_title;
+        } else {
+          meta_title = this.site_title + " - " + this.page_title;
+        }
       }
       return meta_title;
     },
@@ -62,7 +66,7 @@ export default {
     },
     store_image() {
       return this.$store.getters["content/values"]().meta_image;
-    }
+    },
   },
   watch: {
     store_image: {
@@ -75,17 +79,17 @@ export default {
               this.$store.getters["content/model"]().api,
               this.store_image[0].filename,
               {
-                view: "compact"
+                view: "compact",
               }
             )
-            .then(response => {
+            .then((response) => {
               this.meta_image = response.url;
             });
         }
       },
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 };
 </script>
 

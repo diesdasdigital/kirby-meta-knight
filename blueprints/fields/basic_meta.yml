@@ -4,6 +4,11 @@ fields:
     label: Basic Meta Information
     type: headline
     numbered: false
+  meta_title:
+    label: Title (Override)
+    type: text
+    limit: 60
+    help: The page title as it should be displayed on search engines. Value will default to Kirby page title when left empty.
   meta_description:
     label: Description
     type: text
@@ -16,7 +21,7 @@ fields:
   meta_author:
     label: Author/s
     type: text
-    help: The name of the author of the page (Entiry or Person).
+    help: The name of the author of the page. Can be an entity or a person.
   meta_image:
     label: Image
     type: files
