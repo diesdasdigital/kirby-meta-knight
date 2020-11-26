@@ -8,7 +8,7 @@ fields:
     label: Title (Override)
     type: text
     limit: 60
-    help: The page title as it should be displayed on search engines. Value will default to Kirby page title when left empty.
+    help: The page title as it should be displayed on search engines. Will default to Kirby page title when this field is empty.
   meta_description:
     label: Description
     type: text
@@ -18,6 +18,10 @@ fields:
     label: Keywords
     type: tags
     help: A few keywords related to the content of the page.
+  meta_canonical_url:
+    label: Canonical URL
+    type: url
+    help: The canonical URL of the page. Will default to page URL when this field is empty.
   meta_author:
     label: Author/s
     type: text

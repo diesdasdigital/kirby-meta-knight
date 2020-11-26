@@ -29,6 +29,11 @@
 
 <meta name="keywords" content="<?= $page->meta_keywords()->or($site->meta_keywords()) ?>">
 
+
+<!-- Canonical URL -->
+  
+<link rel="canonical" href="<?= $page->meta_canonical_url()->or($page->url()) ?>" />
+
 <!-- Image -->
 
 <meta itemprop="image" content="<?= $page->meta_image()->or($site->meta_image()) ?>">
@@ -60,7 +65,7 @@
 <meta property="og:type" content="<?= $page->og_type()->or($site->og_type()) ?>">
 
 <?php if ($page->og_image()->or($site->og_determiner())->isNotEmpty()): ?>
-  <meta property="og:determiner" content="<?= $page->og_determiner()->or($site->og_determiner()) ?>">
+  <meta property="og:determiner" content="<?= $page->og_determiner()->or($site->og_determiner())->or("auto") ?>">
 <?php endif; ?>
 
 <?php if ($page->og_audio()->isNotEmpty()): ?>
