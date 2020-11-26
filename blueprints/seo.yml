@@ -39,4 +39,3 @@ columns:
     width: 2/3
     fields:
       robots_fields: fields/robots
-  robots_sidebar:
