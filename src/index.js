@@ -6,6 +6,6 @@ panel.plugin("diesdasdigital/kirby-meta-knight", {
   sections: {
     google_search_preview: googleSearchPreview,
     facebook_sharing_preview: facebookSharingPreview,
-    twitter_card_preview: twitterCardPreview
-  }
+    twitter_card_preview: twitterCardPreview,
+  },
 });

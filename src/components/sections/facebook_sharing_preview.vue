@@ -30,11 +30,11 @@ export default {
     return {
       headline: "Basic Meta Information",
       url: null,
-      og_image: null
+      og_image: null,
     };
   },
   created: function() {
-    this.load().then(response => {
+    this.load().then((response) => {
       this.headline = response.headline;
       this.url = response.url;
     });
@@ -73,7 +73,7 @@ export default {
     },
     store_image() {
       return this.$store.getters["content/values"]().og_image;
-    }
+    },
   },
   watch: {
     store_image: {
@@ -86,17 +86,17 @@ export default {
               this.$store.getters["content/model"]().api,
               this.store_image[0].filename,
               {
-                view: "compact"
+                view: "compact",
               }
             )
-            .then(response => {
+            .then((response) => {
               this.og_image = response.url;
             });
         }
       },
-      immediate: true
-    }
-  }
+      immediate: true,
+    },
+  },
 };
 </script>
 
