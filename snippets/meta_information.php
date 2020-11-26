@@ -17,7 +17,7 @@
 
 <!-- Page Title -->
 
-<title><?= $page->title() ?> - <?= $site->title()?></title>
+<title><?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?></title>
 <meta itemprop="name" content="<?= $page->title() ?> | <?= $site->title() ?>">
 
 <!-- Description -->
