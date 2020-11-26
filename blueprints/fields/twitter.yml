@@ -28,6 +28,7 @@ fields:
     options:
       summary_large_image: Summary Card with Large Image
       summary: Summary Card
+    help: The card layout Twitter uses for links to this page.
   twitter_site:
     label: @username of website
     type: text

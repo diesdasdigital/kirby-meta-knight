@@ -29,17 +29,17 @@ fields:
     width: 1/2
   og_audio:
     label: OG Audio
-    help: A URL to an audio file to accompany this object.
+    help: The URL of an audio file to accompany this object.
     type: url
     width: 1/2
   og_video:
     label: OG Video
-    help: A URL to a video file that complements this object.
+    help: The URL of a video file that complements this object.
     type: url
     width: 1/2
   og_determiner:
     label: OG Determiner
-    help: The word that appears before this object's title in a sentence. An enum of (a, an, the, "", auto). If auto is chosen, the consumer of your data should chose between "a" or "an". Default is "" (blank).
+    help: The word that appears before this object's title in a sentence. An enum of (a, an, the, "", auto). If auto is chosen, the consumer of your data should chose between "a" or "an". Default is "auto".
     type: text
     width: 1/2
   og_type:
