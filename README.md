@@ -84,11 +84,9 @@ tabs:
 
 ## Options
 
-_Document the options and APIs that this plugin offers_
+Currently the plugin isn't configurable via the `config.php` file. This is something we are thinking about adding in a future release.
 
 ## Development
-
-_Add instructions on how to help working on the plugin (e.g. npm setup, Composer dev dependencies, etc.)_
 
 ### Development
 
@@ -98,22 +96,19 @@ You can start the dev process with …
 yarn dev
 ```
 
-This will automatically update the `index.js` and `index.css` of your plugin as soon as you make changes.
+This will automatically update the `index.js` and `index.css` of Meta Knight as soon as you make changes.
 It will also enable hot module reloading in the panel. Reload the panel once and afterwards you should
 see changes immediately without further reloading.
 
 ### Production
 
-As soon as you are happy with your plugin, you should build the final version with
+As soon as you are happy with the changed you've made to Meta Knight, you should build the final version with
 
 ```bash
 yarn build
 ```
 
-This will automatically create a minified and optimized version of your `index.js` and `index.css`
-which you can ship with your plugin.
-
-We have a tutorial on how to build your own plugin based on the Pluginkit [in the Kirby documentation](https://getkirby.com/docs/guide/plugins/plugin-setup-basic).
+This will automatically create a minified and optimized version of your `index.js` and `index.css` that will improve load time in production environments.
 
 ## License
 
