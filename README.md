@@ -117,7 +117,7 @@ We have a tutorial on how to build your own plugin based on the Pluginkit [in th
 
 ## License
 
-MIT
+MIT – See LICENSE.md for more info.
 
 ## Credits
 
