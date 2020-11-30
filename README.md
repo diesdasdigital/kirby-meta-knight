@@ -112,7 +112,7 @@ This will automatically create a minified and optimized version of your `index.j
 
 ## License
 
-MIT
+MIT – See LICENSE.md for more info.
 
 ## Credits
 
