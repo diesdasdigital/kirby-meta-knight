@@ -13,44 +13,44 @@
     ];
 ?>
 
-<!-- Basic Meta Information -->
+<?php // Basic Meta Information ?>
   
-<!-- Schema -->
+<?php // Schema ?>
   
 <style itemscope itemtype="https://schema.org/WebSite" itemref="schema_name schema_description schema_image"></style>
 
-<!-- Page Title -->
+<?php // Page Title ?>
 
 <title><?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?></title>
 <meta id="schema_name" itemprop="name" content="<?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?>">
 
-<!-- Description -->
+<?php // Description ?>
 
 <meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
 <meta id="schema_description" itemprop="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
 
-<!-- Keywords -->
+<?php // Keywords ?>
 
 <meta name="keywords" content="<?= $page->meta_keywords()->or($site->meta_keywords()) ?>">
 
 
-<!-- Canonical URL -->
+<?php // Canonical URL ?>
   
 <link rel="canonical" href="<?= $page->meta_canonical_url()->or($page->url()) ?>" />
 
-<!-- Image -->
+<?php // Image ?>
 
 <meta id="schema_image" itemprop="image" content="<?= $page->meta_image()->or($site->meta_image()) ?>">
 
-<!-- Author -->
+<?php // Author ?>
 
 <meta name="author" content="<?= $page->meta_author()->or($site->meta_author()) ?>">
 
-<!-- Date -->
+<?php // Date ?>
 
 <meta name="date" content="<?= $page->modified('Y-m-d') ?>" scheme="YYYY-MM-DD">
 
-<!-- Open Graph -->
+<?php // Open Graph ?>
 
 <meta property="og:title" content="<?= $page->og_title()->or($site->og_title()) ?> | <?= $site->title() ?>">
 
@@ -95,7 +95,7 @@
   <meta property="article:author" content="<?= $author->url()->html() ?>">
 <?php endforeach ?>
 
-<!-- Twitter Card -->
+<?php // Twitter Card ?>
 
 <meta name="twitter:card" content="summary">
 
