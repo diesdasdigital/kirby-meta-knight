@@ -1,4 +1,4 @@
-<!-- Robots -->
+<?php // Robots ?>
 
 <?php
 
