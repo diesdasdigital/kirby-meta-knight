@@ -21,9 +21,13 @@
 
 <?php // Page Title ?>
 
-<title><?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?></title>
-<meta id="schema_name" itemprop="name" content="<?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?>">
-
+<?php if(option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true)): ?>
+  <title><?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?></title>
+  <meta id="schema_name" itemprop="name" content="<?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?>">
+<?php else: ?>
+  <title><?= $site->title()?> - <?= $page->meta_title()->or($page->title()) ?></title>
+  <meta id="schema_name" itemprop="name" content="<?= $site->title()?> - <?= $page->meta_title()->or($page->title()) ?>">
+<?php endif; ?>
 <?php // Description ?>
 
 <meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
