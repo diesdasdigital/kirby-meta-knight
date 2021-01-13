@@ -19,7 +19,7 @@ We'd also like to thank @distantnative for his help along the way! Without him t
 
 ## Config options
 
-By default the *Page Title* will be rendered before the *Site Title*. Resulting in a title tag that looks like this `<title>Page Title – Site Title</title>`. If you want Site Title to come first, simply add the following lines to your Kirby `config.php` file:
+By default the *Page Title* will be rendered before the *Site Title*. Resulting in a title tag that looks like this: `<title>Page Title – Site Title</title>`. If you want the *Site Title* to come first, simply add the following lines to your Kirby `config.php` file:
 
 ```
 'diesdasdigital.meta-knight' => [
@@ -27,7 +27,7 @@ By default the *Page Title* will be rendered before the *Site Title*. Resulting 
 ],
 ```
 
-You'll then get a title tag that looks like this `<title>Site Title – Page Title</title>`.
+You'll then get a title tag that looks like this: `<title>Site Title – Page Title</title>`.
 
 ---
 
