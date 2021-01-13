@@ -17,6 +17,16 @@ This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lore
 
 We'd also like to thank @distantnative for his help along the way! Without him this plugin wouldn't be what it is today.
 
+## Config options
+
+By default the *Page Title* will be rendered before the *Site Title* inside the title tag. Resulting in a title tag that looks like this `<title>Page Title – Site Title</title>`. If you want Site Title to come first, simply add the following to your Kirby `config.php` file.
+
+```
+'diesdasdigital.meta-knight' => [
+    'siteTitleAfterPageTitle' => false,
+],
+```
+
 ---
 
 ## Installation
