@@ -32,6 +32,7 @@ export default {
       this.headline = response.headline;
       this.page_title = response.title.value;
       this.meta_url = response.url;
+      this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle
     });
     this.$api.site.get().then((response) => {
       this.site_title = response.title;
@@ -43,10 +44,18 @@ export default {
       if (this.site_title == this.page_title) {
         meta_title = this.site_title;
       } else {
-        if (meta_title != "") {
-          meta_title = this.site_title + " - " + meta_title;
+        if (this.siteTitleAfterPageTitle == true) {
+          if (meta_title != "") {
+            meta_title = meta_title + " - " + this.site_title;
+          } else {
+            meta_title = this.page_title + " - " + this.site_title;
+          }
         } else {
-          meta_title = this.site_title + " - " + this.page_title;
+          if (meta_title != "") {
+            meta_title = this.site_title + " - " + meta_title;
+          } else {
+            meta_title = this.site_title + " - " + this.page_title;
+          }
         }
       }
       return meta_title;
