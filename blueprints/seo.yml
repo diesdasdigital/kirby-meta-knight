@@ -4,8 +4,11 @@ icon: search
 columns:
   basic_meta_main:
     width: 2/3
-    fields:
-      basic_meta_fields: fields/basic_meta
+    sections:
+      basic_meta_section:
+        type: fields
+        fields:
+          basic_meta_fields: fields/basic_meta
   basic_meta_sidebar:
     width: 1/3
     sticky: true
@@ -15,8 +18,11 @@ columns:
         type: google_search_preview
   open_graph_main:
     width: 2/3
-    fields:
-      open_graph_fields: fields/open_graph
+    sections:
+      open_graph_section:
+        type: fields
+        fields:
+          open_graph_fields: fields/open_graph
   open_graph_sidebar:
     width: 1/3
     sticky: true
@@ -26,8 +32,11 @@ columns:
         type: facebook_sharing_preview
   twitter_main:
     width: 2/3
-    fields:
-      twitter_fields: fields/twitter
+    sections:
+      twitter_section:
+        type: fields
+        fields:
+          twitter_fields: fields/twitter
   twitter_sidebar:
     width: 1/3
     sticky: true
@@ -37,5 +46,8 @@ columns:
         type: twitter_card_preview
   robots_main:
     width: 2/3
-    fields:
-      robots_fields: fields/robots
+    sections:
+      robots_section:
+        type: fields
+        fields:
+          robots_fields: fields/robots
