@@ -18,8 +18,8 @@ fields:
     label: Twitter Image (1200x675)
     help: Will be cropped automatically.
     type: files
+    uploads: seo-image
     multiple: false
-    max: 1
     width: 1/2
   twitter_card_type:
     label: Card Type

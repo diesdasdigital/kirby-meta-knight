@@ -17,6 +17,7 @@ fields:
     help: An image which should represent your object within the graph. Will be cropped automatically.
     type: files
     multiple: false
+    uploads: seo-image
   og_site_name:
     label: OG Site Name
     help: If your object is part of a larger web site, the name which should be displayed for the overall site.

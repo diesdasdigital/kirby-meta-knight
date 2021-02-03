@@ -1,0 +1,17 @@
+title: Image
+
+accept:
+  mime: image/jpeg, image/png
+
+fields:
+  alt:
+    label: Alt Text
+    type: text
+    width: 1/2
+  link:
+    label: Link
+    type: url
+    width: 1/2
+  caption:
+    label: Caption
+    type: textarea
