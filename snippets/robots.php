@@ -4,7 +4,9 @@
 
   $robots_content = [];
 
-  if ($page->robots_noindex()->isNotEmpty() && $page->robots_noindex()->value() !== 'default' ) {
+  if ( param("page") !== null) {
+      array_push($robots_content, "noindex");
+  } elseif ($page->robots_noindex()->isNotEmpty() && $page->robots_noindex()->value() !== 'default' ) {
     if ($page->robots_noindex()->value() === 'enabled') {
       array_push($robots_content, "noindex");
     }
