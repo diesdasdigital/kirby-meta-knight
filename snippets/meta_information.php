@@ -56,7 +56,7 @@
 
 <?php // Open Graph ?>
 
-<meta property="og:title" content="<?= $page->og_title()->or($site->og_title()) ?> | <?= $site->title() ?>">
+<meta property="og:title" content="<?= $page->og_title()->or($page->title()) ?>">
 
 <meta property="og:description" content="<?= $page->og_description()->or($site->og_description()) ?>">
 

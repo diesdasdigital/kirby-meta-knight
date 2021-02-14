@@ -29,6 +29,8 @@ export default {
   data() {
     return {
       headline: "Basic Meta Information",
+      site_title: null,
+      page_title: null,
       url: null,
       og_image: null,
     };
@@ -36,7 +38,11 @@ export default {
   created: function() {
     this.load().then((response) => {
       this.headline = response.headline;
+      this.page_title = response.title.value;
       this.url = response.url;
+    });
+    this.$api.site.get().then((response) => {
+      this.site_title = response.title;
     });
   },
   computed: {
@@ -44,11 +50,10 @@ export default {
       let og_title = this.$store.getters["content/values"]().og_title;
 
       if (og_title.length < 1) {
-        og_title = "[OG Title Missing]";
-        return og_title;
-      } else {
-        return og_title;
+        og_title = this.page_title;
       }
+
+      return og_title;
     },
     og_description() {
       let og_description = this.$store.getters["content/values"]()
@@ -65,7 +70,7 @@ export default {
       let og_site_name = this.$store.getters["content/values"]().og_site_name;
 
       if (og_site_name.length < 1) {
-        og_site_name = "[OG Site Name Missing]";
+        og_site_name = this.site_title;
         return og_site_name;
       } else {
         return og_site_name;

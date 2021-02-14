@@ -23,6 +23,7 @@ export default {
     return {
       headline: null,
       site_title: null,
+      this_page_title: null,
       url: null,
       meta_image: null,
     };
@@ -32,7 +33,7 @@ export default {
       this.headline = response.headline;
       this.page_title = response.title.value;
       this.meta_url = response.url;
-      this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle
+      this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle;
     });
     this.$api.site.get().then((response) => {
       this.site_title = response.title;
