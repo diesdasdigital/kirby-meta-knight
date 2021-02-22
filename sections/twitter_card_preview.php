@@ -12,6 +12,9 @@ return [
       },
       'url' => function () {
           return $this->model()->url();
+      },
+      'siteTitleAfterPageTitle' => function () {
+          return option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true);
       }
     ]
 ];
