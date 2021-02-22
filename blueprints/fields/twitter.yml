@@ -8,18 +8,18 @@ fields:
     label: Twitter Title
     type: text
     limit: 70
-    help: The title of your page as it should appear on Twitter
+    help: The title of your page as it should appear on Twitter. Will use *page title* as fallback.
   twitter_description:
     label: Twitter Description
     type: text
     limit: 300
-    help: A one to two sentence description of your page.
+    help: A one to two sentence description of your page. Will use *page description* and *site description* as fallbacks.
   twitter_image:
     label: Twitter Image (1200x675)
     help: Will be cropped automatically.
     type: files
+    uploads: seo-image
     multiple: false
-    max: 1
     width: 1/2
   twitter_card_type:
     label: Card Type

@@ -6,20 +6,21 @@ fields:
     numbered: false
   og_title:
     label: OG Title
-    help: The title of your object as it should appear within the graph.
+    help: The title of your object as it should appear within the graph. Will use *page title* as fallback.
     type: text
   og_description:
     label: OG Description
-    help: A one to two sentence description of your object.
+    help: A one to two sentence description of your object. Will use *page description* and *site description* as fallbacks.
     type: text
   og_image:
     label: OG Image (1200x630)
-    help: An image which should represent your object within the graph. Will be cropped automatically.
+    help: An image which should represent your object within the graph. Will be cropped automatically. Will use *site OG image* as fallback.
     type: files
     multiple: false
+    uploads: seo-image
   og_site_name:
     label: OG Site Name
-    help: If your object is part of a larger web site, the name which should be displayed for the overall site.
+    help: If your object is part of a larger web site, the name which should be displayed for the overall site. Will use *site title* as fallback.
     type: text
     width: 1/2
   og_url:

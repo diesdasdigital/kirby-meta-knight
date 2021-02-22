@@ -51,7 +51,8 @@ export default {
   data() {
     return {
       headline: "Basic Meta Information",
-      meta_title: null,
+      site_title: null,
+      page_title: null,
       url: null,
       twitter_image: null,
     };
@@ -60,7 +61,7 @@ export default {
     this.load().then((response) => {
       this.headline = response.headline;
       this.url = response.url;
-      this.meta_title = response.title.value;
+      this.page_title = response.title.value;
       this.twitter_url = response.url;
     });
   },
@@ -73,24 +74,34 @@ export default {
     },
     twitter_title() {
       let twitter_title = this.$store.getters["content/values"]().twitter_title;
+      let meta_title = this.$store.getters["content/values"]().meta_title;
+      let page_title = this.page_title;
 
       if (twitter_title.length < 1) {
-        twitter_title = "[Twitter Title Missing]";
-        return twitter_title;
-      } else {
-        return twitter_title;
+        if (meta_title.length > 0) {
+          twitter_title = meta_title;
+        } else {
+          twitter_title = page_title;
+        }
       }
+
+      return twitter_title;
     },
     twitter_description() {
       let twitter_description = this.$store.getters["content/values"]()
         .twitter_description;
+      let meta_description = this.$store.getters["content/values"]()
+        .meta_description;
 
       if (twitter_description.length < 1) {
-        twitter_description = "[Twitter Description Missing]";
-        return twitter_description;
-      } else {
-        return twitter_description;
+        twitter_description = meta_description;
+        if (meta_description.length < 1) {
+          twitter_description =
+            "[Twitter Description and Fallback Description Missing]";
+        }
       }
+
+      return twitter_description;
     },
     store_image() {
       return this.$store.getters["content/values"]().twitter_image;

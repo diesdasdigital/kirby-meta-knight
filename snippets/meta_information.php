@@ -56,9 +56,9 @@
 
 <?php // Open Graph ?>
 
-<meta property="og:title" content="<?= $page->og_title()->or($site->og_title()) ?> | <?= $site->title() ?>">
+<meta property="og:title" content="<?= $page->og_title()->or($page->meta_title())->or($page->title()) ?>">
 
-<meta property="og:description" content="<?= $page->og_description()->or($site->og_description()) ?>">
+<meta property="og:description" content="<?= $page->og_description()->or($page->meta_description())->or($site->meta_description()) ?>">
 
 <?php if ($ogimage = $page->og_image()->toFile() ?? $site->og_image()->toFile()): ?>
   <meta property="og:image" content="<?= $ogimage->thumb($og_image)->url() ?>">
@@ -103,9 +103,9 @@
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:title" content="<?= $page->twitter_title()->or($site->twitter_title()) ?>">
+<meta name="twitter:title" content="<?= $page->twitter_title()->or($page->meta_title())->or($page->title()) ?>">
 
-<meta name="twitter:description" content="<?= $page->twitter_description()->or($site->twitter_description()) ?>">
+<meta name="twitter:description" content="<?= $page->twitter_description()->or($page->meta_description())->or($site->meta_description()) ?>">
 
 <?php if ($twitterimage = $page->twitter_image()->toFile() ?? $site->twitter_image()->toFile()): ?>
   <meta name="twitter:image" content="<?= $twitterimage->thumb($twitter_image)->url() ?>">

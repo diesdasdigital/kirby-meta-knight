@@ -29,6 +29,8 @@ export default {
   data() {
     return {
       headline: "Basic Meta Information",
+      site_title: null,
+      page_title: null,
       url: null,
       og_image: null,
     };
@@ -36,36 +38,49 @@ export default {
   created: function() {
     this.load().then((response) => {
       this.headline = response.headline;
+      this.page_title = response.title.value;
       this.url = response.url;
+    });
+    this.$api.site.get().then((response) => {
+      this.site_title = response.title;
     });
   },
   computed: {
     og_title() {
       let og_title = this.$store.getters["content/values"]().og_title;
+      let meta_title = this.$store.getters["content/values"]().meta_title;
+      let page_title = this.page_title;
 
       if (og_title.length < 1) {
-        og_title = "[OG Title Missing]";
-        return og_title;
-      } else {
-        return og_title;
+        if (meta_title.length > 0) {
+          og_title = meta_title;
+        } else {
+          og_title = page_title;
+        }
       }
+
+      return og_title;
     },
     og_description() {
       let og_description = this.$store.getters["content/values"]()
         .og_description;
+      let meta_description = this.$store.getters["content/values"]()
+        .meta_description;
 
       if (og_description.length < 1) {
-        og_description = "[OG Description Missing]";
-        return og_description;
-      } else {
-        return og_description;
+        og_description = meta_description;
+        if (meta_description.length < 1) {
+          og_description = "[OG Description and Fallback Description Missing]";
+        }
       }
+
+      return og_description;
     },
     og_site_name() {
       let og_site_name = this.$store.getters["content/values"]().og_site_name;
 
       if (og_site_name.length < 1) {
-        og_site_name = "[OG Site Name Missing]";
+        og_site_name = this.site_title;
         return og_site_name;
       } else {
         return og_site_name;
@@ -79,7 +94,7 @@ export default {
     store_image: {
       handler() {
         if (this.store_image.length === 0) {
-          this.og_image = null;
+          this.og_image = this.site_og_image_url;
         } else {
           this.$api.files
             .get(
