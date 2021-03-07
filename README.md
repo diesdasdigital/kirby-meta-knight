@@ -13,7 +13,7 @@ All of the above is neatly organized in a pre-composed SEO tab that can easily b
 
 ![Screenshot](screenshot.gif)
 
-This plugin was originally developed at [diesdas.digital] by Jonathan Muth, Lorenz Seeger and Leslie Büttel. Meta Knight exists because we wanted to standardize the way we handle meta information across all our projects.
+This plugin was originally developed at [diesdas.digital](https://www.diesdas.digital) by Jonathan Muth, Lorenz Seeger and Leslie Büttel. Meta Knight exists because we wanted to standardize the way we handle meta information across all our projects.
 
 We'd also like to thank @distantnative for his help along the way! Without him this plugin wouldn't be what it is today.
 
