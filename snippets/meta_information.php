@@ -13,6 +13,31 @@
     ];
 ?>
 
+
+<?php 
+  $metaDescription = "[NO META DESCRIPTION]";
+  if ($page->meta_description()->isNotEmpty()) {
+    $metaDescription = $page->meta_description();
+  } else if ($page->text()->isNotEmpty()) {
+    $metaDescription = $page->text()->excerpt($chars = 180, $strip = true, $rep = ' …');
+  } else if ($site->meta_description()->isNotEmpty()) {
+    $metaDescription = $site->meta_description();
+  }
+
+  if ($page->og_description()->isNotEmpty()) {
+    $ogDescription = $page->og_description();
+  } else {
+    $ogDescription = $metaDescription;
+  }
+
+  if ($page->twitter_description()->isNotEmpty()) {
+    $twitterDescription = $page->twitter_description();
+  } else {
+    $twitterDescription = $metaDescription;
+  }
+
+?>
+
 <?php // Basic Meta Information ?>
   
 <?php // Schema ?>
@@ -28,10 +53,13 @@
   <title><?= $site->title()?> - <?= $page->meta_title()->or($page->title()) ?></title>
   <meta id="schema_name" itemprop="name" content="<?= $site->title()?> - <?= $page->meta_title()->or($page->title()) ?>">
 <?php endif; ?>
+
+
+
 <?php // Description ?>
 
-<meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
-<meta id="schema_description" itemprop="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
+<meta name="description" content="<?= $metaDescription; ?>">
+<meta id="schema_description" itemprop="description" content="<?= $metaDescription; ?>">
 
 <?php // Keywords ?>
 
@@ -58,7 +86,7 @@
 
 <meta property="og:title" content="<?= $page->og_title()->or($page->meta_title())->or($page->title()) ?>">
 
-<meta property="og:description" content="<?= $page->og_description()->or($page->meta_description())->or($site->meta_description()) ?>">
+<meta property="og:description" content="<?= $ogDescription; ?>">
 
 <?php if ($ogimage = $page->og_image()->toFile() ?? $site->og_image()->toFile()): ?>
   <meta property="og:image" content="<?= $ogimage->thumb($og_image)->url() ?>">
@@ -105,7 +133,7 @@
 
 <meta name="twitter:title" content="<?= $page->twitter_title()->or($page->meta_title())->or($page->title()) ?>">
 
-<meta name="twitter:description" content="<?= $page->twitter_description()->or($page->meta_description())->or($site->meta_description()) ?>">
+<meta name="twitter:description" content="<?= $twitterDescription; ?>">
 
 <?php if ($twitterimage = $page->twitter_image()->toFile() ?? $site->twitter_image()->toFile()): ?>
   <meta name="twitter:image" content="<?= $twitterimage->thumb($twitter_image)->url() ?>">
