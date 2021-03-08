@@ -13,8 +13,11 @@ return [
       'url' => function () {
           return $this->model()->url();
       },
+      'excerpt' => function () {
+        return $this->model()->text()->excerpt($chars = 180, $strip = true, $rep = ' …');
+			},
       'siteTitleAfterPageTitle' => function () {
-          return option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true);
+        return option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true);
       }
     ]
 ];

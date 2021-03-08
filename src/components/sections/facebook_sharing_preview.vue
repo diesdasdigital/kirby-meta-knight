@@ -33,6 +33,7 @@ export default {
       page_title: null,
       url: null,
       og_image: null,
+      excerpt: null,
     };
   },
   created: function() {
@@ -40,6 +41,7 @@ export default {
       this.headline = response.headline;
       this.page_title = response.title.value;
       this.url = response.url;
+      this.excerpt = response.excerpt.value;
     });
     this.$api.site.get().then((response) => {
       this.site_title = response.title;
@@ -67,12 +69,24 @@ export default {
       let meta_description = this.$store.getters["content/values"]()
         .meta_description;
 
+      if (og_description) {
+        return og_description;
+      } else if (meta_description) {
+        return meta_description;
+      } else if (this.excerpt) {
+        return this.excerpt;
+      } else {
+        return "[OG Description and Fallback Description Missing]";
+      }
+
+      /*
       if (og_description.length < 1) {
         og_description = meta_description;
         if (meta_description.length < 1) {
           og_description = "[OG Description and Fallback Description Missing]";
         }
       }
+      */
 
       return og_description;
     },

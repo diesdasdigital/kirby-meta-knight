@@ -2,19 +2,22 @@
 
 return [
     'props' => [
-        'headline' => function ($headline = 'Google Search Preview') {
-            return $headline;
-        }
+			'headline' => function ($headline = 'Google Search Preview') {
+				return $headline;
+			}
     ],
     'computed' => [
-      'title' => function () {
-          return $this->model()->title();
-      },
+			'title' => function () {
+				return $this->model()->title();
+			},
       'url' => function () {
-          return $this->model()->url();
+				return $this->model()->url();
       },
+      'excerpt' => function () {
+        return $this->model()->text()->excerpt($chars = 180, $strip = true, $rep = ' …');
+			},
       'siteTitleAfterPageTitle' => function () {
-          return option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true);
+				return option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true);
       }
     ]
 ];

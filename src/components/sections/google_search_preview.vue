@@ -26,6 +26,7 @@ export default {
       this_page_title: null,
       url: null,
       meta_image: null,
+      excerpt: null,
     };
   },
   created: function() {
@@ -34,6 +35,7 @@ export default {
       this.page_title = response.title.value;
       this.meta_url = response.url;
       this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle;
+      this.excerpt = response.excerpt.value;
     });
     this.$api.site.get().then((response) => {
       this.site_title = response.title;
@@ -65,9 +67,16 @@ export default {
       let meta_description = this.$store.getters["content/values"]()
         .meta_description;
 
-      return meta_description.length < 1
-        ? "[Description Missing]"
-        : meta_description;
+      let excerpt = this.excerpt;
+
+      if (meta_description) {
+        return meta_description;
+      } else if (excerpt) {
+        return excerpt;
+      } else {
+        return "[ DESCRIPTION MISSING ]";
+      }
+      
     },
     meta_keywords() {
       let meta_keywords = this.$store.getters["content/values"]().meta_keywords;

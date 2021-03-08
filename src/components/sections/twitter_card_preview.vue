@@ -55,6 +55,7 @@ export default {
       page_title: null,
       url: null,
       twitter_image: null,
+      excerpt: null
     };
   },
   created: function() {
@@ -63,6 +64,7 @@ export default {
       this.url = response.url;
       this.page_title = response.title.value;
       this.twitter_url = response.url;
+      this.excerpt = response.excerpt.value;
     });
   },
   computed: {
@@ -93,12 +95,14 @@ export default {
       let meta_description = this.$store.getters["content/values"]()
         .meta_description;
 
-      if (twitter_description.length < 1) {
-        twitter_description = meta_description;
-        if (meta_description.length < 1) {
-          twitter_description =
-            "[Twitter Description and Fallback Description Missing]";
-        }
+      if (twitter_description) {
+        return twitter_description;
+      } else if (meta_description) {
+        return meta_description;
+      } else if (this.excerpt) {
+        return this.excerpt;
+      } else {
+        return "[OG Description and Fallback Description Missing]";
       }
 
       return twitter_description;
