@@ -71,6 +71,8 @@
 
 <?php if ($og_image = $page->og_image()->toFile() ?? $site->og_image()->toFile()): ?>
   <meta property="og:image" content="<?= $og_image->thumb($og_image_thumb)->url() ?>">
+  <meta property="og:width" content="<?= $og_image->thumb($og_image_thumb)->width() ?>">
+  <meta property="og:height" content="<?= $og_image->thumb($og_image_thumb)->height() ?>">
 <?php endif; ?>
 
 <meta property="og:site_name" content="<?= $page->og_site_name()->or($site->og_site_name()) ?>">
