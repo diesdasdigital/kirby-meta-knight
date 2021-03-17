@@ -1,11 +1,11 @@
 <?php
-  $twitter_image = [
+  $twitter_image_thumb = [
       'width'   => 1200,
       'height'  => 675,
       'quality' => 80,
       'crop'    => true
     ];
-  $og_image = [
+  $og_image_thumb = [
       'width'   => 1200,
       'height'  => 630,
       'quality' => 80,
@@ -22,12 +22,13 @@
 <?php // Page Title ?>
 
 <?php if(option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true)): ?>
-  <title><?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?></title>
-  <meta id="schema_name" itemprop="name" content="<?= $page->meta_title()->or($page->title()) ?> - <?= $site->title()?>">
+  <title><?= $page->meta_title()->or($page->title()) ?> - <?= $site->meta_title()->or($site->title()) ?></title>
+  <meta id="schema_name" itemprop="name" content="<?= $page->meta_title()->or($page->title()) ?> - <?= $site->meta_title()->or($site->title()) ?>">
 <?php else: ?>
-  <title><?= $site->title()?> - <?= $page->meta_title()->or($page->title()) ?></title>
-  <meta id="schema_name" itemprop="name" content="<?= $site->title()?> - <?= $page->meta_title()->or($page->title()) ?>">
+  <title><?= $site->meta_title()->or($site->title()) ?> - <?= $page->meta_title()->or($page->title()) ?></title>
+  <meta id="schema_name" itemprop="name" content="<?= $site->meta_title()->or($site->title()) ?> - <?= $page->meta_title()->or($page->title()) ?>">
 <?php endif; ?>
+
 <?php // Description ?>
 
 <meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
@@ -36,7 +37,6 @@
 <?php // Keywords ?>
 
 <meta name="keywords" content="<?= $page->meta_keywords()->or($site->meta_keywords()) ?>">
-
 
 <?php // Canonical URL ?>
   
@@ -60,8 +60,8 @@
 
 <meta property="og:description" content="<?= $page->og_description()->or($page->meta_description())->or($site->meta_description()) ?>">
 
-<?php if ($ogimage = $page->og_image()->toFile() ?? $site->og_image()->toFile()): ?>
-  <meta property="og:image" content="<?= $ogimage->thumb($og_image)->url() ?>">
+<?php if ($og_image = $page->og_image()->toFile() ?? $site->og_image()->toFile()): ?>
+  <meta property="og:image" content="<?= $og_image->thumb($og_image_thumb)->url() ?>">
 <?php endif; ?>
 
 <meta property="og:site_name" content="<?= $page->og_site_name()->or($site->og_site_name()) ?>">
@@ -70,7 +70,7 @@
 
 <meta property="og:type" content="<?= $page->og_type()->or($site->og_type()) ?>">
 
-<?php if ($page->og_image()->or($site->og_determiner())->isNotEmpty()): ?>
+<?php if ($page->og_determiner()->or($site->og_determiner())->isNotEmpty()): ?>
   <meta property="og:determiner" content="<?= $page->og_determiner()->or($site->og_determiner())->or("auto") ?>">
 <?php endif; ?>
 
@@ -92,11 +92,11 @@
 <?php endif; ?>
 
 <?php
-  $authors = $page->og_type_article_author()->or($site->og_type_article_author());
+  $og_authors = $page->og_type_article_author()->or($site->og_type_article_author());
 ?>
 
-<?php foreach ($authors->toStructure() as $author): ?>
-  <meta property="article:author" content="<?= $author->url()->html() ?>">
+<?php foreach ($og_authors->toStructure() as $og_author): ?>
+  <meta property="article:author" content="<?= $og_author->url()->html() ?>">
 <?php endforeach ?>
 
 <?php // Twitter Card ?>
@@ -107,8 +107,8 @@
 
 <meta name="twitter:description" content="<?= $page->twitter_description()->or($page->meta_description())->or($site->meta_description()) ?>">
 
-<?php if ($twitterimage = $page->twitter_image()->toFile() ?? $site->twitter_image()->toFile()): ?>
-  <meta name="twitter:image" content="<?= $twitterimage->thumb($twitter_image)->url() ?>">
+<?php if ($twitter_image = $page->twitter_image()->toFile() ?? $site->twitter_image()->toFile()): ?>
+  <meta name="twitter:image" content="<?= $twitter_image->thumb($twitter_image_thumb)->url() ?>">
 <?php endif; ?>
 
 <meta name="twitter:site" content="<?= $page->twitter_site()->or($site->twitter_site()) ?>">

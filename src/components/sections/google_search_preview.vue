@@ -43,19 +43,21 @@ export default {
     meta_title() {
       let meta_title = this.$store.getters["content/values"]().meta_title;
       if (this.site_title == this.page_title) {
-        meta_title = this.site_title;
+        if (meta_title == "") {
+          meta_title = this.site_title;
+        }
       } else {
         if (this.siteTitleAfterPageTitle == true) {
-          if (meta_title != "") {
-            meta_title = meta_title + " - " + this.site_title;
-          } else {
+          if (meta_title == "") {
             meta_title = this.page_title + " - " + this.site_title;
+          } else {
+            meta_title = meta_title + " - " + this.site_title;
           }
         } else {
-          if (meta_title != "") {
-            meta_title = this.site_title + " - " + meta_title;
-          } else {
+          if (meta_title == "") {
             meta_title = this.site_title + " - " + this.page_title;
+          } else {
+            meta_title = this.site_title + " - " + meta_title;
           }
         }
       }
