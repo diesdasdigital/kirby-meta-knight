@@ -11,6 +11,15 @@
       'quality' => 80,
       'crop'    => true
     ];
+    
+  if(option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', true) && $page->isHomePage()) {
+    $full_title = $site->meta_title()->or($site->title());
+  } elseif (option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true)) {
+    $full_title =  $page->meta_title()->or($page->title()) . ' - ' . $site->meta_title()->or($site->title());
+  } else {
+    $full_title =  $site->meta_title()->or($site->title()) . ' - ' . $page->meta_title()->or($page->title());
+  }
+
 ?>
 
 <?php // Basic Meta Information ?>
@@ -22,11 +31,11 @@
 <?php // Page Title ?>
 
 <?php if(option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true)): ?>
-  <title><?= $page->meta_title()->or($page->title()) ?> - <?= $site->meta_title()->or($site->title()) ?></title>
-  <meta id="schema_name" itemprop="name" content="<?= $page->meta_title()->or($page->title()) ?> - <?= $site->meta_title()->or($site->title()) ?>">
+  <title><?= $full_title ?></title>
+  <meta id="schema_name" itemprop="name" content="<?= $full_title ?>">
 <?php else: ?>
-  <title><?= $site->meta_title()->or($site->title()) ?> - <?= $page->meta_title()->or($page->title()) ?></title>
-  <meta id="schema_name" itemprop="name" content="<?= $site->meta_title()->or($site->title()) ?> - <?= $page->meta_title()->or($page->title()) ?>">
+  <title><?= $full_title ?></title>
+  <meta id="schema_name" itemprop="name" content="<?= $full_title ?>">
 <?php endif; ?>
 
 <?php // Description ?>

@@ -13,8 +13,14 @@ return [
       'url' => function () {
           return $this->model()->url();
       },
+      'uid' => function () {
+        return $this->model()->uid();
+      },
       'siteTitleAfterPageTitle' => function () {
           return option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true);
+      },
+      'siteTitleAsHomePageTitle' => function () {
+        return option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', false);
       }
     ]
 ];
