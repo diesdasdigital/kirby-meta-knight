@@ -112,7 +112,7 @@
 
 <?php // Twitter Card ?>
 
-<meta name="twitter:card" content="summary">
+<meta name="twitter:card" content="<?= $page->twitter_card_type()->or($site->twitter_card_type())->value() ?>">
 
 <meta name="twitter:title" content="<?= $page->twitter_title()->or($page->meta_title())->or($page->title()) ?>">
 
