@@ -14,6 +14,13 @@
         </p>
       </div>
     </div>
+    <div
+      v-if="siteTitleAsHomePageTitle && uid == 'home'"
+      class="k-text k-field-help"
+      data-theme="help"
+    >
+      <p>Using the site title as home page title.</p>
+    </div>
   </div>
 </template>
 
@@ -33,29 +40,36 @@ export default {
       this.headline = response.headline;
       this.page_title = response.title.value;
       this.meta_url = response.url;
+      this.uid = response.uid;
       this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle;
+      this.siteTitleAsHomePageTitle = response.siteTitleAsHomePageTitle;
     });
     this.$api.site.get().then((response) => {
       this.site_title = response.title;
+      this.site_meta_title = response.content.meta_title;
     });
   },
   computed: {
     meta_title() {
       let meta_title = this.$store.getters["content/values"]().meta_title;
       if (this.site_title == this.page_title) {
-        meta_title = this.site_title;
+        if (meta_title == "") {
+          meta_title = this.site_title;
+        }
+      } else if (this.uid == "home" && this.siteTitleAsHomePageTitle) {
+        meta_title = this.site_meta_title || this.site_title;
       } else {
         if (this.siteTitleAfterPageTitle == true) {
-          if (meta_title != "") {
-            meta_title = meta_title + " - " + this.site_title;
-          } else {
+          if (meta_title == "") {
             meta_title = this.page_title + " - " + this.site_title;
+          } else {
+            meta_title = meta_title + " - " + this.site_title;
           }
         } else {
-          if (meta_title != "") {
-            meta_title = this.site_title + " - " + meta_title;
-          } else {
+          if (meta_title == "") {
             meta_title = this.site_title + " - " + this.page_title;
+          } else {
+            meta_title = this.site_title + " - " + meta_title;
           }
         }
       }

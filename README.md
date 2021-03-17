@@ -19,7 +19,11 @@ We'd also like to thank @distantnative for his help along the way! Without him t
 
 ## Config options
 
-By default the *Page Title* will be rendered before the *Site Title*. Resulting in a title tag that looks like this: `<title>Page Title – Site Title</title>`. If you want the *Site Title* to come first, simply add the following lines to your Kirby `config.php` file:
+### Site title
+
+#### Order
+
+By default the _Page Title_ will be rendered before the _Site Title_. Resulting in a title tag that looks like this: `<title>Page Title – Site Title</title>`. If you want the _Site Title_ to come first, simply add the following lines to your Kirby `config.php` file:
 
 ```
 'diesdasdigital.meta-knight' => [
@@ -28,6 +32,18 @@ By default the *Page Title* will be rendered before the *Site Title*. Resulting 
 ```
 
 You'll then get a title tag that looks like this: `<title>Site Title – Page Title</title>`.
+
+#### Hide page title on home page
+
+By default the title tag of the home page will include both the _page title_ and the _site title_ and look like this: `<title>Page Title – Site Title</title>`. If you want to only display the site title on the homepage, simply add the following lines to your Kirby `config.php` file:
+
+```
+'diesdasdigital.meta-knight' => [
+    'siteTitleAsHomePageTitle' => false,
+],
+```
+
+The title tage of your home page will then look like this: `<title>Site Title</title>`
 
 ---
 
