@@ -53,7 +53,7 @@
 
 <?php // Image ?>
 
-<meta id="schema_image" itemprop="image" content="<?= $page->meta_image()->or($site->meta_image()) ?>">
+<meta id="schema_image" itemprop="image" content="<?= $page->meta_image()->or($site->meta_image())->toFile()->url() ?>">
 
 <?php // Author ?>
 
