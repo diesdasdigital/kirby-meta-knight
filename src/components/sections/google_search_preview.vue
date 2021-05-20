@@ -84,11 +84,6 @@ export default {
         ? "[Description Missing]"
         : meta_description;
     },
-    meta_keywords() {
-      let meta_keywords = this.$store.getters["content/values"]().meta_keywords;
-
-      return meta_keywords.length < 1 ? "[Keywords Missing]" : meta_keywords;
-    },
     store_image() {
       return this.$store.getters["content/values"]().meta_image;
     },

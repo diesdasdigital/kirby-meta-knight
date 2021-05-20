@@ -43,10 +43,6 @@
 <meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
 <meta id="schema_description" itemprop="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
 
-<?php // Keywords ?>
-
-<meta name="keywords" content="<?= $page->meta_keywords()->or($site->meta_keywords()) ?>">
-
 <?php // Canonical URL ?>
   
 <link rel="canonical" href="<?= $page->meta_canonical_url()->or($page->url()) ?>" />
