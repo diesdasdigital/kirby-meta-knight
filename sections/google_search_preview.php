@@ -21,6 +21,9 @@ return [
       },
       'siteTitleAsHomePageTitle' => function () {
         return option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', false);
-      }
+      },
+      'separator' => function () {
+        return option('diesdasdigital.meta-knight.separator', ' - ');
+      },
     ]
 ];
