@@ -45,7 +45,7 @@
 
 <?php // Canonical URL ?>
   
-<link rel="canonical" href="<?= $page->meta_canonical_url()->or($page->url()) ?>" />
+<link rel="canonical" href="<?= $page->canonicalUrl() ?>" />
 
 <?php // Image ?>
 

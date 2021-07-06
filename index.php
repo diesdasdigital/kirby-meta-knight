@@ -27,6 +27,16 @@ Kirby::plugin('diesdasdigital/meta-knight', [
     ],
     'options' => [
       'siteTitleAfterPageTitle' => true,
-      'siteTitleAsHomePageTitle' => false
+      'siteTitleAsHomePageTitle' => false,
+      'canoncialIncludesWWW' => false
+    ],
+    'pageMethods' => [
+      'canonicalUrl' => function () {
+          if (option('diesdasdigital.meta-knight.canonicalIncludesWWW') === false) { 
+            return preg_replace('/www\./', '', $this->url());
+          } else {
+            return preg_replace('/http?s:\/\//', 'https://www.', $this->url());
+          }
+      }
     ]
 ]);
