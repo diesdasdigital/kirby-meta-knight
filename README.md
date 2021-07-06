@@ -55,7 +55,19 @@ The same can be done with the page title on the homepage
 
 will result in `<title>Page Title</title>`
 
-Both options cannot be enabled at the same time.
+Keep in mind: Both options cannot be enabled at the same time.
+
+### Canonical URLs
+
+Meta Knight gives you control over how the auto-generated canonical URLs for your pages are rendered. By default canonical URLs do not include the `www.` subdomain. If you wish the canonical URLs to include `www.` please set the following option in config.php:
+
+```
+'diesdasdigital.meta-knight' => [
+    'canonicalURLIncludesWWW' => true,
+],
+```
+
+Keep in mind: A canonical URL that was manually entered in the SEO Tab will always override the auto-generated canonical URL of any given page.
 
 ---
 

@@ -32,10 +32,10 @@ Kirby::plugin('diesdasdigital/meta-knight', [
     ],
     'pageMethods' => [
       'canonicalUrl' => function () {
-          if (option('diesdasdigital.meta-knight.canonicalIncludesWWW') === false) { 
+          if (option('diesdasdigital.meta-knight.canonicalURLIncludesWWW') === false) { 
             return preg_replace('/www\./', '', $this->url());
           } else {
-            return preg_replace('/http?s:\/\//', 'https://www.', $this->url());
+            return preg_replace('/http(s)?:\/\/(www.)?/', 'https://www.', $this->url());
           }
       }
     ]
