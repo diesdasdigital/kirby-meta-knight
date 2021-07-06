@@ -47,13 +47,17 @@
 
 <?php // Canonical URL ?>
   
-<link rel="canonical" href="<?= $page->canonicalUrl() ?>" />
+<?php if ($page->meta_canonical_url()->isNotEmpty()): ?>
+  <link rel="canonical" href="<?= $page->meta_canonical_url() ?>" />
+<?php else: ?>
+  <link rel="canonical" href="<?= $page->canonicalUrl() ?>" />
+<?php endif; ?>
 
 <?php // Image ?>
 
 <?php if ($meta_image = $page->meta_image()->toFile() ?? $site->meta_image()->toFile()): ?>
   <meta id="schema_image" itemprop="image" content="<?= $meta_image->url() ?>">
-<?php endif ?>
+<?php endif; ?>
 
 <?php // Author ?>
 
