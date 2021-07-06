@@ -12,7 +12,9 @@
       'crop'    => true
     ];
     
-  if(option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', true) && $page->isHomePage()) {
+  if(option('diesdasdigital.meta-knight.pageTitleAsHomePageTitle', true) && $page->isHomePage()) {
+    $full_title = $page->meta_title()->or($page->title());
+  } elseif(option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', true) && $page->isHomePage()) {
     $full_title = $site->meta_title()->or($site->title());
   } elseif (option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true)) {
     $full_title =  $page->meta_title()->or($page->title()) . option('diesdasdigital.meta-knight.separator', ' - ') . $site->meta_title()->or($site->title());

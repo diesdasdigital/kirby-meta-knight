@@ -59,7 +59,7 @@ Download and copy this repository to `/site/plugins/kirby-meta-knight`.
 git submodule add https://github.com/diesdasdigital/kirby-meta-knight.git site/plugins/kirby-meta-knight
 ```
 
-### Composer (not available yet)
+### Composer
 
 ```bash
 composer require diesdasdigital/kirby-meta-knight
