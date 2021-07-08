@@ -3,6 +3,10 @@
     "dev": "parcel watch src/index.js --no-source-maps -d ./",
     "build": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting -d ./"
   },
+  "license": {
+    "type": "MIT",
+    "url": "https://www.opensource.org/licenses/mit-license.php"
+  },
   "posthtml": {
     "recognizeSelfClosing": true
   },
@@ -15,7 +19,7 @@
   "dependencies": {
     "core-js": "^3.9.0",
     "global": "^4.4.0",
-    "parcel": "^1.12.4",
+    "parcel": "1.12.3",
     "vue": "^2.6.12",
     "vue-hot-reload-api": "^2.3.4"
   }
