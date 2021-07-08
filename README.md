@@ -57,6 +57,18 @@ will result in `<title>Page Title</title>`
 
 Keep in mind: Both options cannot be enabled at the same time.
 
+### Customizeable `page title | site title` separator
+
+The separator between page title and site title can be customized like this:
+
+```
+'diesdasdigital.meta-knight' => [
+    'separator' => ' \o/ ',
+],
+```
+
+The default value is ` | `.
+
 ### Canonical URLs
 
 Meta Knight gives you control over how the auto-generated canonical URLs for your pages are rendered. By default canonical URLs do not include the `www.` subdomain. If you wish the canonical URLs to include `www.` please set the following option in config.php:
