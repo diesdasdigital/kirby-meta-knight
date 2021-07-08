@@ -33,17 +33,47 @@ By default the _Page Title_ will be rendered before the _Site Title_. Resulting 
 
 You'll then get a title tag that looks like this: `<title>Site Title – Page Title</title>`.
 
-#### Hide page title on home page
+#### Customize home page title
 
 By default the title tag of the home page will include both the _page title_ and the _site title_ and look like this: `<title>Page Title – Site Title</title>`. If you want to only display the site title on the homepage, simply add the following lines to your Kirby `config.php` file:
 
 ```
 'diesdasdigital.meta-knight' => [
-    'siteTitleAsHomePageTitle' => false,
+    'siteTitleAsHomePageTitle' => true,
 ],
 ```
 
 The title tage of your home page will then look like this: `<title>Site Title</title>`
+
+The same can be done with the page title on the homepage
+
+```
+'diesdasdigital.meta-knight' => [
+    'pageTitleAsHomePageTitle' => true,
+],
+```
+
+will result in `<title>Page Title</title>`
+
+Keep in mind: Both options cannot be enabled at the same time.
+
+### Canonical URLs
+
+Meta Knight gives you control over how the auto-generated canonical URLs for your pages are rendered. By default canonical URLs do not include the `www.` subdomain. If you wish the canonical URLs to include `www.` please set the following option in config.php:
+
+```
+'diesdasdigital.meta-knight' => [
+    'canonicalURLIncludesWWW' => true,
+],
+```
+
+Please note:
+
+- Auto-generated canonical URLs will always be the `https://` version of any given page.
+- Do not enable `canonicalURLIncludesWWW` if your Kirby site is running on another subdomain.
+- A canonical URL that was manually entered in the SEO Tab will always override the auto-generated canonical URL of any given page.
+
+
 
 ---
 

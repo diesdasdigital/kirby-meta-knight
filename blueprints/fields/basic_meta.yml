@@ -12,10 +12,6 @@ fields:
     label: Description
     type: text
     help: A short description of the site/page that will be displayed underneath the page title by search engines.
-  meta_keywords:
-    label: Keywords
-    type: tags
-    help: A few keywords related to the content of the page.
   meta_canonical_url:
     label: Canonical URL
     type: url

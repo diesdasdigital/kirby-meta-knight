@@ -12,10 +12,10 @@
       'crop'    => true
     ];
     
-  if(option('diesdasdigital.meta-knight.pageTitleAsHomePageTitle', true) && $page->isHomePage()) {
-    $full_title = $page->meta_title()->or($page->title());
-  } elseif(option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', true) && $page->isHomePage()) {
+  if(option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', false) && $page->isHomePage()) {
     $full_title = $site->meta_title()->or($site->title());
+  } elseif(option('diesdasdigital.meta-knight.pageTitleAsHomePageTitle', false) && $page->isHomePage()) {
+    $full_title = $page->meta_title()->or($page->title());
   } elseif (option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true)) {
     $full_title =  $page->meta_title()->or($page->title()) . option('diesdasdigital.meta-knight.separator', ' - ') . $site->meta_title()->or($site->title());
   } else {
@@ -45,19 +45,19 @@
 <meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
 <meta id="schema_description" itemprop="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
 
-<?php // Keywords ?>
-
-<meta name="keywords" content="<?= $page->meta_keywords()->or($site->meta_keywords()) ?>">
-
 <?php // Canonical URL ?>
   
-<link rel="canonical" href="<?= $page->meta_canonical_url()->or($page->url()) ?>" />
+<?php if ($page->meta_canonical_url()->isNotEmpty()): ?>
+  <link rel="canonical" href="<?= $page->meta_canonical_url() ?>" />
+<?php else: ?>
+  <link rel="canonical" href="<?= $page->canonicalUrl() ?>" />
+<?php endif; ?>
 
 <?php // Image ?>
 
 <?php if ($meta_image = $page->meta_image()->toFile() ?? $site->meta_image()->toFile()): ?>
   <meta id="schema_image" itemprop="image" content="<?= $meta_image->url() ?>">
-<?php endif ?>
+<?php endif; ?>
 
 <?php // Author ?>
 

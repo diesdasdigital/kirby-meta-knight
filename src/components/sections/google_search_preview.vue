@@ -43,6 +43,7 @@ export default {
       this.uid = response.uid;
       this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle;
       this.siteTitleAsHomePageTitle = response.siteTitleAsHomePageTitle;
+      this.separator = response.separator;
     });
     this.$api.site.get().then((response) => {
       this.site_title = response.title;
@@ -61,15 +62,15 @@ export default {
       } else {
         if (this.siteTitleAfterPageTitle == true) {
           if (meta_title == "") {
-            meta_title = this.page_title + " - " + this.site_title;
+            meta_title = this.page_title + this.separator + this.site_title;
           } else {
-            meta_title = meta_title + " - " + this.site_title;
+            meta_title = meta_title + this.separator + this.site_title;
           }
         } else {
           if (meta_title == "") {
-            meta_title = this.site_title + " - " + this.page_title;
+            meta_title = this.site_title + this.separator + this.page_title;
           } else {
-            meta_title = this.site_title + " - " + meta_title;
+            meta_title = this.site_title + this.separator + meta_title;
           }
         }
       }
@@ -82,11 +83,6 @@ export default {
       return meta_description.length < 1
         ? "[Description Missing]"
         : meta_description;
-    },
-    meta_keywords() {
-      let meta_keywords = this.$store.getters["content/values"]().meta_keywords;
-
-      return meta_keywords.length < 1 ? "[Keywords Missing]" : meta_keywords;
     },
     store_image() {
       return this.$store.getters["content/values"]().meta_image;
