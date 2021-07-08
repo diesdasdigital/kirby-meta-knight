@@ -67,7 +67,13 @@ Meta Knight gives you control over how the auto-generated canonical URLs for you
 ],
 ```
 
-Keep in mind: A canonical URL that was manually entered in the SEO Tab will always override the auto-generated canonical URL of any given page.
+Please note:
+
+- Auto-generated canonical URLs will always be the `https://` version of any given page.
+- Do not enable `canonicalURLIncludesWWW` if your Kirby site is running on another subdomain.
+- A canonical URL that was manually entered in the SEO Tab will always override the auto-generated canonical URL of any given page.
+
+
 
 ---
 
