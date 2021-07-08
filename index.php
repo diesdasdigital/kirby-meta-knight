@@ -28,7 +28,7 @@ Kirby::plugin('diesdasdigital/meta-knight', [
     'options' => [
       'siteTitleAfterPageTitle' => true,
       'siteTitleAsHomePageTitle' => false,
-      'canoncialIncludesWWW' => false
+      'canonicalURLIncludesWWW' => false
     ],
     'pageMethods' => [
       'canonicalUrl' => function () {
