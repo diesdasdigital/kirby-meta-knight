@@ -65,7 +65,7 @@
 
 <?php // Date ?>
 
-<meta name="date" content="<?= $page->modified('Y-m-d') ?>" scheme="YYYY-MM-DD">
+<meta name="date" content="<?= $page->modified('Y-m-d') ?>">
 
 <?php // Open Graph ?>
 
