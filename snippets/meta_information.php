@@ -79,7 +79,7 @@
   <meta property="og:image:height" content="<?= $og_image->thumb($og_image_thumb)->height() ?>">
 <?php endif; ?>
 
-<meta property="og:site_name" content="<?= $page->og_site_name()->or($site->og_site_name()) ?>">
+<meta property="og:site_name" content="<?= $page->og_site_name()->or($site->og_site_name())->or($site->meta_title())->or($site->title()) ?>">
 
 <meta property="og:url" content="<?= $page->og_url()->or($page->url()) ?>">
 
