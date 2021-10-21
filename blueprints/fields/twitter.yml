@@ -7,12 +7,12 @@ fields:
   twitter_title:
     label: Twitter Title
     type: text
-    limit: 70
+    maxlength: 70
     help: The title of your page as it should appear on Twitter. Will use *page title* as fallback.
   twitter_description:
     label: Twitter Description
     type: text
-    limit: 300
+    maxlength: 300
     help: A one to two sentence description of your page. Will use *page description* and *site description* as fallbacks.
   twitter_image:
     label: Twitter Image (1200x675)
