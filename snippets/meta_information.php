@@ -13,13 +13,13 @@
     ];
 
   if(option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', false) && $page->isHomePage()) {
-    $full_title = $site->meta_title()->or($site->title());
+    $full_title = Html::encode($site->meta_title()->or($site->title()));
   } elseif(option('diesdasdigital.meta-knight.pageTitleAsHomePageTitle', false) && $page->isHomePage()) {
-    $full_title = $page->meta_title()->or($page->title());
+    $full_title = Html::encode($page->meta_title()->or($page->title()));
   } elseif (option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true)) {
-    $full_title =  $page->meta_title()->or($page->title()) . option('diesdasdigital.meta-knight.separator', ' - ') . $site->meta_title()->or($site->title());
+    $full_title = Html::encode($page->meta_title()->or($page->title()) . option('diesdasdigital.meta-knight.separator', ' - ') . $site->meta_title()->or($site->title()));
   } else {
-    $full_title =  $site->meta_title()->or($site->title()) . option('diesdasdigital.meta-knight.separator', ' - ') . $page->meta_title()->or($page->title());
+    $full_title = Html::encode($site->meta_title()->or($site->title()) . option('diesdasdigital.meta-knight.separator', ' - ') . $page->meta_title()->or($page->title()));
   }
 
 ?>
@@ -42,8 +42,8 @@
 
 <?php // Description ?>
 
-<meta name="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
-<meta id="schema_description" itemprop="description" content="<?= $page->meta_description()->or($site->meta_description()) ?>">
+<meta name="description" content="<?= Html::encode($page->meta_description()->or($site->meta_description())) ?>">
+<meta id="schema_description" itemprop="description" content="<?= Html::encode($page->meta_description()->or($site->meta_description())) ?>">
 
 <?php // Canonical URL ?>
 
@@ -78,9 +78,9 @@
 
 <?php // Open Graph ?>
 
-<meta property="og:title" content="<?= $page->og_title()->or($page->meta_title())->or($site->og_title())->or($site->meta_title())->or($page->title()) ?>">
+<meta property="og:title" content="<?= Html::encode($page->og_title()->or($page->meta_title())->or($site->og_title())->or($site->meta_title())->or($page->title())) ?>">
 
-<meta property="og:description" content="<?= $page->og_description()->or($page->meta_description())->or($site->meta_description()) ?>">
+<meta property="og:description" content="<?= Html::encode($page->og_description()->or($page->meta_description())->or($site->meta_description())) ?>">
 
 <?php if ($og_image = $page->og_image()->toFile() ?? $site->og_image()->toFile()): ?>
   <meta property="og:image" content="<?= $og_image->thumb($og_image_thumb)->url() ?>">
@@ -127,9 +127,9 @@
 
 <meta name="twitter:card" content="<?= $page->twitter_card_type()->or($site->twitter_card_type())->value() ?>">
 
-<meta name="twitter:title" content="<?= $page->twitter_title()->or($page->meta_title())->or($site->twitter_title())->or($site->meta_title())->or($page->title()) ?>">
+<meta name="twitter:title" content="<?= Html::encode($page->twitter_title()->or($page->meta_title())->or($site->twitter_title())->or($site->meta_title())->or($page->title())) ?>">
 
-<meta name="twitter:description" content="<?= $page->twitter_description()->or($page->meta_description())->or($site->meta_description()) ?>">
+<meta name="twitter:description" content="<?= Html::encode($page->twitter_description()->or($page->meta_description())->or($site->meta_description())) ?>">
 
 <?php if ($twitter_image = $page->twitter_image()->toFile() ?? $site->twitter_image()->toFile()): ?>
   <meta name="twitter:image" content="<?= $twitter_image->thumb($twitter_image_thumb)->url() ?>">
