@@ -82,10 +82,18 @@
 
 <meta property="og:description" content="<?= $page->og_description()->or($page->meta_description())->or($site->meta_description()) ?>">
 
-<?php if ($og_image = $page->og_image()->toFile() ?? $site->og_image()->toFile()): ?>
-  <meta property="og:image" content="<?= $og_image->thumb($og_image_thumb)->url() ?>">
-  <meta property="og:image:width" content="<?= $og_image->thumb($og_image_thumb)->width() ?>">
-  <meta property="og:image:height" content="<?= $og_image->thumb($og_image_thumb)->height() ?>">
+<?php if ($page->og_image()->isNotEmpty()): ?>
+  <meta property="og:image" content="<?= $page->og_image()->toFile()->thumb($og_image_thumb)->url() ?>">
+  <meta property="og:image:width" content="<?= $page->og_image()->toFile()->thumb($og_image_thumb)->width() ?>">
+  <meta property="og:image:height" content="<?= $page->og_image()->toFile()->thumb($og_image_thumb)->height() ?>">
+  <?php elseif ($meta_image = $page->meta_image()->toFile() ?? $page->image()): ?>
+  <meta name="og:image" content="<?= $meta_image->thumb($og_image_thumb)->url() ?>">
+  <meta property="og:image:width" content="<?= $meta_image->thumb($og_image_thumb)->width() ?>">
+  <meta property="og:image:height" content="<?= $meta_image->thumb($og_image_thumb)->height() ?>">
+<?php elseif ($site->og_image()->isNotEmpty()): ?>
+  <meta name="og:image" content="<?= $site->og_image()->toFile()->thumb($og_image_thumb)->url() ?>">
+  <meta property="og:image:width" content="<?= $site->og_image()->toFile()->thumb($og_image_thumb)->width() ?>">
+  <meta property="og:image:height" content="<?= $site->og_image()->toFile()->thumb($og_image_thumb)->height() ?>">
 <?php endif; ?>
 
 <meta property="og:site_name" content="<?= $page->og_site_name()->or($site->og_site_name())->or($site->meta_title())->or($site->title()) ?>">
@@ -131,8 +139,12 @@
 
 <meta name="twitter:description" content="<?= $page->twitter_description()->or($page->meta_description())->or($site->meta_description()) ?>">
 
-<?php if ($twitter_image = $page->twitter_image()->toFile() ?? $site->twitter_image()->toFile()): ?>
-  <meta name="twitter:image" content="<?= $twitter_image->thumb($twitter_image_thumb)->url() ?>">
+<?php if ($page->twitter_image()->isNotEmpty()): ?>
+  <meta name="twitter:image" content="<?= $page->twitter_image()->toFile()->thumb($twitter_image_thumb)->url() ?>">
+<?php elseif ($meta_image = $page->meta_image()->toFile() ?? $page->image()): ?>
+  <meta name="twitter:image" content="<?= $meta_image->thumb($twitter_image_thumb)->url() ?>">
+<?php elseif ($site->twitter_image()->isNotEmpty()): ?>
+  <meta name="twitter:image" content="<?= $page->twitter_image()->toFile()->thumb($twitter_image_thumb)->url() ?>">
 <?php endif; ?>
 
 <meta name="twitter:site" content="<?= $page->twitter_site()->or($site->twitter_site()) ?>">
