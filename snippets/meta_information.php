@@ -86,10 +86,10 @@
   <meta property="og:image" content="<?= $page->og_image()->toFile()->thumb($og_image_thumb)->url() ?>">
   <meta property="og:image:width" content="<?= $page->og_image()->toFile()->thumb($og_image_thumb)->width() ?>">
   <meta property="og:image:height" content="<?= $page->og_image()->toFile()->thumb($og_image_thumb)->height() ?>">
-<?php elseif ($image = $page->cover()->toFile() ?? $page->image()): ?>
-  <meta name="og:image" content="<?= $image->thumb($og_image_thumb)->url() ?>">
-  <meta property="og:image:width" content="<?= $image->thumb($og_image_thumb)->width() ?>">
-  <meta property="og:image:height" content="<?= $image->thumb($og_image_thumb)->height() ?>">
+  <?php elseif ($meta_image = $page->meta_image()->toFile() ?? $page->image()): ?>
+  <meta name="og:image" content="<?= $meta_image->thumb($og_image_thumb)->url() ?>">
+  <meta property="og:image:width" content="<?= $meta_image->thumb($og_image_thumb)->width() ?>">
+  <meta property="og:image:height" content="<?= $meta_image->thumb($og_image_thumb)->height() ?>">
 <?php elseif ($site->og_image()->isNotEmpty()): ?>
   <meta name="og:image" content="<?= $site->og_image()->toFile()->thumb($og_image_thumb)->url() ?>">
   <meta property="og:image:width" content="<?= $site->og_image()->toFile()->thumb($og_image_thumb)->width() ?>">
@@ -141,8 +141,8 @@
 
 <?php if ($page->twitter_image()->isNotEmpty()): ?>
   <meta name="twitter:image" content="<?= $page->twitter_image()->toFile()->thumb($twitter_image_thumb)->url() ?>">
-<?php elseif ($image = $page->cover()->toFile() ?? $page->image()): ?>
-  <meta name="twitter:image" content="<?= $image->thumb($twitter_image_thumb)->url() ?>">
+<?php elseif ($meta_image = $page->meta_image()->toFile() ?? $page->image()): ?>
+  <meta name="twitter:image" content="<?= $meta_image->thumb($twitter_image_thumb)->url() ?>">
 <?php elseif ($site->twitter_image()->isNotEmpty()): ?>
   <meta name="twitter:image" content="<?= $page->twitter_image()->toFile()->thumb($twitter_image_thumb)->url() ?>">
 <?php endif; ?>
