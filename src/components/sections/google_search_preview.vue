@@ -62,8 +62,8 @@ export default {
       return meta_title;
     },
     meta_description() {
-      let meta_description = this.$store.getters["content/values"]()
-        .meta_description;
+      let meta_description =
+        this.$store.getters["content/values"]().meta_description;
 
       return meta_description.length < 1
         ? "[Description Missing]"
@@ -95,7 +95,7 @@ export default {
       immediate: true,
     },
   },
-  created: function() {
+  created: function () {
     this.load().then((response) => {
       this.headline = response.headline;
       this.page_title = response.title.value;

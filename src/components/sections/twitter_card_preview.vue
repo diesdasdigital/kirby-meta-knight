@@ -59,8 +59,8 @@ export default {
   },
   computed: {
     twitter_card_type() {
-      let twitter_card_type = this.$store.getters["content/values"]()
-        .twitter_card_type;
+      let twitter_card_type =
+        this.$store.getters["content/values"]().twitter_card_type;
 
       return twitter_card_type;
     },
@@ -80,10 +80,10 @@ export default {
       return twitter_title;
     },
     twitter_description() {
-      let twitter_description = this.$store.getters["content/values"]()
-        .twitter_description;
-      let meta_description = this.$store.getters["content/values"]()
-        .meta_description;
+      let twitter_description =
+        this.$store.getters["content/values"]().twitter_description;
+      let meta_description =
+        this.$store.getters["content/values"]().meta_description;
 
       if (twitter_description.length < 1) {
         twitter_description = meta_description;
@@ -121,7 +121,7 @@ export default {
       immediate: true,
     },
   },
-  created: function() {
+  created: function () {
     this.load().then((response) => {
       this.headline = response.headline;
       this.url = response.url;

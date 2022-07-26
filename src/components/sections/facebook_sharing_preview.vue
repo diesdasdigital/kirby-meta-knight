@@ -52,10 +52,10 @@ export default {
       return og_title;
     },
     og_description() {
-      let og_description = this.$store.getters["content/values"]()
-        .og_description;
-      let meta_description = this.$store.getters["content/values"]()
-        .meta_description;
+      let og_description =
+        this.$store.getters["content/values"]().og_description;
+      let meta_description =
+        this.$store.getters["content/values"]().meta_description;
 
       if (og_description.length < 1) {
         og_description = meta_description;
@@ -102,7 +102,7 @@ export default {
       immediate: true,
     },
   },
-  created: function() {
+  created: function () {
     this.load().then((response) => {
       this.headline = response.headline;
       this.page_title = response.title.value;
