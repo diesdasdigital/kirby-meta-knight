@@ -35,21 +35,6 @@ export default {
       meta_image: null,
     };
   },
-  created: function() {
-    this.load().then((response) => {
-      this.headline = response.headline;
-      this.page_title = response.title.value;
-      this.meta_url = response.url;
-      this.uid = response.uid;
-      this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle;
-      this.siteTitleAsHomePageTitle = response.siteTitleAsHomePageTitle;
-      this.separator = response.separator;
-    });
-    this.$api.site.get().then((response) => {
-      this.site_title = response.title;
-      this.site_meta_title = response.content.meta_title;
-    });
-  },
   computed: {
     meta_title() {
       let meta_title = this.$store.getters["content/values"]().meta_title;
@@ -109,6 +94,21 @@ export default {
       },
       immediate: true,
     },
+  },
+  created: function() {
+    this.load().then((response) => {
+      this.headline = response.headline;
+      this.page_title = response.title.value;
+      this.meta_url = response.url;
+      this.uid = response.uid;
+      this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle;
+      this.siteTitleAsHomePageTitle = response.siteTitleAsHomePageTitle;
+      this.separator = response.separator;
+    });
+    this.$api.site.get().then((response) => {
+      this.site_title = response.title;
+      this.site_meta_title = response.content.meta_title;
+    });
   },
 };
 </script>

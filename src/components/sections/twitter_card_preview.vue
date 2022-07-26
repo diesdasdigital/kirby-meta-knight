@@ -8,7 +8,7 @@
         <div class="twitter-card twitter-card--horizontal">
           <div class="twitter-card__image">
             <img
-              v-if="this.store_image.length"
+              v-if="store_image.length"
               :src="twitter_image"
               class="twitter-card__preview-image"
             />
@@ -27,7 +27,7 @@
         <div class="twitter-card">
           <div class="twitter-card__image">
             <img
-              v-if="this.store_image.length"
+              v-if="store_image.length"
               :src="twitter_image"
               class="twitter-card__preview-image"
             />
@@ -56,14 +56,6 @@ export default {
       url: null,
       twitter_image: null,
     };
-  },
-  created: function() {
-    this.load().then((response) => {
-      this.headline = response.headline;
-      this.url = response.url;
-      this.page_title = response.title.value;
-      this.twitter_url = response.url;
-    });
   },
   computed: {
     twitter_card_type() {
@@ -128,6 +120,14 @@ export default {
       },
       immediate: true,
     },
+  },
+  created: function() {
+    this.load().then((response) => {
+      this.headline = response.headline;
+      this.url = response.url;
+      this.page_title = response.title.value;
+      this.twitter_url = response.url;
+    });
   },
 };
 </script>

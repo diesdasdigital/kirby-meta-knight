@@ -6,7 +6,7 @@
     <div class="open-graph-preview">
       <div class="open-graph-preview__image-container">
         <img
-          v-if="this.store_image.length"
+          v-if="store_image.length"
           :src="og_image"
           class="open-graph-preview__preview-image"
         />
@@ -34,16 +34,6 @@ export default {
       url: null,
       og_image: null,
     };
-  },
-  created: function() {
-    this.load().then((response) => {
-      this.headline = response.headline;
-      this.page_title = response.title.value;
-      this.url = response.url;
-    });
-    this.$api.site.get().then((response) => {
-      this.site_title = response.title;
-    });
   },
   computed: {
     og_title() {
@@ -111,6 +101,16 @@ export default {
       },
       immediate: true,
     },
+  },
+  created: function() {
+    this.load().then((response) => {
+      this.headline = response.headline;
+      this.page_title = response.title.value;
+      this.url = response.url;
+    });
+    this.$api.site.get().then((response) => {
+      this.site_title = response.title;
+    });
   },
 };
 </script>
