@@ -195,7 +195,17 @@ Default: `false`
 
 Sometimes you don't want to configure each description or sharing image manually, but instead automatically reuse a project thumbnail or use an excerpt of the page content for the description.
 
-For this, you can use Kirby [Page Models](https://getkirby.com/docs/guide/templates/page-models) to override the methods used by Meta Knight to read the data. You can check the methods Meta Knight uses to access data in [`snippets/meta_information.php`](snippets/meta_information.php).
+For this, you can use Kirby [Page Models](https://getkirby.com/docs/guide/templates/page-models) to override the methods used by Meta Knight to read the data. You can inspect the methods Meta Knight uses to access data in [`snippets/meta_information.php`](snippets/meta_information.php).
+
+```php
+<?php // site/models/default.php
+
+class DefaultPage extends Page {
+  public function meta_description() {
+    return parent::meta_description()->or($your_fallback_here);
+  }
+}
+```
 
 > ⚠ Make sure the overridden methods continue to return `Kirby\Cms\Field` objects! (check the example for details)
 
