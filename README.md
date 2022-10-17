@@ -4,7 +4,7 @@ Meta Knight is a SEO and Social Media Sharing Plugin for [Kirby](https://getkirb
 
 Meta Knight provides blueprints, snippets and custom preview sections. At the moment the plugin covers:
 
-- Basic Meta Information (Title, Description, Keywords, Canonical URL, etc.) + Google Search Preview
+- Basic Meta Information (Title, Description, Canonical URL, etc.) + Google Search Preview
 - Open Graph + Facebook Sharing Preview
 - Twitter Cards + Twitter Cards Preview
 - Robots Settings
