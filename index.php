@@ -28,11 +28,12 @@ Kirby::plugin('diesdasdigital/meta-knight', [
     'options' => [
       'siteTitleAfterPageTitle' => true,
       'siteTitleAsHomePageTitle' => false,
-      'canonicalURLIncludesWWW' => false
+      'canonicalURLIncludesWWW' => false,
+      'hideSiteTitle' => false,
     ],
     'pageMethods' => [
       'canonicalUrl' => function () {
-          if (option('diesdasdigital.meta-knight.canonicalURLIncludesWWW') === false) { 
+          if (option('diesdasdigital.meta-knight.canonicalURLIncludesWWW') === false) {
             return preg_replace(array('/http:/', '/www\./'), array('https:',''), $this->url());
           } else {
             return preg_replace('/http(s)?:\/\/(www.)?/', 'https://www.', $this->url());

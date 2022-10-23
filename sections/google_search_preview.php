@@ -25,5 +25,8 @@ return [
       'separator' => function () {
         return option('diesdasdigital.meta-knight.separator', ' - ');
       },
+      'hideSiteTitle' => function () {
+        return option('diesdasdigital.meta-knight.hideSiteTitle', false);
+      },
     ]
 ];
