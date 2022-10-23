@@ -44,6 +44,7 @@ export default {
       this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle;
       this.siteTitleAsHomePageTitle = response.siteTitleAsHomePageTitle;
       this.separator = response.separator;
+      this.hideSiteTitle = response.hideSiteTitle;
     });
     this.$api.site.get().then((response) => {
       this.site_title = response.title;
@@ -60,7 +61,13 @@ export default {
       } else if (this.uid == "home" && this.siteTitleAsHomePageTitle) {
         meta_title = this.site_meta_title || this.site_title;
       } else {
-        if (this.siteTitleAfterPageTitle == true) {
+        if (this.hideSiteTitle === true) {
+          if (meta_title == "") {
+            meta_title = this.page_title;
+          } else {
+            meta_title = meta_title;
+          }
+        } else if (this.siteTitleAfterPageTitle == true) {
           if (meta_title == "") {
             meta_title = this.page_title + this.separator + this.site_title;
           } else {

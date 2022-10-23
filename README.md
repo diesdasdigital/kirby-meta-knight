@@ -69,6 +69,16 @@ The separator between page title and site title can be customized like this:
 
 The default value is ` | `.
 
+### Hide `site title`
+
+To not output the site title can be customized like this:
+
+```
+'diesdasdigital.meta-knight' => [
+    'hideSiteTitle' => true,
+],
+```
+
 ### Canonical URLs
 
 Meta Knight gives you control over how the auto-generated canonical URLs for your pages are rendered. By default canonical URLs do not include the `www.` subdomain. If you wish the canonical URLs to include `www.` please set the following option in config.php:

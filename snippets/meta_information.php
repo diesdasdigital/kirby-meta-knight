@@ -12,7 +12,9 @@
       'crop'    => true
     ];
 
-  if(option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', false) && $page->isHomePage()) {
+  if(option('diesdasdigital.meta-knight.hideSiteTitle', false)) {
+    $full_title = $page->meta_title()->or($page->title());
+  } elseif(option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', false) && $page->isHomePage()) {
     $full_title = $site->meta_title()->or($site->title());
   } elseif(option('diesdasdigital.meta-knight.pageTitleAsHomePageTitle', false) && $page->isHomePage()) {
     $full_title = $page->meta_title()->or($page->title());
