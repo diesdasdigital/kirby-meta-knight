@@ -28,7 +28,7 @@
 
 <?php // Schema ?>
 
-<style itemscope itemtype="https://schema.org/WebSite" itemref="schema_name schema_description schema_image"></style>
+<style itemscope itemtype="https://schema.org/WebSite" itemref="schema_name schema_description <?= ($page->meta_image()->toFile() ?? $site->meta_image()->toFile()) ? 'schema_image' : null ?>"></style>
 
 <?php // Page Title ?>
 
