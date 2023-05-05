@@ -1,21 +1,23 @@
 <template>
   <div>
     <div class="k-field-label">
-      <span class="google-icon"></span> {{ headline }}
+      <span class="google-icon"></span> {{ loadedData.headline }}
     </div>
-    <div class="google-search-preview">
+    <div class="google-search-preview" :style="hide && 'visibility: hidden'">
       <div class="google-search-preview__content-container">
         <h2 class="google-search-preview__headline">
           {{ meta_title }}
         </h2>
-        <span class="google-search-preview__url">{{ meta_url }}</span>
+        <span class="google-search-preview__url">
+          {{ loadedData.page.url }}
+        </span>
         <p class="google-search-preview__paragraph">
           {{ meta_description }}
         </p>
       </div>
     </div>
     <div
-      v-if="siteTitleAsHomePageTitle && uid == 'home'"
+      v-if="isHomePage && loadedData.options.siteTitleAsHomePageTitle"
       class="k-text k-field-help"
       data-theme="help"
     >
@@ -28,86 +30,67 @@
 export default {
   data() {
     return {
-      headline: null,
-      site_title: null,
-      this_page_title: null,
-      url: null,
-      meta_image: null,
+      hide: true,
+      loadedData: {
+        headline: "Basic Meta Information",
+        page: {},
+        site: {},
+        options: {},
+      },
     };
   },
-  created: function() {
-    this.load().then((response) => {
-      this.headline = response.headline;
-      this.page_title = response.title.value;
-      this.meta_url = response.url;
-      this.uid = response.uid;
-      this.siteTitleAfterPageTitle = response.siteTitleAfterPageTitle;
-      this.siteTitleAsHomePageTitle = response.siteTitleAsHomePageTitle;
-      this.separator = response.separator;
-    });
-    this.$api.site.get().then((response) => {
-      this.site_title = response.title;
-      this.site_meta_title = response.content.meta_title;
-    });
-  },
   computed: {
+    originals() {
+      return this.$store.getters["content/model"]().originals;
+    },
+    changes() {
+      return this.$store.getters["content/model"]().changes;
+    },
+    isHomePage() {
+      return this.loadedData.page.isHomePage;
+    },
     meta_title() {
-      let meta_title = this.$store.getters["content/values"]().meta_title;
-      if (this.site_title == this.page_title) {
-        if (meta_title == "") {
-          meta_title = this.site_title;
-        }
-      } else if (this.uid == "home" && this.siteTitleAsHomePageTitle) {
-        meta_title = this.site_meta_title || this.site_title;
-      } else {
-        if (this.siteTitleAfterPageTitle == true) {
-          if (meta_title == "") {
-            meta_title = this.page_title + this.separator + this.site_title;
-          } else {
-            meta_title = meta_title + this.separator + this.site_title;
-          }
-        } else {
-          if (meta_title == "") {
-            meta_title = this.site_title + this.separator + this.page_title;
-          } else {
-            meta_title = this.site_title + this.separator + meta_title;
-          }
-        }
+      const { changes, loadedData, $system } = this;
+      const { page, site, options } = loadedData;
+
+      const siteTitle = site.meta_title || $system.title;
+      const pageTitle =
+        changes.meta_title || page.meta_title || changes.title || page.title;
+
+      if (page.isHomePage) {
+        if (options.siteTitleAsHomePageTitle) return siteTitle;
+        if (options.pageTitleAsHomePageTitle) return pageTitle;
       }
-      return meta_title;
+
+      if (options.siteTitleAfterPageTitle) {
+        return [pageTitle, siteTitle].join(options.separator);
+      }
+
+      return [siteTitle, pageTitle].join(options.separator);
     },
     meta_description() {
-      let meta_description = this.$store.getters["content/values"]()
-        .meta_description;
-
-      return meta_description.length < 1
-        ? "[Description Missing]"
-        : meta_description;
-    },
-    store_image() {
-      return this.$store.getters["content/values"]().meta_image;
+      return (
+        this.changes.meta_description ||
+        this.loadedData.page.meta_description ||
+        this.loadedData.site.meta_description ||
+        "[Description Missing]"
+      );
     },
   },
   watch: {
-    store_image: {
-      handler() {
-        if (this.store_image.length === 0) {
-          this.meta_image = null;
-        } else {
-          this.$api.files
-            .get(
-              this.$store.getters["content/model"]().api,
-              this.store_image[0].filename,
-              {
-                view: "compact",
-              }
-            )
-            .then((response) => {
-              this.meta_image = response.url;
-            });
-        }
-      },
-      immediate: true,
+    "originals.title": "fetchData",
+    "originals.meta_title": "fetchData",
+    "originals.meta_description": "fetchData",
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      this.$store.dispatch("isLoading", (this.hide = true));
+      this.load()
+        .then((responseData) => (this.loadedData = responseData))
+        .finally(() => this.$store.dispatch("isLoading", (this.hide = false)));
     },
   },
 };

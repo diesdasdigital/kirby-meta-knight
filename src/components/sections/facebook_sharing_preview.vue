@@ -1,12 +1,12 @@
 <template>
   <div>
     <div class="k-field-label">
-      <span class="facebook-icon"></span> {{ headline }}
+      <span class="facebook-icon"></span> {{ loadedData.headline }}
     </div>
-    <div class="open-graph-preview">
+    <div class="open-graph-preview" :style="hide && 'visibility: hidden'">
       <div class="open-graph-preview__image-container">
         <img
-          v-if="this.store_image.length"
+          v-if="og_image"
           :src="og_image"
           class="open-graph-preview__preview-image"
         />
@@ -28,88 +28,79 @@
 export default {
   data() {
     return {
-      headline: "Basic Meta Information",
-      site_title: null,
-      page_title: null,
-      url: null,
-      og_image: null,
+      hide: true,
+      loadedData: {
+        headline: "Basic Meta Information",
+        page: {},
+        site: {},
+      },
     };
   },
-  created: function() {
-    this.load().then((response) => {
-      this.headline = response.headline;
-      this.page_title = response.title.value;
-      this.url = response.url;
-    });
-    this.$api.site.get().then((response) => {
-      this.site_title = response.title;
-    });
-  },
   computed: {
-    og_title() {
-      let og_title = this.$store.getters["content/values"]().og_title;
-      let meta_title = this.$store.getters["content/values"]().meta_title;
-      let page_title = this.page_title;
-
-      if (og_title.length < 1) {
-        if (meta_title.length > 0) {
-          og_title = meta_title;
-        } else {
-          og_title = page_title;
-        }
-      }
-
-      return og_title;
+    originals() {
+      return this.$store.getters["content/model"]().originals;
     },
-    og_description() {
-      let og_description = this.$store.getters["content/values"]()
-        .og_description;
-      let meta_description = this.$store.getters["content/values"]()
-        .meta_description;
-
-      if (og_description.length < 1) {
-        og_description = meta_description;
-        if (meta_description.length < 1) {
-          og_description = "[OG Description and Fallback Description Missing]";
-        }
-      }
-
-      return og_description;
+    changes() {
+      return this.$store.getters["content/model"]().changes;
+    },
+    og_image() {
+      return (
+        this.changes.og_image?.[0]?.url ||
+        this.loadedData.page.og_image ||
+        this.loadedData.site.og_image
+      );
     },
     og_site_name() {
-      let og_site_name = this.$store.getters["content/values"]().og_site_name;
-
-      if (og_site_name.length < 1) {
-        og_site_name = this.site_title;
-        return og_site_name;
-      } else {
-        return og_site_name;
-      }
+      return (
+        this.changes.og_site_name ||
+        this.loadedData.page.og_site_name ||
+        this.loadedData.site.og_site_name ||
+        this.loadedData.site.meta_title ||
+        this.$system.title
+      );
     },
-    store_image() {
-      return this.$store.getters["content/values"]().og_image;
+    og_title() {
+      return (
+        this.changes.og_title ||
+        this.loadedData.page.og_title ||
+        this.changes.meta_title ||
+        this.loadedData.page.meta_title ||
+        this.loadedData.site.og_title ||
+        this.loadedData.site.meta_title ||
+        this.loadedData.page.title
+      );
+    },
+    og_description() {
+      return (
+        this.changes.og_description ||
+        this.loadedData.page.og_description ||
+        this.changes.meta_description ||
+        this.loadedData.page.meta_description ||
+        this.loadedData.site.meta_description ||
+        "[OG Description and Fallback Description Missing]"
+      );
+    },
+    originals_og_image() {
+      return this.originals.og_image?.[0];
     },
   },
   watch: {
-    store_image: {
-      handler() {
-        if (this.store_image.length === 0) {
-          this.og_image = this.site_og_image_url;
-        } else {
-          this.$api.files
-            .get(
-              this.$store.getters["content/model"]().api,
-              this.store_image[0].filename,
-              {
-                view: "compact",
-              }
-            )
-            .then((response) => {
-              this.og_image = response.url;
-            });
-        }
-      },
-      immediate: true,
+    originals_og_image: "fetchData",
+    "originals.og_site_name": "fetchData",
+    "originals.og_title": "fetchData",
+    "originals.meta_title": "fetchData",
+    "originals.og_description": "fetchData",
+    "originals.meta_description": "fetchData",
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      this.$store.dispatch("isLoading", (this.hide = true));
+      this.load()
+        .then((responseData) => (this.loadedData = responseData))
+        .finally(() => this.$store.dispatch("isLoading", (this.hide = false)));
     },
   },
 };

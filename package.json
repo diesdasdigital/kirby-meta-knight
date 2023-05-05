@@ -1,26 +1,37 @@
 {
+  "packageManager": "yarn@1.22.19",
   "scripts": {
-    "dev": "parcel watch src/index.js --no-source-maps -d ./",
-    "build": "parcel build src/index.js --no-source-maps --experimental-scope-hoisting -d ./"
+    "dev": "kirbyup serve src/index.js",
+    "build": "kirbyup src/index.js",
+    "lint": "eslint \"src/**/*.{js,vue}\"",
+    "lint:fix": "npm run lint -- --fix",
+    "format": "prettier \"src/**/*.{css,js,vue}\" --write"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://www.opensource.org/licenses/mit-license.php"
-  },
-  "posthtml": {
-    "recognizeSelfClosing": true
-  },
+  "license": "MIT",
   "devDependencies": {
-    "@vue/component-compiler-utils": "^3.2.0",
-    "cssnano": "^4.1.10",
-    "sass": "^1.32.8",
-    "vue-template-compiler": "^2.6.12"
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-vue": "^9.6.0",
+    "kirbyup": "^2.1.0",
+    "prettier": "^2.7.1"
   },
-  "dependencies": {
-    "core-js": "^3.9.0",
-    "global": "^4.4.0",
-    "parcel": "1.12.3",
-    "vue": "^2.6.12",
-    "vue-hot-reload-api": "^2.3.4"
+  "dependencies": {},
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "es2022": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:vue/recommended",
+      "prettier"
+    ],
+    "parserOptions": {
+      "ecmaVersion": "latest",
+      "sourceType": "module"
+    },
+    "rules": {
+      "vue/multi-word-component-names": "off"
+    }
   }
 }

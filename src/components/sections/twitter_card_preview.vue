@@ -1,14 +1,14 @@
 <template>
   <div>
     <div class="k-field-label">
-      <span class="twitter-icon"></span> {{ headline }}
+      <span class="twitter-icon"></span> {{ loadedData.headline }}
     </div>
-    <div class="twitter-cards">
+    <div class="twitter-cards" :style="hide && 'visibility: hidden'">
       <template v-if="twitter_card_type === 'summary_large_image'">
         <div class="twitter-card twitter-card--horizontal">
           <div class="twitter-card__image">
             <img
-              v-if="this.store_image.length"
+              v-if="twitter_image"
               :src="twitter_image"
               class="twitter-card__preview-image"
             />
@@ -19,7 +19,7 @@
             <p class="twitter-card__preview-paragraph">
               {{ twitter_description }}
             </p>
-            <span class="twitter-card__url">{{ twitter_url }}</span>
+            <span class="twitter-card__url">{{ loadedData.page.url }}</span>
           </div>
         </div>
       </template>
@@ -27,7 +27,7 @@
         <div class="twitter-card">
           <div class="twitter-card__image">
             <img
-              v-if="this.store_image.length"
+              v-if="twitter_image"
               :src="twitter_image"
               class="twitter-card__preview-image"
             />
@@ -38,7 +38,7 @@
             <p class="twitter-card__preview-paragraph">
               {{ twitter_description }}
             </p>
-            <span class="twitter-card__url">{{ twitter_url }}</span>
+            <span class="twitter-card__url">{{ loadedData.page.url }}</span>
           </div>
         </div>
       </template>
@@ -50,83 +50,77 @@
 export default {
   data() {
     return {
-      headline: "Basic Meta Information",
-      site_title: null,
-      page_title: null,
-      url: null,
-      twitter_image: null,
+      hide: true,
+      loadedData: {
+        headline: "Basic Meta Information",
+        page: {},
+        site: {},
+      },
     };
   },
-  created: function() {
-    this.load().then((response) => {
-      this.headline = response.headline;
-      this.url = response.url;
-      this.page_title = response.title.value;
-      this.twitter_url = response.url;
-    });
-  },
   computed: {
+    originals() {
+      return this.$store.getters["content/model"]().originals;
+    },
+    changes() {
+      return this.$store.getters["content/model"]().changes;
+    },
     twitter_card_type() {
-      let twitter_card_type = this.$store.getters["content/values"]()
-        .twitter_card_type;
-
-      return twitter_card_type;
+      return (
+        this.changes.twitter_card_type ||
+        this.loadedData.page.twitter_card_type ||
+        this.loadedData.site.twitter_card_type
+      );
+    },
+    twitter_image() {
+      return (
+        this.changes.twitter_image?.[0]?.url ||
+        this.loadedData.page.twitter_image ||
+        this.loadedData.site.twitter_image
+      );
     },
     twitter_title() {
-      let twitter_title = this.$store.getters["content/values"]().twitter_title;
-      let meta_title = this.$store.getters["content/values"]().meta_title;
-      let page_title = this.page_title;
-
-      if (twitter_title.length < 1) {
-        if (meta_title.length > 0) {
-          twitter_title = meta_title;
-        } else {
-          twitter_title = page_title;
-        }
-      }
-
-      return twitter_title;
+      return (
+        this.changes.twitter_title ||
+        this.loadedData.page.twitter_title ||
+        this.changes.meta_title ||
+        this.loadedData.page.meta_title ||
+        this.loadedData.site.twitter_title ||
+        this.loadedData.site.meta_title ||
+        this.loadedData.page.title
+      );
     },
     twitter_description() {
-      let twitter_description = this.$store.getters["content/values"]()
-        .twitter_description;
-      let meta_description = this.$store.getters["content/values"]()
-        .meta_description;
-
-      if (twitter_description.length < 1) {
-        twitter_description = meta_description;
-        if (meta_description.length < 1) {
-          twitter_description =
-            "[Twitter Description and Fallback Description Missing]";
-        }
-      }
-
-      return twitter_description;
+      return (
+        this.changes.twitter_description ||
+        this.loadedData.page.twitter_description ||
+        this.changes.meta_description ||
+        this.loadedData.page.meta_description ||
+        this.loadedData.site.meta_description ||
+        "[Twitter Description and Fallback Description Missing]"
+      );
     },
-    store_image() {
-      return this.$store.getters["content/values"]().twitter_image;
+    originals_twitter_image() {
+      return this.originals.twitter_image?.[0];
     },
   },
   watch: {
-    store_image: {
-      handler() {
-        if (this.store_image.length === 0) {
-          this.twitter_image = null;
-        } else {
-          this.$api.files
-            .get(
-              this.$store.getters["content/model"]().api,
-              this.store_image[0].filename,
-              {
-                view: "compact",
-              }
-            )
-            .then((response) => {
-              this.twitter_image = response.url;
-            });
-        }
-      },
-      immediate: true,
+    originals_twitter_image: "fetchData",
+    "originals.twitter_card_type": "fetchData",
+    "originals.twitter_title": "fetchData",
+    "originals.meta_title": "fetchData",
+    "originals.twitter_description": "fetchData",
+    "originals.meta_description": "fetchData",
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      this.$store.dispatch("isLoading", (this.hide = true));
+      this.load()
+        .then((responseData) => (this.loadedData = responseData))
+        .finally(() => this.$store.dispatch("isLoading", (this.hide = false)));
     },
   },
 };

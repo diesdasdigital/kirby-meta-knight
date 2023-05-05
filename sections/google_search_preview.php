@@ -7,23 +7,32 @@ return [
         }
     ],
     'computed' => [
-      'title' => function () {
-          return $this->model()->title();
-      },
-      'url' => function () {
-          return $this->model()->url();
-      },
-      'uid' => function () {
-        return $this->model()->uid();
-      },
-      'siteTitleAfterPageTitle' => function () {
-          return option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true);
-      },
-      'siteTitleAsHomePageTitle' => function () {
-        return option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', false);
-      },
-      'separator' => function () {
-        return option('diesdasdigital.meta-knight.separator', ' - ');
-      },
-    ]
+        'page' => function() {
+            $page = $this->model();
+        
+            return [
+                'url' => $page->url(),
+                'title' => $page->title()->value(),
+                'meta_title' => $page->meta_title()->value(),
+                'meta_description' => $page->meta_description()->value(),
+                'isHomePage' => $page->isHomePage(),
+            ];
+        },
+        'site' => function() {
+            $site = $this->kirby()->site();
+        
+            return [
+                'meta_title' => $site->meta_title()->value(),
+                'meta_description' => $site->meta_description()->value(),
+            ];
+        },
+        'options' => function() {
+            return [
+                'pageTitleAsHomePageTitle' => option('diesdasdigital.meta-knight.pageTitleAsHomePageTitle', false),
+                'siteTitleAsHomePageTitle' => option('diesdasdigital.meta-knight.siteTitleAsHomePageTitle', false),
+                'siteTitleAfterPageTitle' => option('diesdasdigital.meta-knight.siteTitleAfterPageTitle', true),
+                'separator' => option('diesdasdigital.meta-knight.separator', ' - '),
+            ];
+        },
+    ],
 ];
